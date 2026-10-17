@@ -1,0 +1,476 @@
+{
+  "id": "bp_65d5fd1cce8e",
+  "version": 2,
+  "prd_id": "prd_aded24b7a185",
+  "hash": "1913e2e3114d0ea35ac1d45bccc3f3b75aaca92b0a2c49da1c91991887bd7470",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_65d5fd1cce8e",
+    "version": 2,
+    "objective": "Produce a reviewed management memo explaining quarterly revenue and cost performance by region from a synthetic financial dataset, with all figures traceable to computed statistics and qualitative context from optional business notes.",
+    "source_prd_hash": "b15505e1e847b9f5bb407aed399b3d60a451a6988d86a90f8e71c9c1ec897e69",
+    "created_at": "2026-10-17T15:08:17.015182Z",
+    "inputs": [
+      {
+        "name": "financials_csv",
+        "description": "",
+        "required": true
+      },
+      {
+        "name": "business_context",
+        "description": "",
+        "required": false
+      }
+    ],
+    "tasks": [
+      {
+        "id": "compute_metrics",
+        "role": "Compute dataset statistics",
+        "responsibility": "Run the numeric-description tool over the financials CSV to obtain row count, the list of numeric columns, and per-column min/max/mean/sum. These figures are the sole source of truth for every number quoted in the memo.",
+        "kind": "tool",
+        "required_inputs": [
+          {
+            "name": "csv_text",
+            "source": "run:financials_csv",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "row_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "numeric_columns",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "stats",
+            "type": "object",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": null,
+        "tool": "data.describe_numeric",
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 4
+      },
+      {
+        "id": "sector_context",
+        "role": "Summarise sector / business context",
+        "responsibility": "If business_context is supplied, extract the key strategic themes and caveats that may explain regional performance differences. If business_context is absent, return empty lists so downstream tasks can proceed without it.",
+        "kind": "agent",
+        "required_inputs": [],
+        "optional_inputs": [
+          {
+            "name": "business_context",
+            "source": "run:business_context",
+            "description": ""
+          }
+        ],
+        "output_schema": [
+          {
+            "name": "themes",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "caveats",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "draft_memo",
+        "role": "Draft and review management memo",
+        "responsibility": "Using the computed statistics (compute_metrics) and the qualitative context (sector_context), plus the raw financials_csv for per-region detail, write a one-page management memo. The memo must explain revenue, cost, and margin for every region, cite the exact figures from the statistics, incorporate any themes/caveats, and list specific, actionable risks. A non-specialist manager should be able to read it without additional context.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "compute_metrics",
+            "source": "task:compute_metrics",
+            "description": ""
+          },
+          {
+            "name": "sector_context",
+            "source": "task:sector_context",
+            "description": ""
+          },
+          {
+            "name": "financials_csv",
+            "source": "run:financials_csv",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "headline",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "regional_findings",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "risks",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "memo",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "compute_metrics",
+          "sector_context"
+        ],
+        "skill": "synthesizer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "draft_memo_review",
+        "role": "Reviewer for Draft and review management memo",
+        "responsibility": "Review the output of 'Draft and review management memo' against the rubric.",
+        "kind": "checker",
+        "required_inputs": [
+          {
+            "name": "artifact",
+            "source": "task:draft_memo",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "approved",
+            "type": "boolean",
+            "description": "True only if every criterion is met",
+            "required": true
+          },
+          {
+            "name": "score",
+            "type": "number",
+            "description": "0.0-1.0 overall rubric score",
+            "required": true
+          },
+          {
+            "name": "unmet_criteria",
+            "type": "string_list",
+            "description": "Rubric items not met",
+            "required": true
+          },
+          {
+            "name": "feedback",
+            "type": "string",
+            "description": "Concrete revision instructions for the maker",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "draft_memo"
+        ],
+        "skill": "reviewer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 4
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "parallel",
+          "tasks": [
+            "compute_metrics",
+            "sector_context",
+            "draft_memo"
+          ],
+          "rationale": "2 tasks have no dependency on each other; fan out and join at draft_memo"
+        },
+        {
+          "pattern": "serial",
+          "tasks": [
+            "draft_memo"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        },
+        {
+          "pattern": "maker_checker",
+          "tasks": [
+            "draft_memo",
+            "draft_memo_review"
+          ],
+          "rationale": "quality/factual verification with bounded revision"
+        }
+      ],
+      "edges": [
+        {
+          "source": "compute_metrics",
+          "target": "draft_memo"
+        },
+        {
+          "source": "sector_context",
+          "target": "draft_memo"
+        },
+        {
+          "source": "draft_memo",
+          "target": "draft_memo_review"
+        }
+      ],
+      "loops": [
+        {
+          "id": "draft_memo_loop",
+          "maker": "draft_memo",
+          "checker": "draft_memo_review",
+          "max_revisions": 2,
+          "rubric": [
+            "Every numeric figure quoted in the memo matches a value produced by compute_metrics (stats) or is a transparently derived value (e.g. margin = revenue \u2212 cost) traceable to those figures.",
+            "Margin (revenue minus cost, or an equivalent ratio) is explicitly discussed for every region present in the dataset.",
+            "Each item in risks is specific (names a region, quarter, or metric) and actionable (states a recommended next step or threshold).",
+            "The memo is written in plain language suitable for a non-specialist manager; no unexplained jargon or raw CSV dumps.",
+            "If sector_context returned non-empty themes or caveats, they are referenced in the memo; if empty, the memo notes the absence of external context."
+          ]
+        }
+      ],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [
+        "data.describe_numeric"
+      ],
+      "skills": [
+        "data_engineer",
+        "reviewer",
+        "synthesizer"
+      ],
+      "model": {
+        "provider": "ollama",
+        "model": "qwen3.8",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 23,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 17,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [
+        "Every figure in the memo is traceable to the computed statistics or a transparent derivation thereof.",
+        "The memo is readable by a non-specialist manager without additional context."
+      ],
+      "final_task": "draft_memo",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Produce a reviewed management memo explaining quarterly revenue and cost performance by region from a synthetic financial dataset, with all figures traceable to computed statistics and qualitative context from optional business notes.",
+    "tasks": [
+      {
+        "id": "compute_metrics",
+        "title": "Compute dataset statistics",
+        "description": "Run the numeric-description tool over the financials CSV to obtain row count, the list of numeric columns, and per-column min/max/mean/sum. These figures are the sole source of truth for every number quoted in the memo.",
+        "depends_on": [],
+        "user_inputs": [
+          "financials_csv"
+        ],
+        "output_fields": [
+          {
+            "name": "row_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "numeric_columns",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "stats",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": "data.describe_numeric"
+      },
+      {
+        "id": "sector_context",
+        "title": "Summarise sector / business context",
+        "description": "If business_context is supplied, extract the key strategic themes and caveats that may explain regional performance differences. If business_context is absent, return empty lists so downstream tasks can proceed without it.",
+        "depends_on": [],
+        "user_inputs": [
+          "business_context"
+        ],
+        "output_fields": [
+          {
+            "name": "themes",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "caveats",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "draft_memo",
+        "title": "Draft and review management memo",
+        "description": "Using the computed statistics (compute_metrics) and the qualitative context (sector_context), plus the raw financials_csv for per-region detail, write a one-page management memo. The memo must explain revenue, cost, and margin for every region, cite the exact figures from the statistics, incorporate any themes/caveats, and list specific, actionable risks. A non-specialist manager should be able to read it without additional context.",
+        "depends_on": [
+          "compute_metrics",
+          "sector_context"
+        ],
+        "user_inputs": [
+          "financials_csv"
+        ],
+        "output_fields": [
+          {
+            "name": "headline",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "regional_findings",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "risks",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "memo",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": true,
+        "review_criteria": [
+          "Every numeric figure quoted in the memo matches a value produced by compute_metrics (stats) or is a transparently derived value (e.g. margin = revenue \u2212 cost) traceable to those figures.",
+          "Margin (revenue minus cost, or an equivalent ratio) is explicitly discussed for every region present in the dataset.",
+          "Each item in risks is specific (names a region, quarter, or metric) and actionable (states a recommended next step or threshold).",
+          "The memo is written in plain language suitable for a non-specialist manager; no unexplained jargon or raw CSV dumps.",
+          "If sector_context returned non-empty themes or caveats, they are referenced in the memo; if empty, the memo notes the absence of external context."
+        ],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "financials_csv",
+        "description": "",
+        "required": true
+      },
+      {
+        "name": "business_context",
+        "description": "",
+        "required": false
+      }
+    ],
+    "constraints": [
+      "Synthetic data only; no live or proprietary financial data may be used.",
+      "All figures in the final memo must be traceable to the dataset via compute_metrics output."
+    ],
+    "success_criteria": [
+      "Every figure in the memo is traceable to the computed statistics or a transparent derivation thereof.",
+      "The memo is readable by a non-specialist manager without additional context."
+    ],
+    "missing_information": [
+      "The PRD does not define the exact margin formula (absolute revenue \u2212 cost vs. percentage (revenue \u2212 cost)/revenue); the draft_memo task must pick one and state it, but the PRD should confirm the preferred definition.",
+      "The PRD does not specify a memo template, length limit in words, or required section headings beyond 'one-page'; a concrete template or word-count cap would reduce ambiguity.",
+      "The PRD does not state how to handle the case where business_context is omitted (skip sector_context entirely vs. emit empty lists); the task description assumes empty-list fallback but the PRD should confirm.",
+      "The PRD does not specify the expected number of regions or quarters, nor whether the dataset is guaranteed to contain all four quarters; edge-case handling (missing quarter, single region) is undefined.",
+      "No output file path or delivery format (Markdown, PDF, plain text) is specified for the final memo; the task currently returns a string but the PRD may require a written file via files.write_text."
+    ]
+  },
+  "issues": [
+    {
+      "code": "missing_information",
+      "message": "The PRD does not define the exact margin formula (absolute revenue \u2212 cost vs. percentage (revenue \u2212 cost)/revenue); the draft_memo task must pick one and state it, but the PRD should confirm the preferred definition.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not specify a memo template, length limit in words, or required section headings beyond 'one-page'; a concrete template or word-count cap would reduce ambiguity.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not state how to handle the case where business_context is omitted (skip sector_context entirely vs. emit empty lists); the task description assumes empty-list fallback but the PRD should confirm.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not specify the expected number of regions or quarters, nor whether the dataset is guaranteed to contain all four quarters; edge-case handling (missing quarter, single region) is undefined.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "No output file path or delivery format (Markdown, PDF, plain text) is specified for the final memo; the task currently returns a string but the PRD may require a written file via files.write_text.",
+      "task": null
+    }
+  ],
+  "created_at": "2026-10-17T15:08:17.016255+00:00",
+  "approval": null
+}

@@ -1,0 +1,17 @@
+REMOTE WORK POLICY (Synthetic example)
+
+1. Scope
+This policy applies to all permanent employees of Example Co.
+
+2. Definitions
+"Remote day" means a scheduled working day spent outside an Example Co. office.
+
+3. Eligibility
+Employees who have completed their probation period may request up to three remote days per week.
+Managers must respond to a request within ten working days.
+
+4. Equipment
+Example Co. provides a laptop. Employees must use the company VPN for all work traffic.
+
+5. Security
+Confidential documents must not be printed at home.

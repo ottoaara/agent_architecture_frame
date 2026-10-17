@@ -1,0 +1,435 @@
+{
+  "id": "bp_163109b184b1",
+  "version": 1,
+  "prd_id": "prd_822b2443173b",
+  "hash": "a403b4ed3e5f5d56cb430641b0c921abb8dd30759ab218072455920afa6e9fca",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_163109b184b1",
+    "version": 1,
+    "objective": "Compare three fictional payroll software vendors (Acme Payroll, BrightPay Cloud, Cobalt HR) for a 200-employee company and recommend one.",
+    "source_prd_hash": "29e88a6e80564a7b7fe34b732940938ea84f15a2e9ac5d4c893ad33a769a2a05",
+    "created_at": "2026-10-17T15:11:03.155296Z",
+    "inputs": [
+      {
+        "name": "company_profile",
+        "description": "Size, locations and priorities of the buying company.",
+        "required": true
+      }
+    ],
+    "tasks": [
+      {
+        "id": "research_acme",
+        "role": "Research Acme Payroll",
+        "responsibility": "Profile Acme Payroll's capabilities, pricing model and fit for the buyer.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "company_profile",
+            "source": "run:company_profile",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "researcher",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "research_brightpay",
+        "role": "Research BrightPay Cloud",
+        "responsibility": "Profile BrightPay Cloud's capabilities, pricing model and fit for the buyer.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "company_profile",
+            "source": "run:company_profile",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "researcher",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "research_cobalt",
+        "role": "Research Cobalt HR",
+        "responsibility": "Profile Cobalt HR's capabilities, pricing model and fit for the buyer.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "company_profile",
+            "source": "run:company_profile",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "researcher",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "comparison_report",
+        "role": "Write comparison report",
+        "responsibility": "Compare the three vendors side by side and recommend one for the buyer.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "research_acme",
+            "source": "task:research_acme",
+            "description": ""
+          },
+          {
+            "name": "research_brightpay",
+            "source": "task:research_brightpay",
+            "description": ""
+          },
+          {
+            "name": "research_cobalt",
+            "source": "task:research_cobalt",
+            "description": ""
+          },
+          {
+            "name": "company_profile",
+            "source": "run:company_profile",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "comparison_table",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "recommendation",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "rationale",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "research_acme",
+          "research_brightpay",
+          "research_cobalt"
+        ],
+        "skill": "synthesizer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "parallel",
+          "tasks": [
+            "research_acme",
+            "research_brightpay",
+            "research_cobalt",
+            "comparison_report"
+          ],
+          "rationale": "3 tasks have no dependency on each other; fan out and join at comparison_report"
+        },
+        {
+          "pattern": "serial",
+          "tasks": [
+            "comparison_report"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        }
+      ],
+      "edges": [
+        {
+          "source": "research_acme",
+          "target": "comparison_report"
+        },
+        {
+          "source": "research_brightpay",
+          "target": "comparison_report"
+        },
+        {
+          "source": "research_cobalt",
+          "target": "comparison_report"
+        }
+      ],
+      "loops": [],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [],
+      "skills": [
+        "researcher",
+        "synthesizer"
+      ],
+      "model": {
+        "provider": "mock",
+        "model": "claude-opus-5-5",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 16,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 9,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [
+        "Every vendor is assessed on the same dimensions",
+        "The recommendation follows from the stated buyer priorities"
+      ],
+      "final_task": "comparison_report",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Compare three fictional payroll software vendors (Acme Payroll, BrightPay Cloud, Cobalt HR) for a 200-employee company and recommend one.",
+    "tasks": [
+      {
+        "id": "research_acme",
+        "title": "Research Acme Payroll",
+        "description": "Profile Acme Payroll's capabilities, pricing model and fit for the buyer.",
+        "depends_on": [],
+        "user_inputs": [
+          "company_profile"
+        ],
+        "output_fields": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "research_brightpay",
+        "title": "Research BrightPay Cloud",
+        "description": "Profile BrightPay Cloud's capabilities, pricing model and fit for the buyer.",
+        "depends_on": [],
+        "user_inputs": [
+          "company_profile"
+        ],
+        "output_fields": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "research_cobalt",
+        "title": "Research Cobalt HR",
+        "description": "Profile Cobalt HR's capabilities, pricing model and fit for the buyer.",
+        "depends_on": [],
+        "user_inputs": [
+          "company_profile"
+        ],
+        "output_fields": [
+          {
+            "name": "strengths",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "weaknesses",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "pricing_notes",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "comparison_report",
+        "title": "Write comparison report",
+        "description": "Compare the three vendors side by side and recommend one for the buyer.",
+        "depends_on": [
+          "research_acme",
+          "research_brightpay",
+          "research_cobalt"
+        ],
+        "user_inputs": [
+          "company_profile"
+        ],
+        "output_fields": [
+          {
+            "name": "comparison_table",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "recommendation",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "rationale",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "company_profile",
+        "description": "Size, locations and priorities of the buying company.",
+        "required": true
+      }
+    ],
+    "constraints": [
+      "The vendors are fictional; treat all details as illustrative"
+    ],
+    "success_criteria": [
+      "Every vendor is assessed on the same dimensions",
+      "The recommendation follows from the stated buyer priorities"
+    ],
+    "missing_information": []
+  },
+  "issues": [],
+  "created_at": "2026-10-17T15:11:03.155645+00:00",
+  "approval": null
+}

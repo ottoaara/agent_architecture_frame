@@ -1,0 +1,299 @@
+{
+  "id": "bp_70ca1e4a8f25",
+  "version": 1,
+  "prd_id": "prd_2daf07e9deb9",
+  "hash": "84685b6702db3f1a29faa92991d5528444f6a108c4bd64ad5225397663532054",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_70ca1e4a8f25",
+    "version": 1,
+    "objective": "Assess the risk of onboarding a fictional cloud vendor (Nimbus Storage Ltd) and produce a go/no-go recommendation.",
+    "source_prd_hash": "6826b6ef7488060b16a2261d9f16532adb71d84fd7baa2a49878fc8dabde5db4",
+    "created_at": "2026-10-17T15:11:03.199220Z",
+    "inputs": [
+      {
+        "name": "vendor_dossier",
+        "description": "Description of the vendor, its services and its controls.",
+        "required": true
+      }
+    ],
+    "tasks": [
+      {
+        "id": "risk_investigation",
+        "role": "Investigate vendor risk",
+        "responsibility": "Coordinate specialist investigations and consolidate their findings into one risk view.",
+        "kind": "hub",
+        "required_inputs": [
+          {
+            "name": "vendor_dossier",
+            "source": "run:vendor_dossier",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "risk_summary",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "top_risks",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "risk_rating",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "coordinator",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [
+          {
+            "id": "security",
+            "role": "security specialist",
+            "responsibility": "Investigate the 'security' aspect of: Coordinate specialist investigations and consolidate their findings into one risk view.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          },
+          {
+            "id": "financial_stability",
+            "role": "financial stability specialist",
+            "responsibility": "Investigate the 'financial stability' aspect of: Coordinate specialist investigations and consolidate their findings into one risk view.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          },
+          {
+            "id": "regulatory_compliance",
+            "role": "regulatory compliance specialist",
+            "responsibility": "Investigate the 'regulatory compliance' aspect of: Coordinate specialist investigations and consolidate their findings into one risk view.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          }
+        ],
+        "max_delegations": 3
+      },
+      {
+        "id": "recommendation",
+        "role": "Write the recommendation",
+        "responsibility": "Recommend go, conditional go or no-go with conditions.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "risk_investigation",
+            "source": "task:risk_investigation",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "decision",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "conditions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "justification",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "risk_investigation"
+        ],
+        "skill": "writer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "serial",
+          "tasks": [
+            "recommendation"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        },
+        {
+          "pattern": "hub_subagent",
+          "tasks": [
+            "risk_investigation"
+          ],
+          "rationale": "needs specialised delegation: security, financial stability, regulatory compliance"
+        }
+      ],
+      "edges": [
+        {
+          "source": "risk_investigation",
+          "target": "recommendation"
+        }
+      ],
+      "loops": [],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [],
+      "skills": [
+        "coordinator",
+        "writer"
+      ],
+      "model": {
+        "provider": "mock",
+        "model": "claude-opus-5-5",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 16,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 12,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [
+        "Each specialist area is covered",
+        "The decision is justified by the identified risks"
+      ],
+      "final_task": "recommendation",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Assess the risk of onboarding a fictional cloud vendor (Nimbus Storage Ltd) and produce a go/no-go recommendation.",
+    "tasks": [
+      {
+        "id": "risk_investigation",
+        "title": "Investigate vendor risk",
+        "description": "Coordinate specialist investigations and consolidate their findings into one risk view.",
+        "depends_on": [],
+        "user_inputs": [
+          "vendor_dossier"
+        ],
+        "output_fields": [
+          {
+            "name": "risk_summary",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "top_risks",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "risk_rating",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [
+          "security",
+          "financial stability",
+          "regulatory compliance"
+        ],
+        "tool": null
+      },
+      {
+        "id": "recommendation",
+        "title": "Write the recommendation",
+        "description": "Recommend go, conditional go or no-go with conditions.",
+        "depends_on": [
+          "risk_investigation"
+        ],
+        "user_inputs": [],
+        "output_fields": [
+          {
+            "name": "decision",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "conditions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "justification",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "vendor_dossier",
+        "description": "Description of the vendor, its services and its controls.",
+        "required": true
+      }
+    ],
+    "constraints": [],
+    "success_criteria": [
+      "Each specialist area is covered",
+      "The decision is justified by the identified risks"
+    ],
+    "missing_information": []
+  },
+  "issues": [],
+  "created_at": "2026-10-17T15:11:03.199467+00:00",
+  "approval": null
+}

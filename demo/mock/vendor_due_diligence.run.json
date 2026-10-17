@@ -1,0 +1,505 @@
+{
+  "id": "run_73aa41d0e806",
+  "blueprint_id": "bp_70ca1e4a8f25",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "unreviewed",
+  "inputs": {
+    "vendor_dossier": "Fictional vendor Nimbus Storage Ltd, founded 2019, 80 staff, offers encrypted object storage hosted in two EU data centres. ISO 27001 certified in 2023; no SOC 2 report yet. Revenue grew 40% last year but the company is not yet profitable and relies on one investor. Sub-processors: one US-based support provider. Data processing agreement available; incident notification within 72 hours."
+  },
+  "result": {
+    "run_id": "run_73aa41d0e806",
+    "blueprint_id": "bp_70ca1e4a8f25",
+    "blueprint_version": 1,
+    "blueprint_hash": "84685b6702db3f1a29faa92991d5528444f6a108c4bd64ad5225397663532054",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "final_output": {
+      "decision": "[mock agent:recommendation #18a76b] decision",
+      "conditions": [
+        "[mock agent:recommendation #18a76b] conditions"
+      ],
+      "justification": "[mock agent:recommendation #18a76b] justification"
+    },
+    "results": {
+      "risk_investigation": {
+        "risk_summary": "[mock agent:risk_investigation #d93e1b] risk_summary",
+        "top_risks": [
+          "[mock agent:risk_investigation #d93e1b] top_risks"
+        ],
+        "risk_rating": "[mock agent:risk_investigation #d93e1b] risk_rating"
+      },
+      "recommendation": {
+        "decision": "[mock agent:recommendation #18a76b] decision",
+        "conditions": [
+          "[mock agent:recommendation #18a76b] conditions"
+        ],
+        "justification": "[mock agent:recommendation #18a76b] justification"
+      }
+    },
+    "quality": {
+      "criteria": [
+        "Each specialist area is covered",
+        "The decision is justified by the identified risks"
+      ],
+      "loops": []
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 6,
+      "input_tokens": 2157,
+      "output_tokens": 237
+    },
+    "started_at": "2026-10-17T15:11:03.202021Z",
+    "finished_at": "2026-10-17T15:11:03.213438Z"
+  },
+  "created_at": "2026-10-17T15:11:03.200013+00:00",
+  "updated_at": "2026-10-17T15:11:03.213725+00:00",
+  "events": [
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 0,
+      "ts": "2026-10-17T15:11:03.203798+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_70ca1e4a8f25",
+        "version": 1,
+        "blueprint_hash": "84685b6702db3f1a29faa92991d5528444f6a108c4bd64ad5225397663532054",
+        "patterns": [
+          "hub_subagent",
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "recommendation",
+            "risk_investigation",
+            "risk_investigation__plan",
+            "risk_investigation__worker"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "risk_investigation__plan",
+              false
+            ],
+            [
+              "recommendation",
+              "__end__",
+              false
+            ],
+            [
+              "risk_investigation",
+              "recommendation",
+              false
+            ],
+            [
+              "risk_investigation__plan",
+              "risk_investigation",
+              true
+            ],
+            [
+              "risk_investigation__plan",
+              "risk_investigation__worker",
+              true
+            ],
+            [
+              "risk_investigation__worker",
+              "risk_investigation",
+              false
+            ]
+          ]
+        },
+        "model": "mock"
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 1,
+      "ts": "2026-10-17T15:11:03.204536+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__plan",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 2,
+      "ts": "2026-10-17T15:11:03.205418+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "plan:risk_investigation",
+        "model": "mock",
+        "input_tokens": 497,
+        "output_tokens": 78
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 3,
+      "ts": "2026-10-17T15:11:03.205707+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__plan",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "risk_investigation": {
+            "attempt": 1,
+            "inputs": {
+              "vendor_dossier": "Fictional vendor Nimbus Storage Ltd, founded 2019, 80 staff, offers encrypted object storage hosted in two EU data centres. ISO 27001 certified in 2023; no SOC 2 report yet. Revenue grew 40% last year but the company is not yet profitable and relies on one investor. Sub-processors: one US-based support provider. Data processing agreement available; incident notification within 72 hours."
+            },
+            "items": [
+              {
+                "subagent": "security",
+                "instruction": "[mock plan:risk_investigation #2064ec] instruction",
+                "key": "a1_0_security"
+              },
+              {
+                "subagent": "financial_stability",
+                "instruction": "[mock plan:risk_investigation #2064ec] instruction",
+                "key": "a1_1_financial_stability"
+              },
+              {
+                "subagent": "regulatory_compliance",
+                "instruction": "[mock plan:risk_investigation #2064ec] instruction",
+                "key": "a1_2_regulatory_compliance"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 4,
+      "ts": "2026-10-17T15:11:03.206297+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 5,
+      "ts": "2026-10-17T15:11:03.206361+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 6,
+      "ts": "2026-10-17T15:11:03.206576+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 7,
+      "ts": "2026-10-17T15:11:03.206897+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.security",
+        "model": "mock",
+        "input_tokens": 321,
+        "output_tokens": 18
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 8,
+      "ts": "2026-10-17T15:11:03.207361+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.financial_stability",
+        "model": "mock",
+        "input_tokens": 326,
+        "output_tokens": 21
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 9,
+      "ts": "2026-10-17T15:11:03.207839+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.regulatory_compliance",
+        "model": "mock",
+        "input_tokens": 327,
+        "output_tokens": 22
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 10,
+      "ts": "2026-10-17T15:11:03.208093+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "security",
+        "key": "a1_0_security",
+        "output": {
+          "findings": "[mock subagent:risk_investigation.security #e11ebb] findings"
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 11,
+      "ts": "2026-10-17T15:11:03.208360+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "financial_stability",
+        "key": "a1_1_financial_stability",
+        "output": {
+          "findings": "[mock subagent:risk_investigation.financial_stability #e9fa5c] findings"
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 12,
+      "ts": "2026-10-17T15:11:03.208635+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "regulatory_compliance",
+        "key": "a1_2_regulatory_compliance",
+        "output": {
+          "findings": "[mock subagent:risk_investigation.regulatory_compliance #44adab] findings"
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 13,
+      "ts": "2026-10-17T15:11:03.208924+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 0.002,
+        "output": {
+          "risk_investigation": {
+            "a1_0_security": {
+              "subagent": "security",
+              "findings": "[mock subagent:risk_investigation.security #e11ebb] findings"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 14,
+      "ts": "2026-10-17T15:11:03.209183+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 0.002,
+        "output": {
+          "risk_investigation": {
+            "a1_1_financial_stability": {
+              "subagent": "financial_stability",
+              "findings": "[mock subagent:risk_investigation.financial_stability #e9fa5c] findings"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 15,
+      "ts": "2026-10-17T15:11:03.209415+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 0.002,
+        "output": {
+          "risk_investigation": {
+            "a1_2_regulatory_compliance": {
+              "subagent": "regulatory_compliance",
+              "findings": "[mock subagent:risk_investigation.regulatory_compliance #44adab] findings"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 16,
+      "ts": "2026-10-17T15:11:03.210590+00:00",
+      "type": "node_started",
+      "node": "risk_investigation",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 17,
+      "ts": "2026-10-17T15:11:03.211242+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:risk_investigation",
+        "model": "mock",
+        "input_tokens": 427,
+        "output_tokens": 51
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 18,
+      "ts": "2026-10-17T15:11:03.211526+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "risk_summary": "[mock agent:risk_investigation #d93e1b] risk_summary",
+          "top_risks": [
+            "[mock agent:risk_investigation #d93e1b] top_risks"
+          ],
+          "risk_rating": "[mock agent:risk_investigation #d93e1b] risk_rating"
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 19,
+      "ts": "2026-10-17T15:11:03.211918+00:00",
+      "type": "node_started",
+      "node": "recommendation",
+      "data": {
+        "task": "recommendation",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 20,
+      "ts": "2026-10-17T15:11:03.212567+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:recommendation",
+        "model": "mock",
+        "input_tokens": 259,
+        "output_tokens": 47
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 21,
+      "ts": "2026-10-17T15:11:03.212825+00:00",
+      "type": "node_succeeded",
+      "node": "recommendation",
+      "data": {
+        "task": "recommendation",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "decision": "[mock agent:recommendation #18a76b] decision",
+          "conditions": [
+            "[mock agent:recommendation #18a76b] conditions"
+          ],
+          "justification": "[mock agent:recommendation #18a76b] justification"
+        }
+      }
+    },
+    {
+      "run_id": "run_73aa41d0e806",
+      "seq": 22,
+      "ts": "2026-10-17T15:11:03.213443+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "unreviewed",
+        "error": null,
+        "usage": {
+          "model_calls": 6,
+          "input_tokens": 2157,
+          "output_tokens": 237
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "recommendation",
+      "risk_investigation",
+      "risk_investigation__plan",
+      "risk_investigation__worker"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "risk_investigation__plan",
+        false
+      ],
+      [
+        "recommendation",
+        "__end__",
+        false
+      ],
+      [
+        "risk_investigation",
+        "recommendation",
+        false
+      ],
+      [
+        "risk_investigation__plan",
+        "risk_investigation",
+        true
+      ],
+      [
+        "risk_investigation__plan",
+        "risk_investigation__worker",
+        true
+      ],
+      [
+        "risk_investigation__worker",
+        "risk_investigation",
+        false
+      ]
+    ]
+  }
+}

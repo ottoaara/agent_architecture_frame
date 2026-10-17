@@ -1,0 +1,66 @@
+[
+  {
+    "prd": "competitor_comparison",
+    "run_id": "run_616f8255dcfc",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "patterns": [
+      "parallel",
+      "serial"
+    ],
+    "graph_nodes": 6,
+    "planning_s": 0.0,
+    "execution_s": 0.01,
+    "model_calls": 4,
+    "tokens": 1470,
+    "error": null
+  },
+  {
+    "prd": "document_transformation",
+    "run_id": "run_99a6269ed419",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "patterns": [
+      "serial"
+    ],
+    "graph_nodes": 5,
+    "planning_s": 0.0,
+    "execution_s": 0.01,
+    "model_calls": 3,
+    "tokens": 1086,
+    "error": null
+  },
+  {
+    "prd": "financial_analysis",
+    "run_id": "run_cb4a6811869b",
+    "status": "succeeded",
+    "disposition": "met",
+    "patterns": [
+      "maker_checker",
+      "parallel",
+      "serial"
+    ],
+    "graph_nodes": 7,
+    "planning_s": 0.0,
+    "execution_s": 0.01,
+    "model_calls": 3,
+    "tokens": 1112,
+    "error": null
+  },
+  {
+    "prd": "vendor_due_diligence",
+    "run_id": "run_73aa41d0e806",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "patterns": [
+      "hub_subagent",
+      "serial"
+    ],
+    "graph_nodes": 6,
+    "planning_s": 0.0,
+    "execution_s": 0.01,
+    "model_calls": 6,
+    "tokens": 2394,
+    "error": null
+  }
+]

@@ -1,0 +1,11 @@
+Vendor: BrightPay (Bright Software Group, formerly Thesaurus Software), payroll software for the UK and Ireland. Public information gathered October 2026; figures from review sites are third-party and unverified.
+
+Company: Irish company that has written payroll software since 1992; launched BrightPay in 2012 and adopted the Bright name in 2021 after merging with Relate Software. Its products are used by more than 330,000 employers across the UK and Ireland and pay about 3.5 million employees a month. Support is run from Ireland, with UK payroll specialists.
+
+Product and UK/Ireland coverage: Separate UK and Ireland editions (brightpay.co.uk and brightpay.ie). HMRC-recognised with RTI submissions in the UK; supports Revenue PAYE Modernisation in Ireland. BrightPay is now cloud-only: desktop support ended after the 2025/26 tax year. Features include multiple pay runs on the same frequency, pension auto-enrolment and re-enrolment, attachment of earnings orders, expenses and benefits tracking, and BrightPay Connect (employee self-service portal and employer dashboard) included in the cloud plan.
+
+Integrations: Direct API links to pension providers (NEST, The People's Pension, Smart Pension, Aviva) and accounting software (Xero, Sage, QuickBooks Online, BrightBooks, AccountsIQ); time and attendance via TimeKeeper. Review sources report no direct integration with third-party HR systems, so HR data would need export/import or a custom process. (BrightHR, which has its own API, is a different company.)
+
+Pricing: Cloud pricing is billed on the highest employer and employee count in each billing period, monthly or annual, and is quoted via an online calculator rather than a published per-employee rate. Generally positioned as low-cost relative to enterprise payroll suites.
+
+Fit notes: Strong UK and Irish statutory compliance and low admin effort for in-house payroll teams. Running both countries means two country editions. Weakest area for this buyer is HR-system integration.

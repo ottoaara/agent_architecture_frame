@@ -1,0 +1,390 @@
+{
+  "id": "run_616f8255dcfc",
+  "blueprint_id": "bp_163109b184b1",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "unreviewed",
+  "inputs": {
+    "company_profile": "Fictional company with 200 employees across the UK and Ireland. Priorities: accurate multi-country payroll, low admin effort, integration with an existing HR system, predictable pricing."
+  },
+  "result": {
+    "run_id": "run_616f8255dcfc",
+    "blueprint_id": "bp_163109b184b1",
+    "blueprint_version": 1,
+    "blueprint_hash": "a403b4ed3e5f5d56cb430641b0c921abb8dd30759ab218072455920afa6e9fca",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "final_output": {
+      "comparison_table": "[mock agent:comparison_report #2e2b4a] comparison_table",
+      "recommendation": "[mock agent:comparison_report #2e2b4a] recommendation",
+      "rationale": [
+        "[mock agent:comparison_report #2e2b4a] rationale"
+      ]
+    },
+    "results": {
+      "research_acme": {
+        "strengths": [
+          "[mock agent:research_acme #ee8175] strengths"
+        ],
+        "weaknesses": [
+          "[mock agent:research_acme #ee8175] weaknesses"
+        ],
+        "pricing_notes": "[mock agent:research_acme #ee8175] pricing_notes"
+      },
+      "research_brightpay": {
+        "strengths": [
+          "[mock agent:research_brightpay #2e4280] strengths"
+        ],
+        "weaknesses": [
+          "[mock agent:research_brightpay #2e4280] weaknesses"
+        ],
+        "pricing_notes": "[mock agent:research_brightpay #2e4280] pricing_notes"
+      },
+      "research_cobalt": {
+        "strengths": [
+          "[mock agent:research_cobalt #c440b4] strengths"
+        ],
+        "weaknesses": [
+          "[mock agent:research_cobalt #c440b4] weaknesses"
+        ],
+        "pricing_notes": "[mock agent:research_cobalt #c440b4] pricing_notes"
+      },
+      "comparison_report": {
+        "comparison_table": "[mock agent:comparison_report #2e2b4a] comparison_table",
+        "recommendation": "[mock agent:comparison_report #2e2b4a] recommendation",
+        "rationale": [
+          "[mock agent:comparison_report #2e2b4a] rationale"
+        ]
+      }
+    },
+    "quality": {
+      "criteria": [
+        "Every vendor is assessed on the same dimensions",
+        "The recommendation follows from the stated buyer priorities"
+      ],
+      "loops": []
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 4,
+      "input_tokens": 1268,
+      "output_tokens": 202
+    },
+    "started_at": "2026-10-17T15:11:03.158578Z",
+    "finished_at": "2026-10-17T15:11:03.168041Z"
+  },
+  "created_at": "2026-10-17T15:11:03.156219+00:00",
+  "updated_at": "2026-10-17T15:11:03.168308+00:00",
+  "events": [
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 0,
+      "ts": "2026-10-17T15:11:03.160550+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_163109b184b1",
+        "version": 1,
+        "blueprint_hash": "a403b4ed3e5f5d56cb430641b0c921abb8dd30759ab218072455920afa6e9fca",
+        "patterns": [
+          "parallel",
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "comparison_report",
+            "research_acme",
+            "research_brightpay",
+            "research_cobalt"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "research_acme",
+              false
+            ],
+            [
+              "__start__",
+              "research_brightpay",
+              false
+            ],
+            [
+              "__start__",
+              "research_cobalt",
+              false
+            ],
+            [
+              "comparison_report",
+              "__end__",
+              false
+            ],
+            [
+              "research_acme",
+              "comparison_report",
+              false
+            ],
+            [
+              "research_brightpay",
+              "comparison_report",
+              false
+            ],
+            [
+              "research_cobalt",
+              "comparison_report",
+              false
+            ]
+          ]
+        },
+        "model": "mock"
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 1,
+      "ts": "2026-10-17T15:11:03.162506+00:00",
+      "type": "node_started",
+      "node": "research_acme",
+      "data": {
+        "task": "research_acme",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 2,
+      "ts": "2026-10-17T15:11:03.162612+00:00",
+      "type": "node_started",
+      "node": "research_brightpay",
+      "data": {
+        "task": "research_brightpay",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 3,
+      "ts": "2026-10-17T15:11:03.162813+00:00",
+      "type": "node_started",
+      "node": "research_cobalt",
+      "data": {
+        "task": "research_cobalt",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 4,
+      "ts": "2026-10-17T15:11:03.163367+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_acme",
+        "model": "mock",
+        "input_tokens": 268,
+        "output_tokens": 48
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 5,
+      "ts": "2026-10-17T15:11:03.163988+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_brightpay",
+        "model": "mock",
+        "input_tokens": 269,
+        "output_tokens": 51
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 6,
+      "ts": "2026-10-17T15:11:03.164527+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_cobalt",
+        "model": "mock",
+        "input_tokens": 266,
+        "output_tokens": 49
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 7,
+      "ts": "2026-10-17T15:11:03.164788+00:00",
+      "type": "node_succeeded",
+      "node": "research_acme",
+      "data": {
+        "task": "research_acme",
+        "attempt": 1,
+        "seconds": 0.002,
+        "output": {
+          "strengths": [
+            "[mock agent:research_acme #ee8175] strengths"
+          ],
+          "weaknesses": [
+            "[mock agent:research_acme #ee8175] weaknesses"
+          ],
+          "pricing_notes": "[mock agent:research_acme #ee8175] pricing_notes"
+        }
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 8,
+      "ts": "2026-10-17T15:11:03.165042+00:00",
+      "type": "node_succeeded",
+      "node": "research_brightpay",
+      "data": {
+        "task": "research_brightpay",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "strengths": [
+            "[mock agent:research_brightpay #2e4280] strengths"
+          ],
+          "weaknesses": [
+            "[mock agent:research_brightpay #2e4280] weaknesses"
+          ],
+          "pricing_notes": "[mock agent:research_brightpay #2e4280] pricing_notes"
+        }
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 9,
+      "ts": "2026-10-17T15:11:03.165308+00:00",
+      "type": "node_succeeded",
+      "node": "research_cobalt",
+      "data": {
+        "task": "research_cobalt",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "strengths": [
+            "[mock agent:research_cobalt #c440b4] strengths"
+          ],
+          "weaknesses": [
+            "[mock agent:research_cobalt #c440b4] weaknesses"
+          ],
+          "pricing_notes": "[mock agent:research_cobalt #c440b4] pricing_notes"
+        }
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 10,
+      "ts": "2026-10-17T15:11:03.166516+00:00",
+      "type": "node_started",
+      "node": "comparison_report",
+      "data": {
+        "task": "comparison_report",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 11,
+      "ts": "2026-10-17T15:11:03.167162+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:comparison_report",
+        "model": "mock",
+        "input_tokens": 465,
+        "output_tokens": 54
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 12,
+      "ts": "2026-10-17T15:11:03.167406+00:00",
+      "type": "node_succeeded",
+      "node": "comparison_report",
+      "data": {
+        "task": "comparison_report",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "comparison_table": "[mock agent:comparison_report #2e2b4a] comparison_table",
+          "recommendation": "[mock agent:comparison_report #2e2b4a] recommendation",
+          "rationale": [
+            "[mock agent:comparison_report #2e2b4a] rationale"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "run_616f8255dcfc",
+      "seq": 13,
+      "ts": "2026-10-17T15:11:03.168048+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "unreviewed",
+        "error": null,
+        "usage": {
+          "model_calls": 4,
+          "input_tokens": 1268,
+          "output_tokens": 202
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "comparison_report",
+      "research_acme",
+      "research_brightpay",
+      "research_cobalt"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "research_acme",
+        false
+      ],
+      [
+        "__start__",
+        "research_brightpay",
+        false
+      ],
+      [
+        "__start__",
+        "research_cobalt",
+        false
+      ],
+      [
+        "comparison_report",
+        "__end__",
+        false
+      ],
+      [
+        "research_acme",
+        "comparison_report",
+        false
+      ],
+      [
+        "research_brightpay",
+        "comparison_report",
+        false
+      ],
+      [
+        "research_cobalt",
+        "comparison_report",
+        false
+      ]
+    ]
+  }
+}

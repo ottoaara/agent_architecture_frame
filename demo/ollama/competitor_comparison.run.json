@@ -1,0 +1,577 @@
+{
+  "id": "run_0b2ce4fd7662",
+  "blueprint_id": "bp_65755c6f91e2",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "met",
+  "inputs": {
+    "company_profile": "Fictional company with 200 employees across the UK and Ireland. Priorities: accurate multi-country payroll, low admin effort, integration with an existing HR system, predictable pricing."
+  },
+  "result": {
+    "run_id": "run_0b2ce4fd7662",
+    "blueprint_id": "bp_65755c6f91e2",
+    "blueprint_version": 1,
+    "blueprint_hash": "05f845584fd3a6c629c9945acc690e3216aa9e15640d8715c30b92d3aad7d3f9",
+    "status": "succeeded",
+    "disposition": "met",
+    "final_output": {
+      "comparison_table": "| Dimension | Acme Payroll | BrightPay Cloud | Cobalt HR |\n|---|---|---|---|\n| **Multi-country payroll (UK & Ireland)** | UK PAYE/NI/auto-enrolment native; Ireland module (PRSI, USC, LPT) present but characterised as a *secondary* offering. Consolidated cross-border payslip and year-end report (P60/P45 + Irish P45). Edge cases (dual-residency, secondments) may need manual intervention or external consultant. [ASSUMED] | UK PAYE/RTI and Irish PAYE/PRSI handled within a *single tenant*; no second system required. Coverage explicitly limited to UK + Ireland. Automated statutory filing to HMRC and Revenue.ie with full audit log. [ASSUMED] | UK PAYE/NI/RTI alongside Irish PAYE/USC/PRSI/ROS from a *single console*. Consolidated reporting layer feeds both HMRC and Irish Revenue. Scope confirmed for both jurisdictions. [ASSUMED] |\n| **Low admin effort** | Rules-based engine auto-applies statutory changes (UK tax-year, Irish PRSI rate updates) without manual reconfiguration. Bulk-upload and scheduled-run features minimise per-employee steps. No quantified time-per-cycle figure provided. [ASSUMED] | Fully cloud-hosted; automated tax-rule updates (HMRC + Revenue.ie pushed centrally), in-year corrections, year-end reporting. Claimed <30 min human intervention per cycle for 200 employees; exception-based dashboards flag only items needing manual review. <1 FTE benchmark for 200-head payroll. [ASSUMED] | Automation-first; rules engines pre-populate statutory deductions, tax bands, pension contributions per jurisdiction. Single monthly run rather than two; consolidated reporting. No quantified time-per-cycle figure. [ASSUMED] |\n| **HR-system integration** | REST/JSON API; pre-built connectors for BambooHR, HiBob, Personio; SSO via SAML 2.0. Niche/legacy HR systems require a custom integration project (one-off fee + lead time). [ASSUMED] | REST API; pre-built connectors for BambooHR, Personio, HiBob; bi-directional sync of employee master data, leave balances, org-chart changes. Niche systems fall back to generic REST API requiring in-house/third-party dev (billed as professional-services line item). [ASSUMED] | HR-centric product (HRIS/HRMS layer); native or pre-built connectors to common HR systems (BambooHR, HiBob, legacy in-house). Fewer pre-built integrations than large enterprise suites (SAP, Workday). Custom API integration may add 4\u20138 weeks project time. [ASSUMED] |\n| **Predictable pricing** | PEPM subscription, billed annually, no per-transaction/per-run fees. **However:** annual price-escalation clause (CPI + 2 %); add-ons (custom API, 24/7 support, extra countries, analytics) introduce variable costs. 12- or 24-month minimum commitment. Buyer must negotiate a fixed-price cap. [ASSUMED] | PEPM subscription, billed annually; **no mid-term escalation** within the 12-month contract; no per-run/per-filing/per-report fees; published add-on catalogue at fixed monthly rates. One-time onboarding fee (\u00a31,500\u2013\u00a33,000). Total cost forecastable. [ASSUMED] | PEPM subscription, fixed annual contract; statutory filing (RTI, ROS, pension auto-enrolment reporting) bundled, not metered; no per-transaction surcharges. One-time onboarding/migration fee typical. No specific PEPM range or escalation clause quantified in the profile. [ASSUMED] |\n| **Support & SLA** | Business-hours-only support; 24-hour response window assumed. No 24/7 option in base tier. Risk around statutory filing deadlines (UK RTI, Irish PRSI). [ASSUMED] | Email + phone, UK business hours (Mon\u2013Fri, 09:00\u201317:00 GMT). No 24/7 in base tier; premium 24/7 available as paid add-on. Irish filing deadlines may fall outside UK hours. [ASSUMED] | SLA (uptime guarantee, support response time, DR posture) **not specified** in the provided profile. Absence of a published 99.9 %+ SLA flagged as a risk. [ASSUMED / INSUFFICIENT DATA] |\n| **Compliance & audit trail** | Not explicitly detailed beyond statutory run capability. No mention of audit log or filing automation depth. [INSUFFICIENT DATA] | Automated statutory filing to HMRC (RTI) and Revenue.ie; full audit log of every change; supports 'accurate multi-country payroll' priority and reduces late-filing penalty risk. [ASSUMED] | Consolidated reporting feeds both HMRC and Irish Revenue; no explicit audit-log or filing-automation detail provided. [INSUFFICIENT DATA] |\n| **Scalability / geographic ceiling** | UK + Ireland only; additional countries require add-on or separate vendor. No published roadmap. [ASSUMED] | UK + Ireland only; no broader EU/US/APAC modules claimed; no published roadmap. Expansion would require a second/third system. [ASSUMED] | UK + Ireland only; third jurisdiction likely requires add-on module or second vendor. No evidence of a global payroll network. [ASSUMED] |\n| **Employee self-service / UX** | Not detailed in profile. [INSUFFICIENT DATA] | Functional but less polished than consumer-grade apps; may generate support tickets adding to admin load. [ASSUMED] | Not detailed in profile. [INSUFFICIENT DATA] |\n| **Benefits / pension administration** | Not explicitly addressed. [INSUFFICIENT DATA] | **Not included** \u2013 no native UK auto-enrolment admin or Irish PRSI-linked pension module; separate provider needed, adding integration and admin overhead. [ASSUMED] | Pension auto-enrolment reporting bundled into subscription (per pricing notes), but depth of administration not detailed. [ASSUMED / PARTIAL] |\n| **Vendor lock-in / data portability** | Data export formats may be proprietary or limited; no open-data or neutral-format guarantee assumed. [ASSUMED] | Not explicitly addressed. [INSUFFICIENT DATA] | Not explicitly addressed. [INSUFFICIENT DATA] |\n| **Key risk flags** | (1) Ireland module is secondary, not co-equal; (2) CPI+2 % escalation erodes pricing predictability; (3) 24-hr support window risks filing deadlines; (4) proprietary export formats; (5) no verified data (fictional vendor). | (1) Geographic ceiling at UK/Ireland; (2) connector-limited integration; (3) no embedded pension/benefits admin; (4) UK-hours-only support; (5) no verified data (fictional vendor). | (1) Geographic ceiling; (2) fewer pre-built integrations than enterprise suites; (3) SLA/DR not specified; (4) customisation limits for non-standard pay structures; (5) no verified data (fictional vendor). |\n\n**Contradictions / cross-vendor notes**\n- *Pricing predictability:* Acme's assumed CPI + 2 % annual escalation and variable add-on costs partially contradict the buyer's 'predictable pricing' priority, whereas BrightPay explicitly locks the PEPM rate for 12 months with no mid-term escalation and a published add-on catalogue. Cobalt is qualitatively similar to BrightPay but lacks a quantified escalation clause, leaving a minor ambiguity.\n- *Ireland parity:* Acme positions Ireland as a secondary module; BrightPay and Cobalt treat both jurisdictions as co-equal within a single tenant/console. This is a material difference for a company with a meaningful Irish headcount.\n- *Pension/benefits:* BrightPay explicitly excludes pension administration, adding a small integration overhead; Cobalt bundles pension auto-enrolment reporting; Acme is silent. This affects the 'low admin effort' priority differently across vendors.\n- *All three vendors share the same geographic ceiling (UK + Ireland only)*, so this dimension does not differentiate them for the current 200-employee footprint but is a shared future risk.\n- *All three are fictional.* No real pricing, SLA, security certification (ISO 27001, SOC 2), or product documentation exists. Every cell marked [ASSUMED] is an illustrative construct and must be replaced with a live RFP response before any procurement decision.",
+      "recommendation": "BrightPay Cloud",
+      "rationale": [
+        "The buyer's four stated priorities are, in order of emphasis in the company profile: (1) accurate multi-country payroll, (2) low admin effort, (3) integration with an existing HR system, (4) predictable pricing. BrightPay Cloud is the only vendor whose profile addresses all four with the greatest specificity and the fewest unmitigated gaps.",
+        "PRIORITY 1 \u2013 Accurate multi-country payroll: BrightPay Cloud handles UK PAYE/RTI and Irish PAYE/PRSI within a single tenant and, critically, is the only vendor whose profile explicitly includes a full audit log of every change and automated statutory filing to both HMRC and Revenue.ie. This directly de-risks late-filing penalties and supports the 'accurate' qualifier. Acme's Ireland module is characterised as secondary, and Cobalt's compliance/audit detail is not specified, making BrightPay the strongest on this dimension.",
+        "PRIORITY 2 \u2013 Low admin effort: BrightPay Cloud is the only vendor that quantifies the admin burden (<30 minutes of human intervention per cycle for 200 employees; <1 FTE benchmark) and describes an exception-based dashboard that surfaces only items needing manual review. Acme and Cobalt describe automation-first rules engines but provide no time-per-cycle figure. The one caveat is that BrightPay excludes native pension/benefits administration, which would add a small recurring admin step; however, this is a narrower gap than Acme's secondary-Ireland-module risk or Cobalt's unspecified SLA.",
+        "PRIORITY 3 \u2013 Integration with an existing HR system: All three vendors offer pre-built connectors for the same short list of common HRIS platforms (BambooHR, HiBob, Personio). BrightPay Cloud differentiates by specifying bi-directional sync of employee master data, leave balances, and org-chart changes, which most closely matches the buyer's need to avoid duplicate data entry. The shared risk across all three vendors is that a niche or legacy HR system would require custom API work; this is not a differentiator but a shared caveat the buyer must validate in a live RFP.",
+        "PRIORITY 4 \u2013 Predictable pricing: BrightPay Cloud is the strongest on this priority. Its profile explicitly states: no mid-term escalation within the 12-month contract, no per-run/per-filing/per-report transaction fees, a published add-on catalogue at fixed monthly rates, and a one-time onboarding fee. By contrast, Acme's assumed CPI + 2 % annual escalation clause and open-ended add-on costs (custom API, premium support, extra countries, analytics) introduce variability that partially erodes predictability. Cobalt is qualitatively similar to BrightPay but lacks a quantified escalation clause or PEPM range, leaving a minor ambiguity that BrightPay does not share.",
+        "WEIGHTED ASSESSMENT: Across the four priorities, BrightPay Cloud scores highest or tied-highest on three (multi-country accuracy, low admin effort, predictable pricing) and tied on the fourth (HR integration). Its principal weaknesses \u2013 geographic ceiling, connector-limited integration, no embedded pension admin, UK-hours-only support \u2013 are either shared by all three vendors (geographic ceiling, connector limitation) or are narrow, addressable gaps (pension admin via a separate provider; 24/7 support as a paid add-on). No single weakness in BrightPay's profile directly contradicts a stated buyer priority, whereas Acme's escalation clause and secondary-Ireland positioning, and Cobalt's unspecified SLA, each create a more material tension with the buyer's priorities.",
+        "CAVEAT: All three vendors are fictional. No real pricing sheet, SLA document, security certification, or product documentation exists for any of them. This recommendation is an illustrative exercise only. Before any live procurement, the buyer must (a) issue a formal RFP to real vendors, (b) obtain written quotes itemising PEPM rate, onboarding fee, integration-build cost, and escalation clause, (c) verify ISO 27001 / SOC 2 or equivalent security certifications, (d) confirm that the buyer's specific existing HR system is on the vendor's pre-built connector list, and (e) validate the 24/7 support add-on cost if Irish filing deadlines fall outside UK business hours."
+      ]
+    },
+    "results": {
+      "research_acme": {
+        "strengths": [
+          "MULTI-COUNTRY PAYROLL (UK & Ireland): [ASSUMED / ILLUSTRATIVE \u2013 Acme Payroll is a fictional vendor; no verified product data exists.] In the context of this comparison exercise, Acme Payroll is profiled as a UK-headquartered payroll provider with a dedicated Ireland module. Assumed strengths: (a) native handling of UK PAYE, National Insurance, and auto-enrolment pension calculations; (b) a separate but linked Ireland engine covering PRSI, USC, and Local Property Tax (LPT) deductions; (c) a single consolidated payslip and year-end report (P60 / P45 equivalent and Irish P45) for cross-border employees. These are plausible capabilities for a vendor positioned at this market tier, but they are NOT verified facts.",
+          "LOW ADMIN EFFORT: [ASSUMED] Assumed to offer a rules-based engine that auto-applies statutory changes (e.g., UK tax-year updates, Irish PRSI rate changes) without manual reconfiguration, reducing the recurring admin burden for a 200-head operation. Assumed bulk-upload and scheduled-run features to minimise per-employee manual steps.",
+          "HR SYSTEM INTEGRATION: [ASSUMED] Assumed to provide a REST/JSON API and pre-built connectors for common HRIS platforms (e.g., BambooHR, HiBob, Personio), enabling one-way or two-way sync of employee master data, which addresses the buyer's requirement to integrate with an existing HR system. Assumed SSO via SAML 2.0.",
+          "PREDICTABLE PRICING: [ASSUMED] Assumed to operate on a per-employee-per-month (PEPM) subscription with a fixed annual contract, avoiding per-transaction or per-run surcharges. This aligns with the buyer's stated priority of cost predictability."
+        ],
+        "weaknesses": [
+          "MULTI-COUNTRY DEPTH: [ASSUMED] The Ireland module is assumed to be a secondary offering rather than a co-equal product; edge cases such as cross-border secondments, dual-residency tax, or Irish social-welfare portability may require manual intervention or a separate consultant, increasing admin effort for the subset of employees who work across both jurisdictions.",
+          "INTEGRATION BREADTH: [ASSUMED] Pre-built connectors may cover only the most common HRIS platforms; if the buyer's existing HR system is niche or legacy, a custom integration project (with additional cost and lead time) would be required, partially undermining the 'low admin effort' priority.",
+          "SCALABILITY / SUPPORT TIER: [ASSUMED] At 200 employees the buyer sits in a mid-market tier; assumed support SLAs may be business-hours-only with a 24-hour response window, which could be a risk around statutory filing deadlines (e.g., UK RTI Real-Time Information, Irish PRSI returns).",
+          "VENDOR LOCK-IN RISK: [ASSUMED] Data export formats may be proprietary or limited, making a future migration costly. No open-data or neutral-format guarantee is assumed.",
+          "NO VERIFIED DATA: Because Acme Payroll is fictional, none of the above can be confirmed. Any procurement decision must be treated as illustrative only."
+        ],
+        "pricing_notes": "ILLUSTRATIVE ONLY \u2013 Acme Payroll is a fictional vendor; no real pricing exists. The following is a constructed scenario for the comparison exercise and must not be cited as a real quote.\n\n- Assumed model: Per-employee-per-month (PEPM) subscription, billed annually. A plausible mid-market band for a 200-employee UK+Ireland deployment might be in the range of \u00a312\u2013\u00a322 PEPM, but this figure is INVENTED for illustration and has no basis in any real product.\n- Assumed inclusions: UK and Ireland statutory payroll runs, year-end reporting, basic HRIS connector, SSO, and standard email support.\n- Assumed exclusions / potential add-ons: custom API integration (one-off project fee), premium/24-7 support tier, additional countries beyond UK/Ireland, and advanced analytics dashboards. These would introduce variable costs that partially erode the 'predictable pricing' priority.\n- Contract terms assumed: 12- or 24-month minimum commitment with an annual price-escalation clause (e.g., CPI + 2 %). The buyer should negotiate a fixed-price cap to protect predictability.\n- No per-transaction, per-run, or per-report fees are assumed, which is the key differentiator versus usage-based models.\n\nCAVEAT: Because the vendor is fictional, the buyer cannot obtain a real quote, SLA document, or security certification (e.g., ISO 27001, SOC 2) for Acme Payroll. In a live procurement, these would be mandatory due-diligence items."
+      },
+      "research_brightpay": {
+        "strengths": [
+          "Multi-country payroll (UK + Ireland): BrightPay Cloud is positioned as a UK/Ireland-focused SaaS payroll provider. For a 200-employee company with staff in both jurisdictions, it natively handles UK PAYE/RTI and Irish PAYE/PRSI filing within a single tenant, eliminating the need for two separate systems. (Assumption: the fictional vendor's documented coverage is limited to these two countries; no broader EU or US modules are claimed.)",
+          "Low admin effort: The platform is fully cloud-hosted with automated tax-rule updates (HMRC and Revenue.ie schedules pushed centrally), in-year corrections, and year-end reporting (P60/P45, P60 equivalents for Ireland). A 200-employee payroll can typically be run in under 30 minutes of human intervention per cycle, with exception-based dashboards flagging only items that need manual review. (Assumption: 'low admin' is defined as <1 FTE for a 200-head payroll; this is a reasonable mid-market benchmark but is not a verified figure for a fictional product.)",
+          "HR-system integration: BrightPay Cloud exposes a REST API and pre-built connectors for a short list of common HRIS/HRM platforms (e.g., BambooHR, Personio, HiBob). For a company that already runs an HR system, bi-directional sync of employee master data, leave balances, and org-chart changes reduces duplicate data entry. (Assumption: the buyer's 'existing HR system' is one of the listed connectors; if it is a bespoke or niche system, integration would require custom API work, which is not included in the base product.)",
+          "Predictable pricing: The vendor publishes a per-employee-per-month (PEPM) subscription with a fixed annual contract, no per-run or per-filing transaction fees, and a published add-on catalogue. This aligns directly with the buyer's 'predictable pricing' priority. (Assumption: 'predictable' means no hidden per-transaction charges; annual contracts lock the rate for 12 months.)",
+          "Compliance and audit trail: Automated statutory filing to HMRC (RTI) and Revenue.ie, with a full audit log of every change, supports the 'accurate multi-country payroll' priority and reduces the risk of late-filing penalties."
+        ],
+        "weaknesses": [
+          "Geographic ceiling: BrightPay Cloud's documented coverage is UK and Ireland only. If the 200-employee company later expands into the EU, US, or APAC, a second or third payroll system would be required, creating the multi-vendor complexity the buyer is trying to avoid. (Assumption: no roadmap for additional countries is published for this fictional vendor.)",
+          "Integration depth is connector-limited: Pre-built connectors cover a handful of popular HRIS platforms. If the buyer's existing HR system is not on that list, integration falls back to a generic REST API that requires in-house or third-party development effort, partially negating the 'low admin effort' benefit. (Assumption: custom integration is billed as a professional-services line item, not included in the PEPM fee.)",
+          "Limited self-service for employees: The employee portal (payslip access, P45/P60 download, tax-code changes) is functional but less polished than consumer-grade apps; it may not meet expectations of a 200-person workforce accustomed to modern UX, potentially generating support tickets that add to admin load.",
+          "Support model: Standard support is email + phone during UK business hours (Mon\u2013Fri, 09:00\u201317:00 GMT). There is no 24/7 or on-call option in the base tier, which could be a gap for a company with Irish staff whose filing deadlines fall outside UK hours. (Assumption: premium 24/7 support is available as a paid add-on.)",
+          "No embedded benefits or pension administration: BrightPay Cloud handles gross-to-net payroll and statutory filings but does not include pension auto-enrolment administration (UK) or PRSI-linked pension schemes (Ireland) as a native module; the buyer would need a separate benefits/pension provider, adding a small integration and admin overhead."
+        ],
+        "pricing_notes": "BrightPay Cloud uses a per-employee-per-month (PEPM) subscription model, billed annually. Illustrative structure for a 200-employee UK/Ireland payroll (all figures are assumptions for a fictional vendor and must not be treated as real quotes): base PEPM in the range of \u00a312\u2013\u00a318 per employee per month depending on module selection (core payroll, tax filing, employee portal, HRIS connector). A 200-head annual contract would therefore land roughly in the \u00a328,800\u2013\u00a343,200 per year band before VAT. Key pricing characteristics relevant to the buyer's 'predictable pricing' priority: (1) No per-run, per-filing, or per-report transaction fees; (2) Annual contract locks the PEPM rate for 12 months with no mid-term escalation; (3) A one-time onboarding/setup fee (assumed \u00a31,500\u2013\u00a33,000) covers data migration and HRIS connector configuration; (4) Add-ons (e.g., 24/7 support, custom API integration, pension module) are listed at fixed monthly rates, so total cost remains forecastable. Caveat: because BrightPay Cloud is a fictional vendor, no real pricing sheet exists; the ranges above are constructed to be plausible for a mid-market UK/Ireland payroll SaaS and should be replaced with actual vendor quotes before any procurement decision."
+      },
+      "research_cobalt": {
+        "strengths": [
+          "Multi-country payroll (UK & Ireland): As a mid-market HR/payroll vendor, Cobalt HR is positioned to handle dual-jurisdiction payroll for a 200-employee UK/Ireland footprint. It would be expected to manage UK PAYE, National Insurance, and RTI submissions alongside Irish PAYE, USC, PRSI, and Revenue Online Service (ROS) filings from a single console, reducing the need for two separate providers. (Assumption: the fictional vendor's product scope covers both jurisdictions; no real-world product by this name is cited.)",
+          "Low admin effort: The platform is described as automation-first, with rules engines that pre-populate statutory deductions, tax bands, and pension contributions per jurisdiction. For a 200-employee base this typically translates to a single monthly run rather than two, and a consolidated reporting layer that feeds both HMRC and Irish Revenue. This aligns directly with the buyer's 'low admin effort' priority.",
+          "HR-system integration: Cobalt HR is positioned as an HR-centric product (the 'HR' in the name signals a broader HRIS/HRMS layer), which suggests native or pre-built connectors to common HR systems (e.g., BambooHR, HiBob, or a legacy in-house system). For a buyer that already runs an HR system, this reduces the integration lift compared with a payroll-only tool that would require a middleware bridge.",
+          "Predictable pricing: The vendor is characterised as offering a per-employee-per-month (PEPM) subscription with a fixed annual contract, which maps to the buyer's 'predictable pricing' priority. No per-transaction or per-run surcharges are implied, and statutory filing is bundled rather than metered."
+        ],
+        "weaknesses": [
+          "Geographic ceiling: The profile is scoped to UK and Ireland. If the 200-employee company later expands to a third jurisdiction (e.g., Germany, France, or the US), Cobalt HR would likely require a separate add-on module or a second vendor, introducing the very multi-vendor complexity the buyer wants to avoid. (Assumption: no evidence in the provided context of a broader global payroll network.)",
+          "Integration depth vs. breadth: While a native HR connector is a strength, a mid-market product may offer fewer pre-built integrations than a large enterprise suite (e.g., SAP SuccessFactors, Workday). If the buyer's existing HR system is a niche or heavily customised in-house build, the 'native connector' may not exist, and a custom API integration could add 4\u20138 weeks of project time and cost not reflected in the base subscription.",
+          "Scalability and SLA: At 200 employees the platform is well within typical mid-market capacity, but the vendor's SLA (uptime guarantee, support response time) and disaster-recovery posture are not specified in the provided context. For a company that cannot tolerate a payroll run failure, the absence of a published 99.9 %+ SLA is a risk flag.",
+          "Customisation limits: A rules-engine approach optimises for standard statutory scenarios. Complex, non-standard pay structures (e.g., multi-currency expatriate packages, bespoke bonus schemes spanning both jurisdictions) may require manual overrides, partially eroding the 'low admin effort' benefit."
+        ],
+        "pricing_notes": "Cobalt HR is a fictional vendor; no real-world pricing data exists, and no figures are invented here. The pricing model is characterised qualitatively as follows: (1) A per-employee-per-month (PEPM) subscription, which for a 200-headcount UK/Ireland company would produce a single, predictable annual line item. (2) Statutory filing (RTI, ROS, pension auto-enrolment reporting) is bundled into the subscription rather than charged per submission, supporting the buyer's 'predictable pricing' priority. (3) A one-time onboarding / data-migration fee is typical for this tier, covering the initial import of 200 employee records and configuration of dual-jurisdiction tax rules. (4) No per-transaction or per-run surcharges are implied. (5) An annual contract with a fixed price (or a capped annual escalation, e.g., CPI-linked) is the expected commercial structure, avoiding open-ended usage-based billing. The buyer should request a written quote that itemises the PEPM rate, onboarding fee, any integration-build cost, and the escalation clause to confirm predictability. Because the vendor is fictional, all commercial terms must be treated as illustrative placeholders pending a real RFP."
+      },
+      "comparison_report": {
+        "comparison_table": "| Dimension | Acme Payroll | BrightPay Cloud | Cobalt HR |\n|---|---|---|---|\n| **Multi-country payroll (UK & Ireland)** | UK PAYE/NI/auto-enrolment native; Ireland module (PRSI, USC, LPT) present but characterised as a *secondary* offering. Consolidated cross-border payslip and year-end report (P60/P45 + Irish P45). Edge cases (dual-residency, secondments) may need manual intervention or external consultant. [ASSUMED] | UK PAYE/RTI and Irish PAYE/PRSI handled within a *single tenant*; no second system required. Coverage explicitly limited to UK + Ireland. Automated statutory filing to HMRC and Revenue.ie with full audit log. [ASSUMED] | UK PAYE/NI/RTI alongside Irish PAYE/USC/PRSI/ROS from a *single console*. Consolidated reporting layer feeds both HMRC and Irish Revenue. Scope confirmed for both jurisdictions. [ASSUMED] |\n| **Low admin effort** | Rules-based engine auto-applies statutory changes (UK tax-year, Irish PRSI rate updates) without manual reconfiguration. Bulk-upload and scheduled-run features minimise per-employee steps. No quantified time-per-cycle figure provided. [ASSUMED] | Fully cloud-hosted; automated tax-rule updates (HMRC + Revenue.ie pushed centrally), in-year corrections, year-end reporting. Claimed <30 min human intervention per cycle for 200 employees; exception-based dashboards flag only items needing manual review. <1 FTE benchmark for 200-head payroll. [ASSUMED] | Automation-first; rules engines pre-populate statutory deductions, tax bands, pension contributions per jurisdiction. Single monthly run rather than two; consolidated reporting. No quantified time-per-cycle figure. [ASSUMED] |\n| **HR-system integration** | REST/JSON API; pre-built connectors for BambooHR, HiBob, Personio; SSO via SAML 2.0. Niche/legacy HR systems require a custom integration project (one-off fee + lead time). [ASSUMED] | REST API; pre-built connectors for BambooHR, Personio, HiBob; bi-directional sync of employee master data, leave balances, org-chart changes. Niche systems fall back to generic REST API requiring in-house/third-party dev (billed as professional-services line item). [ASSUMED] | HR-centric product (HRIS/HRMS layer); native or pre-built connectors to common HR systems (BambooHR, HiBob, legacy in-house). Fewer pre-built integrations than large enterprise suites (SAP, Workday). Custom API integration may add 4\u20138 weeks project time. [ASSUMED] |\n| **Predictable pricing** | PEPM subscription, billed annually, no per-transaction/per-run fees. **However:** annual price-escalation clause (CPI + 2 %); add-ons (custom API, 24/7 support, extra countries, analytics) introduce variable costs. 12- or 24-month minimum commitment. Buyer must negotiate a fixed-price cap. [ASSUMED] | PEPM subscription, billed annually; **no mid-term escalation** within the 12-month contract; no per-run/per-filing/per-report fees; published add-on catalogue at fixed monthly rates. One-time onboarding fee (\u00a31,500\u2013\u00a33,000). Total cost forecastable. [ASSUMED] | PEPM subscription, fixed annual contract; statutory filing (RTI, ROS, pension auto-enrolment reporting) bundled, not metered; no per-transaction surcharges. One-time onboarding/migration fee typical. No specific PEPM range or escalation clause quantified in the profile. [ASSUMED] |\n| **Support & SLA** | Business-hours-only support; 24-hour response window assumed. No 24/7 option in base tier. Risk around statutory filing deadlines (UK RTI, Irish PRSI). [ASSUMED] | Email + phone, UK business hours (Mon\u2013Fri, 09:00\u201317:00 GMT). No 24/7 in base tier; premium 24/7 available as paid add-on. Irish filing deadlines may fall outside UK hours. [ASSUMED] | SLA (uptime guarantee, support response time, DR posture) **not specified** in the provided profile. Absence of a published 99.9 %+ SLA flagged as a risk. [ASSUMED / INSUFFICIENT DATA] |\n| **Compliance & audit trail** | Not explicitly detailed beyond statutory run capability. No mention of audit log or filing automation depth. [INSUFFICIENT DATA] | Automated statutory filing to HMRC (RTI) and Revenue.ie; full audit log of every change; supports 'accurate multi-country payroll' priority and reduces late-filing penalty risk. [ASSUMED] | Consolidated reporting feeds both HMRC and Irish Revenue; no explicit audit-log or filing-automation detail provided. [INSUFFICIENT DATA] |\n| **Scalability / geographic ceiling** | UK + Ireland only; additional countries require add-on or separate vendor. No published roadmap. [ASSUMED] | UK + Ireland only; no broader EU/US/APAC modules claimed; no published roadmap. Expansion would require a second/third system. [ASSUMED] | UK + Ireland only; third jurisdiction likely requires add-on module or second vendor. No evidence of a global payroll network. [ASSUMED] |\n| **Employee self-service / UX** | Not detailed in profile. [INSUFFICIENT DATA] | Functional but less polished than consumer-grade apps; may generate support tickets adding to admin load. [ASSUMED] | Not detailed in profile. [INSUFFICIENT DATA] |\n| **Benefits / pension administration** | Not explicitly addressed. [INSUFFICIENT DATA] | **Not included** \u2013 no native UK auto-enrolment admin or Irish PRSI-linked pension module; separate provider needed, adding integration and admin overhead. [ASSUMED] | Pension auto-enrolment reporting bundled into subscription (per pricing notes), but depth of administration not detailed. [ASSUMED / PARTIAL] |\n| **Vendor lock-in / data portability** | Data export formats may be proprietary or limited; no open-data or neutral-format guarantee assumed. [ASSUMED] | Not explicitly addressed. [INSUFFICIENT DATA] | Not explicitly addressed. [INSUFFICIENT DATA] |\n| **Key risk flags** | (1) Ireland module is secondary, not co-equal; (2) CPI+2 % escalation erodes pricing predictability; (3) 24-hr support window risks filing deadlines; (4) proprietary export formats; (5) no verified data (fictional vendor). | (1) Geographic ceiling at UK/Ireland; (2) connector-limited integration; (3) no embedded pension/benefits admin; (4) UK-hours-only support; (5) no verified data (fictional vendor). | (1) Geographic ceiling; (2) fewer pre-built integrations than enterprise suites; (3) SLA/DR not specified; (4) customisation limits for non-standard pay structures; (5) no verified data (fictional vendor). |\n\n**Contradictions / cross-vendor notes**\n- *Pricing predictability:* Acme's assumed CPI + 2 % annual escalation and variable add-on costs partially contradict the buyer's 'predictable pricing' priority, whereas BrightPay explicitly locks the PEPM rate for 12 months with no mid-term escalation and a published add-on catalogue. Cobalt is qualitatively similar to BrightPay but lacks a quantified escalation clause, leaving a minor ambiguity.\n- *Ireland parity:* Acme positions Ireland as a secondary module; BrightPay and Cobalt treat both jurisdictions as co-equal within a single tenant/console. This is a material difference for a company with a meaningful Irish headcount.\n- *Pension/benefits:* BrightPay explicitly excludes pension administration, adding a small integration overhead; Cobalt bundles pension auto-enrolment reporting; Acme is silent. This affects the 'low admin effort' priority differently across vendors.\n- *All three vendors share the same geographic ceiling (UK + Ireland only)*, so this dimension does not differentiate them for the current 200-employee footprint but is a shared future risk.\n- *All three are fictional.* No real pricing, SLA, security certification (ISO 27001, SOC 2), or product documentation exists. Every cell marked [ASSUMED] is an illustrative construct and must be replaced with a live RFP response before any procurement decision.",
+        "recommendation": "BrightPay Cloud",
+        "rationale": [
+          "The buyer's four stated priorities are, in order of emphasis in the company profile: (1) accurate multi-country payroll, (2) low admin effort, (3) integration with an existing HR system, (4) predictable pricing. BrightPay Cloud is the only vendor whose profile addresses all four with the greatest specificity and the fewest unmitigated gaps.",
+          "PRIORITY 1 \u2013 Accurate multi-country payroll: BrightPay Cloud handles UK PAYE/RTI and Irish PAYE/PRSI within a single tenant and, critically, is the only vendor whose profile explicitly includes a full audit log of every change and automated statutory filing to both HMRC and Revenue.ie. This directly de-risks late-filing penalties and supports the 'accurate' qualifier. Acme's Ireland module is characterised as secondary, and Cobalt's compliance/audit detail is not specified, making BrightPay the strongest on this dimension.",
+          "PRIORITY 2 \u2013 Low admin effort: BrightPay Cloud is the only vendor that quantifies the admin burden (<30 minutes of human intervention per cycle for 200 employees; <1 FTE benchmark) and describes an exception-based dashboard that surfaces only items needing manual review. Acme and Cobalt describe automation-first rules engines but provide no time-per-cycle figure. The one caveat is that BrightPay excludes native pension/benefits administration, which would add a small recurring admin step; however, this is a narrower gap than Acme's secondary-Ireland-module risk or Cobalt's unspecified SLA.",
+          "PRIORITY 3 \u2013 Integration with an existing HR system: All three vendors offer pre-built connectors for the same short list of common HRIS platforms (BambooHR, HiBob, Personio). BrightPay Cloud differentiates by specifying bi-directional sync of employee master data, leave balances, and org-chart changes, which most closely matches the buyer's need to avoid duplicate data entry. The shared risk across all three vendors is that a niche or legacy HR system would require custom API work; this is not a differentiator but a shared caveat the buyer must validate in a live RFP.",
+          "PRIORITY 4 \u2013 Predictable pricing: BrightPay Cloud is the strongest on this priority. Its profile explicitly states: no mid-term escalation within the 12-month contract, no per-run/per-filing/per-report transaction fees, a published add-on catalogue at fixed monthly rates, and a one-time onboarding fee. By contrast, Acme's assumed CPI + 2 % annual escalation clause and open-ended add-on costs (custom API, premium support, extra countries, analytics) introduce variability that partially erodes predictability. Cobalt is qualitatively similar to BrightPay but lacks a quantified escalation clause or PEPM range, leaving a minor ambiguity that BrightPay does not share.",
+          "WEIGHTED ASSESSMENT: Across the four priorities, BrightPay Cloud scores highest or tied-highest on three (multi-country accuracy, low admin effort, predictable pricing) and tied on the fourth (HR integration). Its principal weaknesses \u2013 geographic ceiling, connector-limited integration, no embedded pension admin, UK-hours-only support \u2013 are either shared by all three vendors (geographic ceiling, connector limitation) or are narrow, addressable gaps (pension admin via a separate provider; 24/7 support as a paid add-on). No single weakness in BrightPay's profile directly contradicts a stated buyer priority, whereas Acme's escalation clause and secondary-Ireland positioning, and Cobalt's unspecified SLA, each create a more material tension with the buyer's priorities.",
+          "CAVEAT: All three vendors are fictional. No real pricing sheet, SLA document, security certification, or product documentation exists for any of them. This recommendation is an illustrative exercise only. Before any live procurement, the buyer must (a) issue a formal RFP to real vendors, (b) obtain written quotes itemising PEPM rate, onboarding fee, integration-build cost, and escalation clause, (c) verify ISO 27001 / SOC 2 or equivalent security certifications, (d) confirm that the buyer's specific existing HR system is on the vendor's pre-built connector list, and (e) validate the 24/7 support add-on cost if Irish filing deadlines fall outside UK business hours."
+        ]
+      },
+      "comparison_report_review": {
+        "approved": true,
+        "score": 0.95,
+        "unmet_criteria": [],
+        "feedback": "All four rubric criteria are satisfied. Specific observations supporting approval:\n\n1. **Uniform dimensions (Criterion 1):** All 11 dimensions (Multi-country payroll, Low admin effort, HR-system integration, Predictable pricing, Support & SLA, Compliance & audit trail, Scalability/geographic ceiling, Employee self-service/UX, Benefits/pension administration, Vendor lock-in/data portability, Key risk flags) are present for all three vendors. Where data is absent, the cell explicitly states [INSUFFICIENT DATA] rather than omitting the row, so no vendor has a dimension the others lack.\n\n2. **Recommendation justified by stated priorities (Criterion 2):** The recommendation is 'BrightPay Cloud' (one of the three named vendors). The rationale explicitly maps the decision to all four stated buyer priorities (accurate multi-country payroll, low admin effort, HR-system integration, predictable pricing), exceeding the 'at least two' threshold. Each priority is addressed with a dedicated paragraph citing specific table content.\n\n3. **Rationale grounded in research outputs (Criterion 3):** Every claim in the rationale traces to a specific cell in the comparison table (e.g., '<30 min human intervention per cycle', 'CPI + 2 % escalation', 'bi-directional sync of employee master data', 'no mid-term escalation within the 12-month contract'). No new numerical or factual claims are introduced that are absent from the table. The 'weighted assessment' paragraph synthesises existing table data without adding unsupported assertions.\n\n4. **Illustrative framing (Criterion 4):** Every data cell carries an [ASSUMED] or [INSUFFICIENT DATA] tag. The 'Contradictions / cross-vendor notes' section and the final CAVEAT paragraph in the rationale both explicitly state that all three vendors are fictional, no real pricing/SLA/security certification exists, and the output is an illustrative exercise requiring a live RFP before any procurement decision. No numerical figure (PEPM ranges, <30 min, \u00a31,500\u2013\u00a33,000, CPI + 2 %) is presented as verified real-world data.\n\nMinor suggestions for a future revision (not blocking):\n- Consider adding a brief 'data-confidence' column or footnote legend explaining the [ASSUMED] vs. [INSUFFICIENT DATA] distinction for readers who may not parse the tags.\n- The 'Employee self-service / UX' and 'Vendor lock-in / data portability' rows are largely [INSUFFICIENT DATA] for two of three vendors; if the source research can be expanded, filling these would strengthen the comparison, but this does not violate any rubric item.\n- The rationale's weighted-assessment paragraph could include a simple 1\u20135 scoring matrix per priority to make the 'highest or tied-highest on three' claim more auditable, though the current narrative justification is sufficient for the rubric."
+      }
+    },
+    "quality": {
+      "criteria": [],
+      "loops": [
+        {
+          "loop": "comparison_report_loop",
+          "maker": "comparison_report",
+          "approved": true,
+          "attempts": 1,
+          "max_revisions": 2,
+          "unmet_criteria": [],
+          "score": 0.95
+        }
+      ]
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 5,
+      "input_tokens": 7765,
+      "output_tokens": 10508
+    },
+    "started_at": "2026-10-17T14:53:22.758205Z",
+    "finished_at": "2026-10-17T14:56:28.126569Z"
+  },
+  "created_at": "2026-10-17T14:53:22.742849+00:00",
+  "updated_at": "2026-10-17T14:56:28.127314+00:00",
+  "events": [
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 0,
+      "ts": "2026-10-17T14:53:22.762746+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_65755c6f91e2",
+        "version": 1,
+        "blueprint_hash": "05f845584fd3a6c629c9945acc690e3216aa9e15640d8715c30b92d3aad7d3f9",
+        "patterns": [
+          "maker_checker",
+          "parallel",
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "comparison_report",
+            "comparison_report_loop__exit",
+            "comparison_report_review",
+            "research_acme",
+            "research_brightpay",
+            "research_cobalt"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "research_acme",
+              false
+            ],
+            [
+              "__start__",
+              "research_brightpay",
+              false
+            ],
+            [
+              "__start__",
+              "research_cobalt",
+              false
+            ],
+            [
+              "comparison_report",
+              "comparison_report_review",
+              false
+            ],
+            [
+              "comparison_report_loop__exit",
+              "__end__",
+              false
+            ],
+            [
+              "comparison_report_review",
+              "comparison_report",
+              true
+            ],
+            [
+              "comparison_report_review",
+              "comparison_report_loop__exit",
+              true
+            ],
+            [
+              "research_acme",
+              "comparison_report",
+              false
+            ],
+            [
+              "research_brightpay",
+              "comparison_report",
+              false
+            ],
+            [
+              "research_cobalt",
+              "comparison_report",
+              false
+            ]
+          ]
+        },
+        "model": "ollama:qwen3.8"
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 1,
+      "ts": "2026-10-17T14:53:22.765213+00:00",
+      "type": "node_started",
+      "node": "research_acme",
+      "data": {
+        "task": "research_acme",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 2,
+      "ts": "2026-10-17T14:53:22.765296+00:00",
+      "type": "node_started",
+      "node": "research_brightpay",
+      "data": {
+        "task": "research_brightpay",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 3,
+      "ts": "2026-10-17T14:53:22.765717+00:00",
+      "type": "node_started",
+      "node": "research_cobalt",
+      "data": {
+        "task": "research_cobalt",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 4,
+      "ts": "2026-10-17T14:53:49.126073+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_acme",
+        "model": "qwen3.8",
+        "input_tokens": 289,
+        "output_tokens": 1444
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 5,
+      "ts": "2026-10-17T14:53:49.127167+00:00",
+      "type": "node_succeeded",
+      "node": "research_acme",
+      "data": {
+        "task": "research_acme",
+        "attempt": 1,
+        "seconds": 26.361,
+        "output": {
+          "strengths": [
+            "MULTI-COUNTRY PAYROLL (UK & Ireland): [ASSUMED / ILLUSTRATIVE \u2013 Acme Payroll is a fictional vendor; no verified product data exists.] In the context of this comparison exercise, Acme Payroll is profiled as a UK-headquartered payroll provider with a dedicated Ireland module. Assumed strengths: (a) native handling of UK PAYE, National Insurance, and auto-enrolment pension calculations; (b) a separate but linked Ireland engine covering PRSI, USC, and Local Property Tax (LPT) deductions; (c) a single consolidated payslip and year-end report (P60 / P45 equivalent and Irish P45) for cross-border employees. These are plausible capabilities for a vendor positioned at this market tier, but they are NOT verified facts.",
+            "LOW ADMIN EFFORT: [ASSUMED] Assumed to offer a rules-based engine that auto-applies statutory changes (e.g., UK tax-year updates, Irish PRSI rate changes) without manual reconfiguration, reducing the recurring admin burden for a 200-head operation. Assumed bulk-upload and scheduled-run features to minimise per-employee manual steps.",
+            "HR SYSTEM INTEGRATION: [ASSUMED] Assumed to provide a REST/JSON API and pre-built connectors for common HRIS platforms (e.g., BambooHR, HiBob, Personio), enabling one-way or two-way sync of employee master data, which addresses the buyer's requirement to integrate with an existing HR system. Assumed SSO via SAML 2.0.",
+            "PREDICTABLE PRICING: [ASSUMED] Assumed to operate on a per-employee-per-month (PEPM) subscription with a fixed annual contract, avoiding per-transaction or per-run surcharges. This aligns with the buyer's stated priority of cost predictability."
+          ],
+          "weaknesses": [
+            "MULTI-COUNTRY DEPTH: [ASSUMED] The Ireland module is assumed to be a secondary offering rather than a co-equal product; edge cases such as cross-border secondments, dual-residency tax, or Irish social-welfare portability may require manual intervention or a separate consultant, increasing admin effort for the subset of employees who work across both jurisdictions.",
+            "INTEGRATION BREADTH: [ASSUMED] Pre-built connectors may cover only the most common HRIS platforms; if the buyer's existing HR system is niche or legacy, a custom integration project (with additional cost and lead time) would be required, partially undermining the 'low admin effort' priority.",
+            "SCALABILITY / SUPPORT TIER: [ASSUMED] At 200 employees the buyer sits in a mid-market tier; assumed support SLAs may be business-hours-only with a 24-hour response window, which could be a risk around statutory filing deadlines (e.g., UK RTI Real-Time Information, Irish PRSI returns).",
+            "VENDOR LOCK-IN RISK: [ASSUMED] Data export formats may be proprietary or limited, making a future migration costly. No open-data or neutral-format guarantee is assumed.",
+            "NO VERIFIED DATA: Because Acme Payroll is fictional, none of the above can be confirmed. Any procurement decision must be treated as illustrative only."
+          ],
+          "pricing_notes": "ILLUSTRATIVE ONLY \u2013 Acme Payroll is a fictional vendor; no real pricing exists. The following is a constructed scenario for the comparison exercise and must not be cited as a real quote.\n\n- Assumed model: Per-employee-per-month (PEPM) subscription, billed annually. A plausible mid-market band for a 200-employee UK+Ireland deployment might be in the range of \u00a312\u2013\u00a322 PEPM, but this figure is INVENTED for illustration and has no basis in any real product.\n- Assumed inclusions: UK and Ireland statutory payroll runs, year-end reporting, basic HRIS connector, SSO, and standard email support.\n- Assumed exclusions / potential add-ons: custom API integration (one-off project fee), premium/24-7 support tier, additional countries beyond UK/Ireland, and advanced analytics dashboards. These would introduce variable costs that partially erode the 'predictable pricing' priority.\n- Contract terms assumed: 12- or 24-month minimum commitment with an annual price-escalation clause (e.g., CPI + 2 %). The buyer should negotiate a fixed-price cap to protect predictability.\n- No per-transaction, per-run, or per-report fees are assumed, which is the key differentiator versus usage-based models.\n\nCAVEAT: Because the vendor is fictional, the buyer cannot obtain a real quote, SLA document, or security certification (e.g., ISO 27001, SOC 2) for Acme Payroll. In a live procurement, these would be mandatory due-diligence items."
+        }
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 6,
+      "ts": "2026-10-17T14:54:19.934906+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_brightpay",
+        "model": "qwen3.8",
+        "input_tokens": 287,
+        "output_tokens": 1670
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 7,
+      "ts": "2026-10-17T14:54:19.935967+00:00",
+      "type": "node_succeeded",
+      "node": "research_brightpay",
+      "data": {
+        "task": "research_brightpay",
+        "attempt": 1,
+        "seconds": 57.168,
+        "output": {
+          "strengths": [
+            "Multi-country payroll (UK + Ireland): BrightPay Cloud is positioned as a UK/Ireland-focused SaaS payroll provider. For a 200-employee company with staff in both jurisdictions, it natively handles UK PAYE/RTI and Irish PAYE/PRSI filing within a single tenant, eliminating the need for two separate systems. (Assumption: the fictional vendor's documented coverage is limited to these two countries; no broader EU or US modules are claimed.)",
+            "Low admin effort: The platform is fully cloud-hosted with automated tax-rule updates (HMRC and Revenue.ie schedules pushed centrally), in-year corrections, and year-end reporting (P60/P45, P60 equivalents for Ireland). A 200-employee payroll can typically be run in under 30 minutes of human intervention per cycle, with exception-based dashboards flagging only items that need manual review. (Assumption: 'low admin' is defined as <1 FTE for a 200-head payroll; this is a reasonable mid-market benchmark but is not a verified figure for a fictional product.)",
+            "HR-system integration: BrightPay Cloud exposes a REST API and pre-built connectors for a short list of common HRIS/HRM platforms (e.g., BambooHR, Personio, HiBob). For a company that already runs an HR system, bi-directional sync of employee master data, leave balances, and org-chart changes reduces duplicate data entry. (Assumption: the buyer's 'existing HR system' is one of the listed connectors; if it is a bespoke or niche system, integration would require custom API work, which is not included in the base product.)",
+            "Predictable pricing: The vendor publishes a per-employee-per-month (PEPM) subscription with a fixed annual contract, no per-run or per-filing transaction fees, and a published add-on catalogue. This aligns directly with the buyer's 'predictable pricing' priority. (Assumption: 'predictable' means no hidden per-transaction charges; annual contracts lock the rate for 12 months.)",
+            "Compliance and audit trail: Automated statutory filing to HMRC (RTI) and Revenue.ie, with a full audit log of every change, supports the 'accurate multi-country payroll' priority and reduces the risk of late-filing penalties."
+          ],
+          "weaknesses": [
+            "Geographic ceiling: BrightPay Cloud's documented coverage is UK and Ireland only. If the 200-employee company later expands into the EU, US, or APAC, a second or third payroll system would be required, creating the multi-vendor complexity the buyer is trying to avoid. (Assumption: no roadmap for additional countries is published for this fictional vendor.)",
+            "Integration depth is connector-limited: Pre-built connectors cover a handful of popular HRIS platforms. If the buyer's existing HR system is not on that list, integration falls back to a generic REST API that requires in-house or third-party development effort, partially negating the 'low admin effort' benefit. (Assumption: custom integration is billed as a professional-services line item, not included in the PEPM fee.)",
+            "Limited self-service for employees: The employee portal (payslip access, P45/P60 download, tax-code changes) is functional but less polished than consumer-grade apps; it may not meet expectations of a 200-person workforce accustomed to modern UX, potentially generating support tickets that add to admin load.",
+            "Support model: Standard support is email + phone during UK business hours (Mon\u2013Fri, 09:00\u201317:00 GMT). There is no 24/7 or on-call option in the base tier, which could be a gap for a company with Irish staff whose filing deadlines fall outside UK hours. (Assumption: premium 24/7 support is available as a paid add-on.)",
+            "No embedded benefits or pension administration: BrightPay Cloud handles gross-to-net payroll and statutory filings but does not include pension auto-enrolment administration (UK) or PRSI-linked pension schemes (Ireland) as a native module; the buyer would need a separate benefits/pension provider, adding a small integration and admin overhead."
+          ],
+          "pricing_notes": "BrightPay Cloud uses a per-employee-per-month (PEPM) subscription model, billed annually. Illustrative structure for a 200-employee UK/Ireland payroll (all figures are assumptions for a fictional vendor and must not be treated as real quotes): base PEPM in the range of \u00a312\u2013\u00a318 per employee per month depending on module selection (core payroll, tax filing, employee portal, HRIS connector). A 200-head annual contract would therefore land roughly in the \u00a328,800\u2013\u00a343,200 per year band before VAT. Key pricing characteristics relevant to the buyer's 'predictable pricing' priority: (1) No per-run, per-filing, or per-report transaction fees; (2) Annual contract locks the PEPM rate for 12 months with no mid-term escalation; (3) A one-time onboarding/setup fee (assumed \u00a31,500\u2013\u00a33,000) covers data migration and HRIS connector configuration; (4) Add-ons (e.g., 24/7 support, custom API integration, pension module) are listed at fixed monthly rates, so total cost remains forecastable. Caveat: because BrightPay Cloud is a fictional vendor, no real pricing sheet exists; the ranges above are constructed to be plausible for a mid-market UK/Ireland payroll SaaS and should be replaced with actual vendor quotes before any procurement decision."
+        }
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 8,
+      "ts": "2026-10-17T14:54:45.251950+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:research_cobalt",
+        "model": "qwen3.8",
+        "input_tokens": 287,
+        "output_tokens": 1373
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 9,
+      "ts": "2026-10-17T14:54:45.252941+00:00",
+      "type": "node_succeeded",
+      "node": "research_cobalt",
+      "data": {
+        "task": "research_cobalt",
+        "attempt": 1,
+        "seconds": 82.484,
+        "output": {
+          "strengths": [
+            "Multi-country payroll (UK & Ireland): As a mid-market HR/payroll vendor, Cobalt HR is positioned to handle dual-jurisdiction payroll for a 200-employee UK/Ireland footprint. It would be expected to manage UK PAYE, National Insurance, and RTI submissions alongside Irish PAYE, USC, PRSI, and Revenue Online Service (ROS) filings from a single console, reducing the need for two separate providers. (Assumption: the fictional vendor's product scope covers both jurisdictions; no real-world product by this name is cited.)",
+            "Low admin effort: The platform is described as automation-first, with rules engines that pre-populate statutory deductions, tax bands, and pension contributions per jurisdiction. For a 200-employee base this typically translates to a single monthly run rather than two, and a consolidated reporting layer that feeds both HMRC and Irish Revenue. This aligns directly with the buyer's 'low admin effort' priority.",
+            "HR-system integration: Cobalt HR is positioned as an HR-centric product (the 'HR' in the name signals a broader HRIS/HRMS layer), which suggests native or pre-built connectors to common HR systems (e.g., BambooHR, HiBob, or a legacy in-house system). For a buyer that already runs an HR system, this reduces the integration lift compared with a payroll-only tool that would require a middleware bridge.",
+            "Predictable pricing: The vendor is characterised as offering a per-employee-per-month (PEPM) subscription with a fixed annual contract, which maps to the buyer's 'predictable pricing' priority. No per-transaction or per-run surcharges are implied, and statutory filing is bundled rather than metered."
+          ],
+          "weaknesses": [
+            "Geographic ceiling: The profile is scoped to UK and Ireland. If the 200-employee company later expands to a third jurisdiction (e.g., Germany, France, or the US), Cobalt HR would likely require a separate add-on module or a second vendor, introducing the very multi-vendor complexity the buyer wants to avoid. (Assumption: no evidence in the provided context of a broader global payroll network.)",
+            "Integration depth vs. breadth: While a native HR connector is a strength, a mid-market product may offer fewer pre-built integrations than a large enterprise suite (e.g., SAP SuccessFactors, Workday). If the buyer's existing HR system is a niche or heavily customised in-house build, the 'native connector' may not exist, and a custom API integration could add 4\u20138 weeks of project time and cost not reflected in the base subscription.",
+            "Scalability and SLA: At 200 employees the platform is well within typical mid-market capacity, but the vendor's SLA (uptime guarantee, support response time) and disaster-recovery posture are not specified in the provided context. For a company that cannot tolerate a payroll run failure, the absence of a published 99.9 %+ SLA is a risk flag.",
+            "Customisation limits: A rules-engine approach optimises for standard statutory scenarios. Complex, non-standard pay structures (e.g., multi-currency expatriate packages, bespoke bonus schemes spanning both jurisdictions) may require manual overrides, partially eroding the 'low admin effort' benefit."
+          ],
+          "pricing_notes": "Cobalt HR is a fictional vendor; no real-world pricing data exists, and no figures are invented here. The pricing model is characterised qualitatively as follows: (1) A per-employee-per-month (PEPM) subscription, which for a 200-headcount UK/Ireland company would produce a single, predictable annual line item. (2) Statutory filing (RTI, ROS, pension auto-enrolment reporting) is bundled into the subscription rather than charged per submission, supporting the buyer's 'predictable pricing' priority. (3) A one-time onboarding / data-migration fee is typical for this tier, covering the initial import of 200 employee records and configuration of dual-jurisdiction tax rules. (4) No per-transaction or per-run surcharges are implied. (5) An annual contract with a fixed price (or a capped annual escalation, e.g., CPI-linked) is the expected commercial structure, avoiding open-ended usage-based billing. The buyer should request a written quote that itemises the PEPM rate, onboarding fee, any integration-build cost, and the escalation clause to confirm predictability. Because the vendor is fictional, all commercial terms must be treated as illustrative placeholders pending a real RFP."
+        }
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 10,
+      "ts": "2026-10-17T14:54:45.254274+00:00",
+      "type": "node_started",
+      "node": "comparison_report",
+      "data": {
+        "task": "comparison_report",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 11,
+      "ts": "2026-10-17T14:55:53.451296+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:comparison_report",
+        "model": "qwen3.8",
+        "input_tokens": 3649,
+        "output_tokens": 4040
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 12,
+      "ts": "2026-10-17T14:55:53.452449+00:00",
+      "type": "node_succeeded",
+      "node": "comparison_report",
+      "data": {
+        "task": "comparison_report",
+        "attempt": 1,
+        "seconds": 68.198,
+        "output": {
+          "comparison_table": "| Dimension | Acme Payroll | BrightPay Cloud | Cobalt HR |\n|---|---|---|---|\n| **Multi-country payroll (UK & Ireland)** | UK PAYE/NI/auto-enrolment native; Ireland module (PRSI, USC, LPT) present but characterised as a *secondary* offering. Consolidated cross-border payslip and year-end report (P60/P45 + Irish P45). Edge cases (dual-residency, secondments) may need manual intervention or external consultant. [ASSUMED] | UK PAYE/RTI and Irish PAYE/PRSI handled within a *single tenant*; no second system required. Coverage explicitly limited to UK + Ireland. Automated statutory filing to HMRC and Revenue.ie with full audit log. [ASSUMED] | UK PAYE/NI/RTI alongside Irish PAYE/USC/PRSI/ROS from a *single console*. Consolidated reporting layer feeds both HMRC and Irish Revenue. Scope confirmed for both jurisdictions. [ASSUMED] |\n| **Low admin effort** | Rules-based engine auto-applies statutory changes (UK tax-year, Irish PRSI rate updates) without manual reconfiguration. Bulk-upload and scheduled-run features minimise per-employee steps. No quantified time-per-cycle figure provided. [ASSUMED] | Fully cloud-hosted; automated tax-rule updates (HMRC + Revenue.ie pushed centrally), in-year corrections, year-end reporting. Claimed <30 min human intervention per cycle for 200 employees; exception-based dashboards flag only items needing manual review. <1 FTE benchmark for 200-head payroll. [ASSUMED] | Automation-first; rules engines pre-populate statutory deductions, tax bands, pension contributions per jurisdiction. Single monthly run rather than two; consolidated reporting. No quantified time-per-cycle figure. [ASSUMED] |\n| **HR-system integration** | REST/JSON API; pre-built connectors for BambooHR, HiBob, Personio; SSO via SAML 2.0. Niche/legacy HR systems require a custom integration project (one-off fee + lead time). [ASSUMED] | REST API; pre-built connectors for BambooHR, Personio, HiBob; bi-directional sync of employee master data, leave balances, org-chart changes. Ni\u2026",
+          "recommendation": "BrightPay Cloud",
+          "rationale": [
+            "The buyer's four stated priorities are, in order of emphasis in the company profile: (1) accurate multi-country payroll, (2) low admin effort, (3) integration with an existing HR system, (4) predictable pricing. BrightPay Cloud is the only vendor whose profile addresses all four with the greatest specificity and the fewest unmitigated gaps.",
+            "PRIORITY 1 \u2013 Accurate multi-country payroll: BrightPay Cloud handles UK PAYE/RTI and Irish PAYE/PRSI within a single tenant and, critically, is the only vendor whose profile explicitly includes a full audit log of every change and automated statutory filing to both HMRC and Revenue.ie. This directly de-risks late-filing penalties and supports the 'accurate' qualifier. Acme's Ireland module is characterised as secondary, and Cobalt's compliance/audit detail is not specified, making BrightPay the strongest on this dimension.",
+            "PRIORITY 2 \u2013 Low admin effort: BrightPay Cloud is the only vendor that quantifies the admin burden (<30 minutes of human intervention per cycle for 200 employees; <1 FTE benchmark) and describes an exception-based dashboard that surfaces only items needing manual review. Acme and Cobalt describe automation-first rules engines but provide no time-per-cycle figure. The one caveat is that BrightPay excludes native pension/benefits administration, which would add a small recurring admin step; however, this is a narrower gap than Acme's secondary-Ireland-module risk or Cobalt's unspecified SLA.",
+            "PRIORITY 3 \u2013 Integration with an existing HR system: All three vendors offer pre-built connectors for the same short list of common HRIS platforms (BambooHR, HiBob, Personio). BrightPay Cloud differentiates by specifying bi-directional sync of employee master data, leave balances, and org-chart changes, which most closely matches the buyer's need to avoid duplicate data entry. The shared risk across all three vendors is that a niche or legacy HR system would require custom API work; this is not a differentiator but a shared caveat the buyer must validate in a live RFP.",
+            "PRIORITY 4 \u2013 Predictable pricing: BrightPay Cloud is the strongest on this priority. Its profile explicitly states: no mid-term escalation within the 12-month contract, no per-run/per-filing/per-report transaction fees, a published add-on catalogue at fixed monthly rates, and a one-time onboarding fee. By contrast, Acme's assumed CPI + 2 % annual escalation clause and open-ended add-on costs (custom API, premium support, extra countries, analytics) introduce variability that partially erodes predictability. Cobalt is qualitatively similar to BrightPay but lacks a quantified escalation clause or PEPM range, leaving a minor ambiguity that BrightPay does not share.",
+            "WEIGHTED ASSESSMENT: Across the four priorities, BrightPay Cloud scores highest or tied-highest on three (multi-country accuracy, low admin effort, predictable pricing) and tied on the fourth (HR integration). Its principal weaknesses \u2013 geographic ceiling, connector-limited integration, no embedded pension admin, UK-hours-only support \u2013 are either shared by all three vendors (geographic ceiling, connector limitation) or are narrow, addressable gaps (pension admin via a separate provider; 24/7 support as a paid add-on). No single weakness in BrightPay's profile directly contradicts a stated buyer priority, whereas Acme's escalation clause and secondary-Ireland positioning, and Cobalt's unspecified SLA, each create a more material tension with the buyer's priorities.",
+            "CAVEAT: All three vendors are fictional. No real pricing sheet, SLA document, security certification, or product documentation exists for any of them. This recommendation is an illustrative exercise only. Before any live procurement, the buyer must (a) issue a formal RFP to real vendors, (b) obtain written quotes itemising PEPM rate, onboarding fee, integration-build cost, and escalation clause, (c) verify ISO 27001 / SOC 2 or equivalent security certifications, (d) confirm that the buyer's specific existing HR system is on the vendor's pre-built connector list, and (e) validate the 24/7 support add-on cost if Irish filing deadlines fall outside UK business hours."
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 13,
+      "ts": "2026-10-17T14:55:53.453797+00:00",
+      "type": "node_started",
+      "node": "comparison_report_review",
+      "data": {
+        "task": "comparison_report_review",
+        "kind": "checker",
+        "attempt": 0
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 14,
+      "ts": "2026-10-17T14:56:28.121257+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "check:comparison_report_review",
+        "model": "qwen3.8",
+        "input_tokens": 3253,
+        "output_tokens": 1981
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 15,
+      "ts": "2026-10-17T14:56:28.122637+00:00",
+      "type": "review_verdict",
+      "node": "comparison_report_review",
+      "data": {
+        "loop": "comparison_report_loop",
+        "attempt": 1,
+        "approved": true,
+        "unmet_criteria": []
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 16,
+      "ts": "2026-10-17T14:56:28.123308+00:00",
+      "type": "node_succeeded",
+      "node": "comparison_report_review",
+      "data": {
+        "task": "comparison_report_review",
+        "attempt": 0,
+        "seconds": 34.668,
+        "output": {
+          "approved": true,
+          "score": 0.95,
+          "unmet_criteria": [],
+          "feedback": "All four rubric criteria are satisfied. Specific observations supporting approval:\n\n1. **Uniform dimensions (Criterion 1):** All 11 dimensions (Multi-country payroll, Low admin effort, HR-system integration, Predictable pricing, Support & SLA, Compliance & audit trail, Scalability/geographic ceiling, Employee self-service/UX, Benefits/pension administration, Vendor lock-in/data portability, Key risk flags) are present for all three vendors. Where data is absent, the cell explicitly states [INSUFFICIENT DATA] rather than omitting the row, so no vendor has a dimension the others lack.\n\n2. **Recommendation justified by stated priorities (Criterion 2):** The recommendation is 'BrightPay Cloud' (one of the three named vendors). The rationale explicitly maps the decision to all four stated buyer priorities (accurate multi-country payroll, low admin effort, HR-system integration, predictable pricing), exceeding the 'at least two' threshold. Each priority is addressed with a dedicated paragraph citing specific table content.\n\n3. **Rationale grounded in research outputs (Criterion 3):** Every claim in the rationale traces to a specific cell in the comparison table (e.g., '<30 min human intervention per cycle', 'CPI + 2 % escalation', 'bi-directional sync of employee master data', 'no mid-term escalation within the 12-month contract'). No new numerical or factual claims are introduced that are absent from the table. The 'weighted assessment' paragraph synthesises existing table data without adding unsupported assertions.\n\n4. **Illustrative framing (Criterion 4):** Every data cell carries an [ASSUMED] or [INSUFFICIENT DATA] tag. The 'Contradictions / cross-vendor notes' section and the final CAVEAT paragraph in the rationale both explicitly state that all three vendors are fictional, no real pricing/SLA/security certification exists, and the output is an illustrative exercise requiring a live RFP before any procurement decision. No numerical figure (PEPM ranges, <30 min, \u00a31,50\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 17,
+      "ts": "2026-10-17T14:56:28.124511+00:00",
+      "type": "node_started",
+      "node": "comparison_report_loop__exit",
+      "data": {
+        "task": "comparison_report",
+        "kind": "loop_exit"
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 18,
+      "ts": "2026-10-17T14:56:28.125252+00:00",
+      "type": "loop_exit",
+      "node": "comparison_report_loop__exit",
+      "data": {
+        "loop": "comparison_report_loop",
+        "approved": true,
+        "attempts": 1
+      }
+    },
+    {
+      "run_id": "run_0b2ce4fd7662",
+      "seq": 19,
+      "ts": "2026-10-17T14:56:28.126589+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "met",
+        "error": null,
+        "usage": {
+          "model_calls": 5,
+          "input_tokens": 7765,
+          "output_tokens": 10508
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "comparison_report",
+      "comparison_report_loop__exit",
+      "comparison_report_review",
+      "research_acme",
+      "research_brightpay",
+      "research_cobalt"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "research_acme",
+        false
+      ],
+      [
+        "__start__",
+        "research_brightpay",
+        false
+      ],
+      [
+        "__start__",
+        "research_cobalt",
+        false
+      ],
+      [
+        "comparison_report",
+        "comparison_report_review",
+        false
+      ],
+      [
+        "comparison_report_loop__exit",
+        "__end__",
+        false
+      ],
+      [
+        "comparison_report_review",
+        "comparison_report",
+        true
+      ],
+      [
+        "comparison_report_review",
+        "comparison_report_loop__exit",
+        true
+      ],
+      [
+        "research_acme",
+        "comparison_report",
+        false
+      ],
+      [
+        "research_brightpay",
+        "comparison_report",
+        false
+      ],
+      [
+        "research_cobalt",
+        "comparison_report",
+        false
+      ]
+    ]
+  }
+}
