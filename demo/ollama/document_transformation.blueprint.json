@@ -1,0 +1,517 @@
+{
+  "id": "bp_a307e07793f0",
+  "version": 1,
+  "prd_id": "prd_500754cc1580",
+  "hash": "42c29eda6cf47aeb4bece94bea08b91355ab65bbe2d9d01e1bc46fb82209e61e",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_a307e07793f0",
+    "version": 1,
+    "objective": "Transform a raw internal policy document into a validated, structured FAQ for employees, ensuring every extracted rule is represented and no rules are invented.",
+    "source_prd_hash": "5d68449b86bd9613fe8978d7a634c249a043161a71dc51efb71e662697df9176",
+    "created_at": "2026-10-17T14:57:00.904536Z",
+    "inputs": [
+      {
+        "name": "policy_text",
+        "description": "needed by task validate_document",
+        "required": true
+      },
+      {
+        "name": "audience",
+        "description": "needed by task write_faq",
+        "required": true
+      }
+    ],
+    "tasks": [
+      {
+        "id": "validate_document",
+        "role": "Validate the source policy document",
+        "responsibility": "Inspect the raw policy_text to confirm it is recognisably a policy document with identifiable sections (e.g., purpose, scope, definitions, rules, effective date). Record any structural problems (missing sections, ambiguous headings, incomplete clauses). Output a boolean is_valid flag, the list of detected section names, and a list of structural problems found.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "policy_text",
+            "source": "run:policy_text",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "is_valid",
+            "type": "boolean",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "sections",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "problems",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "extract_rules",
+        "role": "Extract policy rules and defined terms",
+        "responsibility": "Using the validated document structure (sections, is_valid, problems from validate_document) and the raw policy_text, extract every concrete, actionable rule and every defined term. Each rule must be traceable to a specific passage in the source. Do not infer or invent rules beyond what the text states. If is_valid is false, still attempt extraction but flag the risk in the output.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "validate_document",
+            "source": "task:validate_document",
+            "description": ""
+          },
+          {
+            "name": "policy_text",
+            "source": "run:policy_text",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "rules",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "definitions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "validate_document"
+        ],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "extract_rules_review",
+        "role": "Reviewer for Extract policy rules and defined terms",
+        "responsibility": "Review the output of 'Extract policy rules and defined terms' against the rubric.",
+        "kind": "checker",
+        "required_inputs": [
+          {
+            "name": "artifact",
+            "source": "task:extract_rules",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "approved",
+            "type": "boolean",
+            "description": "True only if every criterion is met",
+            "required": true
+          },
+          {
+            "name": "score",
+            "type": "number",
+            "description": "0.0-1.0 overall rubric score",
+            "required": true
+          },
+          {
+            "name": "unmet_criteria",
+            "type": "string_list",
+            "description": "Rubric items not met",
+            "required": true
+          },
+          {
+            "name": "feedback",
+            "type": "string",
+            "description": "Concrete revision instructions for the maker",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "extract_rules"
+        ],
+        "skill": "reviewer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 4
+      },
+      {
+        "id": "write_faq",
+        "role": "Write the employee FAQ in plain language",
+        "responsibility": "Convert the extracted rules and definitions into a plain-language FAQ in Markdown. Produce exactly one question per rule. If an audience (reader group / reading level) is supplied, calibrate vocabulary and sentence complexity accordingly; if absent, default to a general-employee reading level. Include a short definitions section for any terms in the definitions list. Do not add legal advice. Output the full FAQ as Markdown and the count of questions generated.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "extract_rules",
+            "source": "task:extract_rules",
+            "description": ""
+          },
+          {
+            "name": "audience",
+            "source": "run:audience",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "faq_markdown",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "question_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "extract_rules"
+        ],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "write_faq_review",
+        "role": "Reviewer for Write the employee FAQ in plain language",
+        "responsibility": "Review the output of 'Write the employee FAQ in plain language' against the rubric.",
+        "kind": "checker",
+        "required_inputs": [
+          {
+            "name": "artifact",
+            "source": "task:write_faq",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "approved",
+            "type": "boolean",
+            "description": "True only if every criterion is met",
+            "required": true
+          },
+          {
+            "name": "score",
+            "type": "number",
+            "description": "0.0-1.0 overall rubric score",
+            "required": true
+          },
+          {
+            "name": "unmet_criteria",
+            "type": "string_list",
+            "description": "Rubric items not met",
+            "required": true
+          },
+          {
+            "name": "feedback",
+            "type": "string",
+            "description": "Concrete revision instructions for the maker",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "write_faq"
+        ],
+        "skill": "reviewer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 4
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "serial",
+          "tasks": [
+            "extract_rules",
+            "write_faq"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        },
+        {
+          "pattern": "maker_checker",
+          "tasks": [
+            "extract_rules",
+            "extract_rules_review"
+          ],
+          "rationale": "quality/factual verification with bounded revision"
+        },
+        {
+          "pattern": "maker_checker",
+          "tasks": [
+            "write_faq",
+            "write_faq_review"
+          ],
+          "rationale": "quality/factual verification with bounded revision"
+        }
+      ],
+      "edges": [
+        {
+          "source": "validate_document",
+          "target": "extract_rules"
+        },
+        {
+          "source": "extract_rules",
+          "target": "extract_rules_review"
+        },
+        {
+          "source": "extract_rules",
+          "target": "write_faq"
+        },
+        {
+          "source": "write_faq",
+          "target": "write_faq_review"
+        }
+      ],
+      "loops": [
+        {
+          "id": "extract_rules_loop",
+          "maker": "extract_rules",
+          "checker": "extract_rules_review",
+          "max_revisions": 2,
+          "rubric": [
+            "Every item in rules and definitions is directly traceable to a passage in policy_text; no rule is paraphrased into a new obligation not present in the source.",
+            "No concrete rule or defined term from the source is omitted.",
+            "Rules are stated as discrete, actionable statements rather than vague summaries.",
+            "No legal advice or interpretation beyond the document's own language is introduced."
+          ]
+        },
+        {
+          "id": "write_faq_loop",
+          "maker": "write_faq",
+          "checker": "write_faq_review",
+          "max_revisions": 2,
+          "rubric": [
+            "question_count equals the number of items in the rules list from extract_rules (one question per rule, no more, no fewer).",
+            "Every rule from extract_rules is represented by at least one FAQ question; no rule is silently dropped.",
+            "No question or answer introduces content, obligations, or interpretations absent from the source rules and definitions.",
+            "No legal advice is present; the FAQ restates policy, not counsel.",
+            "Language complexity matches the audience parameter when provided, or a reasonable general-employee level when it is not."
+          ]
+        }
+      ],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [],
+      "skills": [
+        "data_engineer",
+        "reviewer"
+      ],
+      "model": {
+        "provider": "ollama",
+        "model": "qwen3.8",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 31,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 26,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [],
+      "final_task": "write_faq",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "no_quality_criteria",
+        "message": "no measurable quality criteria declared",
+        "task": null
+      }
+    ],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Transform a raw internal policy document into a validated, structured FAQ for employees, ensuring every extracted rule is represented and no rules are invented.",
+    "tasks": [
+      {
+        "id": "validate_document",
+        "title": "Validate the source policy document",
+        "description": "Inspect the raw policy_text to confirm it is recognisably a policy document with identifiable sections (e.g., purpose, scope, definitions, rules, effective date). Record any structural problems (missing sections, ambiguous headings, incomplete clauses). Output a boolean is_valid flag, the list of detected section names, and a list of structural problems found.",
+        "depends_on": [],
+        "user_inputs": [
+          "policy_text"
+        ],
+        "output_fields": [
+          {
+            "name": "is_valid",
+            "type": "boolean",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "sections",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "problems",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "extract_rules",
+        "title": "Extract policy rules and defined terms",
+        "description": "Using the validated document structure (sections, is_valid, problems from validate_document) and the raw policy_text, extract every concrete, actionable rule and every defined term. Each rule must be traceable to a specific passage in the source. Do not infer or invent rules beyond what the text states. If is_valid is false, still attempt extraction but flag the risk in the output.",
+        "depends_on": [
+          "validate_document"
+        ],
+        "user_inputs": [
+          "policy_text"
+        ],
+        "output_fields": [
+          {
+            "name": "rules",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "definitions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": true,
+        "review_criteria": [
+          "Every item in rules and definitions is directly traceable to a passage in policy_text; no rule is paraphrased into a new obligation not present in the source.",
+          "No concrete rule or defined term from the source is omitted.",
+          "Rules are stated as discrete, actionable statements rather than vague summaries.",
+          "No legal advice or interpretation beyond the document's own language is introduced."
+        ],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "write_faq",
+        "title": "Write the employee FAQ in plain language",
+        "description": "Convert the extracted rules and definitions into a plain-language FAQ in Markdown. Produce exactly one question per rule. If an audience (reader group / reading level) is supplied, calibrate vocabulary and sentence complexity accordingly; if absent, default to a general-employee reading level. Include a short definitions section for any terms in the definitions list. Do not add legal advice. Output the full FAQ as Markdown and the count of questions generated.",
+        "depends_on": [
+          "extract_rules"
+        ],
+        "user_inputs": [
+          "audience"
+        ],
+        "output_fields": [
+          {
+            "name": "faq_markdown",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "question_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": true,
+        "review_criteria": [
+          "question_count equals the number of items in the rules list from extract_rules (one question per rule, no more, no fewer).",
+          "Every rule from extract_rules is represented by at least one FAQ question; no rule is silently dropped.",
+          "No question or answer introduces content, obligations, or interpretations absent from the source rules and definitions.",
+          "No legal advice is present; the FAQ restates policy, not counsel.",
+          "Language complexity matches the audience parameter when provided, or a reasonable general-employee level when it is not."
+        ],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "policy_text",
+        "description": "needed by task validate_document",
+        "required": true
+      },
+      {
+        "name": "audience",
+        "description": "needed by task write_faq",
+        "required": true
+      }
+    ],
+    "constraints": [],
+    "success_criteria": [],
+    "missing_information": [
+      "The PRD does not define what constitutes 'identifiable sections' for a policy document (e.g., a required set of headings such as Purpose, Scope, Definitions, Rules, Effective Date, Review Cycle). validate_document needs a concrete checklist or a permissive heuristic.",
+      "The PRD does not specify the Markdown structure of the FAQ (heading levels, whether to use a table of contents, whether definitions are a separate section or inline). write_faq needs a template or format spec.",
+      "The PRD does not state the behaviour when validate_document returns is_valid = false: should the pipeline halt, should extract_rules and write_faq still run with a warning, or should a fallback output be produced?",
+      "The PRD does not specify a maximum or minimum number of rules, nor how to handle very long or very short policy documents.",
+      "The PRD does not define what 'plain-language' means quantitatively (e.g., a target Flesch-Kincaid grade) when audience is omitted, making the default reading level ambiguous."
+    ]
+  },
+  "issues": [
+    {
+      "code": "missing_information",
+      "message": "The PRD does not define what constitutes 'identifiable sections' for a policy document (e.g., a required set of headings such as Purpose, Scope, Definitions, Rules, Effective Date, Review Cycle). validate_document needs a concrete checklist or a permissive heuristic.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not specify the Markdown structure of the FAQ (heading levels, whether to use a table of contents, whether definitions are a separate section or inline). write_faq needs a template or format spec.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not state the behaviour when validate_document returns is_valid = false: should the pipeline halt, should extract_rules and write_faq still run with a warning, or should a fallback output be produced?",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not specify a maximum or minimum number of rules, nor how to handle very long or very short policy documents.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "The PRD does not define what 'plain-language' means quantitatively (e.g., a target Flesch-Kincaid grade) when audience is omitted, making the default reading level ambiguous.",
+      "task": null
+    }
+  ],
+  "created_at": "2026-10-17T14:57:00.905300+00:00",
+  "approval": null
+}

@@ -1,0 +1,488 @@
+{
+  "id": "run_cb4a6811869b",
+  "blueprint_id": "bp_f7efef4d811c",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "met",
+  "inputs": {
+    "financials_csv": "region,quarter,revenue,cost\nnorth,Q1,120000,81000\nnorth,Q2,132500,86200\nsouth,Q1,98000,74500\nsouth,Q2,91000,73800\nwest,Q1,143000,97000\nwest,Q2,151200,99800\n",
+    "business_context": "Synthetic scenario: the south region lost a large customer in Q2; west launched a new product line in Q1."
+  },
+  "result": {
+    "run_id": "run_cb4a6811869b",
+    "blueprint_id": "bp_f7efef4d811c",
+    "blueprint_version": 1,
+    "blueprint_hash": "b4c73aab944bd6ee1ff5717ea52d7ab094ff7b14d33f7ce6c300ecc3d9de074a",
+    "status": "succeeded",
+    "disposition": "met",
+    "final_output": {
+      "headline": "[mock agent:draft_memo #372840] headline",
+      "regional_findings": [
+        "[mock agent:draft_memo #372840] regional_findings"
+      ],
+      "risks": [
+        "[mock agent:draft_memo #372840] risks"
+      ],
+      "memo": "[mock agent:draft_memo #372840] memo"
+    },
+    "results": {
+      "compute_metrics": {
+        "row_count": 6,
+        "numeric_columns": [
+          "cost",
+          "revenue"
+        ],
+        "stats": {
+          "revenue": {
+            "min": 91000.0,
+            "max": 151200.0,
+            "mean": 122616.6667,
+            "sum": 735700.0
+          },
+          "cost": {
+            "min": 73800.0,
+            "max": 99800.0,
+            "mean": 85383.3333,
+            "sum": 512300.0
+          }
+        }
+      },
+      "sector_context": {
+        "themes": [
+          "[mock agent:sector_context #28a886] themes"
+        ],
+        "caveats": [
+          "[mock agent:sector_context #28a886] caveats"
+        ]
+      },
+      "draft_memo": {
+        "headline": "[mock agent:draft_memo #372840] headline",
+        "regional_findings": [
+          "[mock agent:draft_memo #372840] regional_findings"
+        ],
+        "risks": [
+          "[mock agent:draft_memo #372840] risks"
+        ],
+        "memo": "[mock agent:draft_memo #372840] memo"
+      },
+      "draft_memo_review": {
+        "approved": true,
+        "score": 0.9,
+        "unmet_criteria": [],
+        "feedback": "Looks good."
+      }
+    },
+    "quality": {
+      "criteria": [
+        "Figures in the memo are traceable to the dataset",
+        "The memo is readable by a non-specialist manager"
+      ],
+      "loops": [
+        {
+          "loop": "draft_memo_loop",
+          "maker": "draft_memo",
+          "approved": true,
+          "attempts": 1,
+          "max_revisions": 2,
+          "unmet_criteria": [],
+          "score": 0.9
+        }
+      ]
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 3,
+      "input_tokens": 1010,
+      "output_tokens": 102
+    },
+    "started_at": "2026-10-17T15:11:03.186371Z",
+    "finished_at": "2026-10-17T15:11:03.196093Z"
+  },
+  "created_at": "2026-10-17T15:11:03.184092+00:00",
+  "updated_at": "2026-10-17T15:11:03.196373+00:00",
+  "events": [
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 0,
+      "ts": "2026-10-17T15:11:03.188423+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_f7efef4d811c",
+        "version": 1,
+        "blueprint_hash": "b4c73aab944bd6ee1ff5717ea52d7ab094ff7b14d33f7ce6c300ecc3d9de074a",
+        "patterns": [
+          "maker_checker",
+          "parallel",
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "compute_metrics",
+            "draft_memo",
+            "draft_memo_loop__exit",
+            "draft_memo_review",
+            "sector_context"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "compute_metrics",
+              false
+            ],
+            [
+              "__start__",
+              "sector_context",
+              false
+            ],
+            [
+              "compute_metrics",
+              "draft_memo",
+              false
+            ],
+            [
+              "draft_memo",
+              "draft_memo_review",
+              false
+            ],
+            [
+              "draft_memo_loop__exit",
+              "__end__",
+              false
+            ],
+            [
+              "draft_memo_review",
+              "draft_memo",
+              true
+            ],
+            [
+              "draft_memo_review",
+              "draft_memo_loop__exit",
+              true
+            ],
+            [
+              "sector_context",
+              "draft_memo",
+              false
+            ]
+          ]
+        },
+        "model": "mock"
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 1,
+      "ts": "2026-10-17T15:11:03.189269+00:00",
+      "type": "node_started",
+      "node": "compute_metrics",
+      "data": {
+        "task": "compute_metrics",
+        "kind": "tool",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 2,
+      "ts": "2026-10-17T15:11:03.189367+00:00",
+      "type": "node_started",
+      "node": "sector_context",
+      "data": {
+        "task": "sector_context",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 3,
+      "ts": "2026-10-17T15:11:03.189601+00:00",
+      "type": "tool_call",
+      "node": "compute_metrics",
+      "data": {
+        "tool": "data.describe_numeric",
+        "args": [
+          "csv_text"
+        ]
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 4,
+      "ts": "2026-10-17T15:11:03.190245+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:sector_context",
+        "model": "mock",
+        "input_tokens": 223,
+        "output_tokens": 28
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 5,
+      "ts": "2026-10-17T15:11:03.190641+00:00",
+      "type": "audit_tool_call",
+      "node": null,
+      "data": {
+        "tool": "data.describe_numeric",
+        "args": [
+          "csv_text"
+        ]
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 6,
+      "ts": "2026-10-17T15:11:03.190906+00:00",
+      "type": "node_succeeded",
+      "node": "sector_context",
+      "data": {
+        "task": "sector_context",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "themes": [
+            "[mock agent:sector_context #28a886] themes"
+          ],
+          "caveats": [
+            "[mock agent:sector_context #28a886] caveats"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 7,
+      "ts": "2026-10-17T15:11:03.191345+00:00",
+      "type": "node_succeeded",
+      "node": "compute_metrics",
+      "data": {
+        "task": "compute_metrics",
+        "attempt": 1,
+        "seconds": 0.002,
+        "output": {
+          "row_count": 6,
+          "numeric_columns": [
+            "cost",
+            "revenue"
+          ],
+          "stats": {
+            "revenue": {
+              "min": 91000.0,
+              "max": 151200.0,
+              "mean": 122616.6667,
+              "sum": 735700.0
+            },
+            "cost": {
+              "min": 73800.0,
+              "max": 99800.0,
+              "mean": 85383.3333,
+              "sum": 512300.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 8,
+      "ts": "2026-10-17T15:11:03.192174+00:00",
+      "type": "node_started",
+      "node": "draft_memo",
+      "data": {
+        "task": "draft_memo",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 9,
+      "ts": "2026-10-17T15:11:03.192870+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:draft_memo",
+        "model": "mock",
+        "input_tokens": 403,
+        "output_tokens": 56
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 10,
+      "ts": "2026-10-17T15:11:03.193142+00:00",
+      "type": "node_succeeded",
+      "node": "draft_memo",
+      "data": {
+        "task": "draft_memo",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "headline": "[mock agent:draft_memo #372840] headline",
+          "regional_findings": [
+            "[mock agent:draft_memo #372840] regional_findings"
+          ],
+          "risks": [
+            "[mock agent:draft_memo #372840] risks"
+          ],
+          "memo": "[mock agent:draft_memo #372840] memo"
+        }
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 11,
+      "ts": "2026-10-17T15:11:03.193546+00:00",
+      "type": "node_started",
+      "node": "draft_memo_review",
+      "data": {
+        "task": "draft_memo_review",
+        "kind": "checker",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 12,
+      "ts": "2026-10-17T15:11:03.194164+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "check:draft_memo_review",
+        "model": "mock",
+        "input_tokens": 384,
+        "output_tokens": 18
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 13,
+      "ts": "2026-10-17T15:11:03.194453+00:00",
+      "type": "review_verdict",
+      "node": "draft_memo_review",
+      "data": {
+        "loop": "draft_memo_loop",
+        "attempt": 1,
+        "approved": true,
+        "unmet_criteria": []
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 14,
+      "ts": "2026-10-17T15:11:03.194694+00:00",
+      "type": "node_succeeded",
+      "node": "draft_memo_review",
+      "data": {
+        "task": "draft_memo_review",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "approved": true,
+          "score": 0.9,
+          "unmet_criteria": [],
+          "feedback": "Looks good."
+        }
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 15,
+      "ts": "2026-10-17T15:11:03.195156+00:00",
+      "type": "node_started",
+      "node": "draft_memo_loop__exit",
+      "data": {
+        "task": "draft_memo",
+        "kind": "loop_exit"
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 16,
+      "ts": "2026-10-17T15:11:03.195477+00:00",
+      "type": "loop_exit",
+      "node": "draft_memo_loop__exit",
+      "data": {
+        "loop": "draft_memo_loop",
+        "approved": true,
+        "attempts": 1
+      }
+    },
+    {
+      "run_id": "run_cb4a6811869b",
+      "seq": 17,
+      "ts": "2026-10-17T15:11:03.196099+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "met",
+        "error": null,
+        "usage": {
+          "model_calls": 3,
+          "input_tokens": 1010,
+          "output_tokens": 102
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "compute_metrics",
+      "draft_memo",
+      "draft_memo_loop__exit",
+      "draft_memo_review",
+      "sector_context"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "compute_metrics",
+        false
+      ],
+      [
+        "__start__",
+        "sector_context",
+        false
+      ],
+      [
+        "compute_metrics",
+        "draft_memo",
+        false
+      ],
+      [
+        "draft_memo",
+        "draft_memo_review",
+        false
+      ],
+      [
+        "draft_memo_loop__exit",
+        "__end__",
+        false
+      ],
+      [
+        "draft_memo_review",
+        "draft_memo",
+        true
+      ],
+      [
+        "draft_memo_review",
+        "draft_memo_loop__exit",
+        true
+      ],
+      [
+        "sector_context",
+        "draft_memo",
+        false
+      ]
+    ]
+  }
+}

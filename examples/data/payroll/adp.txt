@@ -1,0 +1,13 @@
+Vendor: ADP (Automatic Data Processing, Inc., US-listed), payroll and HR for the UK and Ireland. Public information gathered October 2026; prices and timelines from buyer reports are third-party and unverified.
+
+Company: One of the world's largest payroll and HR providers, Nasdaq-listed, with UK and Irish operations. Offers several overlapping products in the region (iHCM, Workforce Now, Celergo, GlobalView), and choosing the wrong one is reported as a common procurement mistake.
+
+Product and UK/Ireland coverage: For 200 to 999 employees ADP positions ADP iHCM, a cloud payroll and HR platform with optional time, talent, training and recruitment modules. Available as software or as fully managed payroll (ADP runs the payroll). Covers UK RTI; ADP also operates in Ireland (Roll by ADP, its small-business app, integrates directly with Revenue). Can run multi-country payroll on one vendor.
+
+Integrations: ADP Marketplace and API Central provide documented APIs, a testing sandbox and pre-built partner integrations for connecting iHCM to third-party and in-house HR and finance systems.
+
+Pricing: ADP does not publish UK pricing. Buyer self-reports put iHCM base payroll around GBP 4 to 10 per employee per month, with implementation fees often running to five figures for mid-market deployments. Typical managed-payroll implementation takes 8 to 16 weeks.
+
+Reviews: ADP rates 4.1 on Gartner Peer Insights (about 750 reviews). Users praise payroll accuracy, compliance help and combined HR/payroll self-service. Criticisms include higher implementation and admin effort than lighter tools, dependence on services, and extra charges when work falls outside the automated defaults.
+
+Fit notes: Strongest option for HR integration, scale and single-vendor UK plus Ireland coverage. Weakest on price predictability and set-up effort for a 200-employee company. Alternative worth noting: Zellis is often cited as strongest for UK and Ireland statutory payroll.

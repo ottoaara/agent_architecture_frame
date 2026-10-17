@@ -1,0 +1,25 @@
+{
+  "competitor_comparison": {
+    "company_profile": "Fictional company with 200 employees across the UK and Ireland. Priorities: accurate multi-country payroll, low admin effort, integration with an existing HR system, predictable pricing."
+  },
+  "financial_analysis": {
+    "financials_csv": "@examples/data/synthetic_financials.csv",
+    "business_context": "Synthetic scenario: the south region lost a large customer in Q2; west launched a new product line in Q1."
+  },
+  "document_transformation": {
+    "policy_text": "@examples/data/remote_work_policy.txt",
+    "audience": "All employees; plain English, reading age 12."
+  },
+  "vendor_due_diligence": {
+    "vendor_dossier": "Fictional vendor Nimbus Storage Ltd, founded 2019, 80 staff, offers encrypted object storage hosted in two EU data centres. ISO 27001 certified in 2023; no SOC 2 report yet. Revenue grew 40% last year but the company is not yet profitable and relies on one investor. Sub-processors: one US-based support provider. Data processing agreement available; incident notification within 72 hours."
+  },
+  "secure_messaging_vendor": {
+    "vendor_dossier": "@examples/data/secure_messaging/element.txt"
+  },
+  "payroll_comparison": {
+    "company_profile": "Company with 200 employees across the UK and Ireland. Priorities: accurate multi-country payroll, low admin effort, integration with an existing HR system, predictable pricing.",
+    "brightpay_dossier": "@examples/data/payroll/brightpay.txt",
+    "sage_dossier": "@examples/data/payroll/sage.txt",
+    "adp_dossier": "@examples/data/payroll/adp.txt"
+  }
+}

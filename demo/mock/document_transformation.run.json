@@ -1,0 +1,292 @@
+{
+  "id": "run_99a6269ed419",
+  "blueprint_id": "bp_16ac44ebb946",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "unreviewed",
+  "inputs": {
+    "policy_text": "REMOTE WORK POLICY (Synthetic example)\n\n1. Scope\nThis policy applies to all permanent employees of Example Co.\n\n2. Definitions\n\"Remote day\" means a scheduled working day spent outside an Example Co. office.\n\n3. Eligibility\nEmployees who have completed their probation period may request up to three remote days per week.\nManagers must respond to a request within ten working days.\n\n4. Equipment\nExample Co. provides a laptop. Employees must use the company VPN for all work traffic.\n\n5. Security\nConfidential documents must not be printed at home.\n",
+    "audience": "All employees; plain English, reading age 12."
+  },
+  "result": {
+    "run_id": "run_99a6269ed419",
+    "blueprint_id": "bp_16ac44ebb946",
+    "blueprint_version": 1,
+    "blueprint_hash": "4173ed31eefc64578aee843d88954f3ed8a53f287e4eeb23a7b69777619ebf52",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "final_output": {
+      "faq_markdown": "[mock agent:write_faq #30aaaa] faq_markdown",
+      "question_count": 1
+    },
+    "results": {
+      "validate_document": {
+        "is_valid": true,
+        "sections": [
+          "[mock agent:validate_document #7deb33] sections"
+        ],
+        "problems": [
+          "[mock agent:validate_document #7deb33] problems"
+        ]
+      },
+      "extract_rules": {
+        "rules": [
+          "[mock agent:extract_rules #d7a29c] rules"
+        ],
+        "definitions": [
+          "[mock agent:extract_rules #d7a29c] definitions"
+        ]
+      },
+      "write_faq": {
+        "faq_markdown": "[mock agent:write_faq #30aaaa] faq_markdown",
+        "question_count": 1
+      }
+    },
+    "quality": {
+      "criteria": [
+        "Every extracted rule appears in the FAQ",
+        "No rule is invented that is not in the source"
+      ],
+      "loops": []
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 3,
+      "input_tokens": 1002,
+      "output_tokens": 84
+    },
+    "started_at": "2026-10-17T15:11:03.174010Z",
+    "finished_at": "2026-10-17T15:11:03.180199Z"
+  },
+  "created_at": "2026-10-17T15:11:03.171962+00:00",
+  "updated_at": "2026-10-17T15:11:03.180498+00:00",
+  "events": [
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 0,
+      "ts": "2026-10-17T15:11:03.175521+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_16ac44ebb946",
+        "version": 1,
+        "blueprint_hash": "4173ed31eefc64578aee843d88954f3ed8a53f287e4eeb23a7b69777619ebf52",
+        "patterns": [
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "extract_rules",
+            "validate_document",
+            "write_faq"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "validate_document",
+              false
+            ],
+            [
+              "extract_rules",
+              "write_faq",
+              false
+            ],
+            [
+              "validate_document",
+              "extract_rules",
+              false
+            ],
+            [
+              "write_faq",
+              "__end__",
+              false
+            ]
+          ]
+        },
+        "model": "mock"
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 1,
+      "ts": "2026-10-17T15:11:03.176348+00:00",
+      "type": "node_started",
+      "node": "validate_document",
+      "data": {
+        "task": "validate_document",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 2,
+      "ts": "2026-10-17T15:11:03.176960+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:validate_document",
+        "model": "mock",
+        "input_tokens": 352,
+        "output_tokens": 35
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 3,
+      "ts": "2026-10-17T15:11:03.177213+00:00",
+      "type": "node_succeeded",
+      "node": "validate_document",
+      "data": {
+        "task": "validate_document",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "is_valid": true,
+          "sections": [
+            "[mock agent:validate_document #7deb33] sections"
+          ],
+          "problems": [
+            "[mock agent:validate_document #7deb33] problems"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 4,
+      "ts": "2026-10-17T15:11:03.177621+00:00",
+      "type": "node_started",
+      "node": "extract_rules",
+      "data": {
+        "task": "extract_rules",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 5,
+      "ts": "2026-10-17T15:11:03.178209+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:extract_rules",
+        "model": "mock",
+        "input_tokens": 394,
+        "output_tokens": 29
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 6,
+      "ts": "2026-10-17T15:11:03.178451+00:00",
+      "type": "node_succeeded",
+      "node": "extract_rules",
+      "data": {
+        "task": "extract_rules",
+        "attempt": 1,
+        "seconds": 0.0,
+        "output": {
+          "rules": [
+            "[mock agent:extract_rules #d7a29c] rules"
+          ],
+          "definitions": [
+            "[mock agent:extract_rules #d7a29c] definitions"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 7,
+      "ts": "2026-10-17T15:11:03.178791+00:00",
+      "type": "node_started",
+      "node": "write_faq",
+      "data": {
+        "task": "write_faq",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 8,
+      "ts": "2026-10-17T15:11:03.179326+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:write_faq",
+        "model": "mock",
+        "input_tokens": 256,
+        "output_tokens": 20
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 9,
+      "ts": "2026-10-17T15:11:03.179576+00:00",
+      "type": "node_succeeded",
+      "node": "write_faq",
+      "data": {
+        "task": "write_faq",
+        "attempt": 1,
+        "seconds": 0.001,
+        "output": {
+          "faq_markdown": "[mock agent:write_faq #30aaaa] faq_markdown",
+          "question_count": 1
+        }
+      }
+    },
+    {
+      "run_id": "run_99a6269ed419",
+      "seq": 10,
+      "ts": "2026-10-17T15:11:03.180207+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "unreviewed",
+        "error": null,
+        "usage": {
+          "model_calls": 3,
+          "input_tokens": 1002,
+          "output_tokens": 84
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "extract_rules",
+      "validate_document",
+      "write_faq"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "validate_document",
+        false
+      ],
+      [
+        "extract_rules",
+        "write_faq",
+        false
+      ],
+      [
+        "validate_document",
+        "extract_rules",
+        false
+      ],
+      [
+        "write_faq",
+        "__end__",
+        false
+      ]
+    ]
+  }
+}

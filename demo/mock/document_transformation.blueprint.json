@@ -1,0 +1,330 @@
+{
+  "id": "bp_16ac44ebb946",
+  "version": 1,
+  "prd_id": "prd_70085ebd4f85",
+  "hash": "4173ed31eefc64578aee843d88954f3ed8a53f287e4eeb23a7b69777619ebf52",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_16ac44ebb946",
+    "version": 1,
+    "objective": "Transform a raw internal policy document into a validated, structured FAQ for employees.",
+    "source_prd_hash": "5d68449b86bd9613fe8978d7a634c249a043161a71dc51efb71e662697df9176",
+    "created_at": "2026-10-17T15:11:03.171071Z",
+    "inputs": [
+      {
+        "name": "policy_text",
+        "description": "The raw policy document text.",
+        "required": true
+      },
+      {
+        "name": "audience",
+        "description": "Intended reader group and reading level.",
+        "required": false
+      }
+    ],
+    "tasks": [
+      {
+        "id": "validate_document",
+        "role": "Validate the source document",
+        "responsibility": "Check the document is a policy with identifiable sections; list any structural problems.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "policy_text",
+            "source": "run:policy_text",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "is_valid",
+            "type": "boolean",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "sections",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "problems",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "extract_rules",
+        "role": "Extract policy rules",
+        "responsibility": "Extract every concrete rule and defined term from the validated document.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "validate_document",
+            "source": "task:validate_document",
+            "description": ""
+          },
+          {
+            "name": "policy_text",
+            "source": "run:policy_text",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "rules",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "definitions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "validate_document"
+        ],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      },
+      {
+        "id": "write_faq",
+        "role": "Write the FAQ",
+        "responsibility": "Turn the extracted rules into a plain-language FAQ with one question per rule.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "extract_rules",
+            "source": "task:extract_rules",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [
+          {
+            "name": "audience",
+            "source": "run:audience",
+            "description": ""
+          }
+        ],
+        "output_schema": [
+          {
+            "name": "faq_markdown",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "question_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "extract_rules"
+        ],
+        "skill": "data_engineer",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "serial",
+          "tasks": [
+            "extract_rules",
+            "write_faq"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        }
+      ],
+      "edges": [
+        {
+          "source": "validate_document",
+          "target": "extract_rules"
+        },
+        {
+          "source": "extract_rules",
+          "target": "write_faq"
+        }
+      ],
+      "loops": [],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [],
+      "skills": [
+        "data_engineer"
+      ],
+      "model": {
+        "provider": "mock",
+        "model": "claude-opus-5-5",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 15,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 8,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [
+        "Every extracted rule appears in the FAQ",
+        "No rule is invented that is not in the source"
+      ],
+      "final_task": "write_faq",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Transform a raw internal policy document into a validated, structured FAQ for employees.",
+    "tasks": [
+      {
+        "id": "validate_document",
+        "title": "Validate the source document",
+        "description": "Check the document is a policy with identifiable sections; list any structural problems.",
+        "depends_on": [],
+        "user_inputs": [
+          "policy_text"
+        ],
+        "output_fields": [
+          {
+            "name": "is_valid",
+            "type": "boolean",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "sections",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "problems",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "extract_rules",
+        "title": "Extract policy rules",
+        "description": "Extract every concrete rule and defined term from the validated document.",
+        "depends_on": [
+          "validate_document"
+        ],
+        "user_inputs": [
+          "policy_text"
+        ],
+        "output_fields": [
+          {
+            "name": "rules",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "definitions",
+            "type": "string_list",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      },
+      {
+        "id": "write_faq",
+        "title": "Write the FAQ",
+        "description": "Turn the extracted rules into a plain-language FAQ with one question per rule.",
+        "depends_on": [
+          "extract_rules"
+        ],
+        "user_inputs": [
+          "audience"
+        ],
+        "output_fields": [
+          {
+            "name": "faq_markdown",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "question_count",
+            "type": "integer",
+            "description": "",
+            "required": true
+          }
+        ],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "policy_text",
+        "description": "The raw policy document text.",
+        "required": true
+      },
+      {
+        "name": "audience",
+        "description": "Intended reader group and reading level.",
+        "required": false
+      }
+    ],
+    "constraints": [
+      "Do not add legal advice"
+    ],
+    "success_criteria": [
+      "Every extracted rule appears in the FAQ",
+      "No rule is invented that is not in the source"
+    ],
+    "missing_information": []
+  },
+  "issues": [],
+  "created_at": "2026-10-17T15:11:03.171347+00:00",
+  "approval": null
+}

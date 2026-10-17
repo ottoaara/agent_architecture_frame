@@ -1,0 +1,55 @@
+[project]
+name = "agent-factory"
+version = "0.1.0"
+description = "Local Dynamic Agent Factory POC: PRD -> validated blueprint -> LangGraph execution"
+authors = [
+    { name = "Aaron Otto", email = "ottoaara@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.15.0",
+    "fastapi>=0.143.3",
+    "httpx>=0.28.1",
+    "langchain-core>=1.6.12",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.16",
+    "langgraph-checkpoint-sqlite>=3.1.2",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.2.4",
+    "python-multipart>=0.0.32",
+    "streamlit>=1.66.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.17.1",
+]
+
+[project.scripts]
+agent-factory-api = "agent_factory.api:main"
+agent-factory = "agent_factory.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: calls a real model provider (requires credentials)"]
+addopts = "-m 'not live'"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.File", "fastapi.Form"]
+
+[tool.ruff.lint.isort]
+known-local-folder = ["helpers"]

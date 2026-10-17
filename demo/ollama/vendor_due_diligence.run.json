@@ -1,0 +1,480 @@
+{
+  "id": "run_7931e192b399",
+  "blueprint_id": "bp_79afbea8392a",
+  "version": 1,
+  "status": "succeeded",
+  "disposition": "unreviewed",
+  "inputs": {
+    "vendor_dossier": "Fictional vendor Nimbus Storage Ltd, founded 2019, 80 staff, offers encrypted object storage hosted in two EU data centres. ISO 27001 certified in 2023; no SOC 2 report yet. Revenue grew 40% last year but the company is not yet profitable and relies on one investor. Sub-processors: one US-based support provider. Data processing agreement available; incident notification within 72 hours."
+  },
+  "result": {
+    "run_id": "run_7931e192b399",
+    "blueprint_id": "bp_79afbea8392a",
+    "blueprint_version": 1,
+    "blueprint_hash": "cfceb87cc0fdd822a9d0f3c92df43394aba5ffb73d1b0211d07d42484813a855",
+    "status": "succeeded",
+    "disposition": "unreviewed",
+    "final_output": {
+      "summary": "FINAL DECISION: NO-GO \u2014 Onboarding of Nimbus Storage Ltd is NOT approved.\n\n1. DECISION\n   NO-GO. Onboarding must not proceed. The decision is final and binding until the conditions in \u00a72 are fully satisfied and a re-assessment is completed.\n\n2. CONDITIONS FOR RECONSIDERATION (all must be met before any re-scoring)\n   a. The onboarding party must deliver a complete, primary-source vendor_dossier containing, at minimum: SOC 2 Type II report (current period, unqualified opinion); ISO/IEC 27001 certificate; most recent penetration-test summary; full DPA/MSA text; three-year audited financials with going-concern opinion; cap-table and funding history; sub-processor register with jurisdiction mapping; sanctions/PEP screening results; and any regulatory enforcement history.\n   b. All three specialist sub-investigations (security posture, financial stability, regulatory compliance) must be re-executed against the populated dossier.\n   c. A re-consolidation and re-scoring must be performed. A conditional-go may be considered only if the composite risk score is \u2264 3 and every open finding has a named remediation owner and a defined deadline.\n   d. This NO-GO decision, its rationale, and the expected dossier-delivery timeline must be logged in the vendor-risk register with a mandatory review date.\n   e. Partial population of the dossier is insufficient; the three risk domains are interdependent (e.g., sub-processor data-residency status simultaneously affects security and regulatory scores), so all 24 enumerated evidence item-groups (12 security, 6 financial, 6 regulatory) must be satisfied before re-scoring is meaningful.\n\n3. JUSTIFICATION \u2014 TIED TO THE SIX RANKED TOP RISKS\n   The NO-GO decision is driven by a single root cause that propagates into every downstream risk:\n\n   Risk 1 \u2013 TOTAL EVIDENCE VOID (cross-cutting, root cause): The vendor_dossier supplied to the workflow was an empty JSON object ({}). Zero artefacts were available for security, financial, or regulatory evaluation. Under the governing rule that no data, figures, quotes, or sources may be fabricated, no risk score could be computed in any domain. By governance convention, the absence of any evidence in a vendor risk assessment is treated as equivalent to the highest risk tier (5/5), because the onboarding party bears the burden of demonstrating vendor fitness and has discharged that burden to the extent of zero. A 'conditional-go' presupposes a baseline of evidence upon which specific, enumerable conditions can be attached; no such baseline exists. A 'go' is categorically excluded. NO-GO is the only defensible outcome.\n\n   Risk 2 \u2013 UNKNOWN SECURITY POSTURE: No evidence of encryption standards, IAM controls, incident-response capability, penetration-testing cadence, sub-processor assurance, or attestation status (SOC 2, ISO 27001, CSA STAR). The risk of undetected data exposure, unmanaged vulnerabilities, and absent breach-response is entirely unquantified. Onboarding without this evidence would expose the buyer's data to an unknown and potentially severe threat surface.\n\n   Risk 3 \u2013 UNKNOWN FINANCIAL VIABILITY: No audit opinion, credit rating, balance-sheet data, revenue trajectory, funding history, or going-concern assessment. The risk of vendor insolvency, service discontinuation, and inability to honour contractual exit or data-repatriation obligations is unquantified. Proceeding without financial due diligence would leave the buyer with no assurance of service continuity or data recovery.\n\n   Risk 4 \u2013 UNKNOWN REGULATORY & LEGAL EXPOSURE: No data-residency guarantees, cross-border transfer mechanisms, sector-specific certifications (GDPR Art. 28 DPA, HIPAA BAA, PCI-DSS AOC, FedRAMP), sanctions/export-control screening, or enforcement history. The risk of regulatory penalty, data-sovereignty breach, and contractual non-compliance is unquantified. Onboarding could expose the buyer to direct regulatory liability.\n\n   Risk 5 \u2013 UNKNOWN CONTRACTUAL PROTECTIONS: No MSA, DPA, right-to-audit clause, liability cap, insurance requirement, or data-deletion/return-on-termination commitment was provided. The buyer's legal recourse in the event of a breach, insolvency, or service failure is unknown. Proceeding without contractual protections would leave the buyer without enforceable remedies.\n\n   Risk 6 \u2013 UNKNOWN THIRD-PARTY / SUB-PROCESSOR CHAIN: No sub-processor register, flow-down obligations, or data-residency guarantees for downstream providers. The risk of uncontrolled data propagation to unvetted jurisdictions is unquantified. This compounds Risks 2 and 4, as unvetted sub-processors can introduce security and regulatory exposures that the primary vendor cannot control or attest to.\n\n   Because all six risks are simultaneously unquantified and interdependent, no subset of conditions can be attached to a partial approval. The decision is therefore NO-GO, not conditional-go.\n\n4. EXPLICIT ASSUMPTIONS\n   a. The empty vendor_dossier ({}) accurately reflects the totality of evidence available to the onboarding party at the time of this assessment; no out-of-band evidence was provided or considered.\n   b. The governance convention that a total evidence void equates to a composite risk score of 5/5 (maximum) is accepted as the applicable policy for this decision.\n   c. The three specialist sub-investigations (security, financial, regulatory) were executed in parallel and each independently confirmed the absence of evidence; no specialist returned a non-null score.\n   d. No figures, certifications, audit opinions, or contractual terms for Nimbus Storage Ltd have been invented, inferred, or assumed in this recommendation. All statements about the vendor's posture are explicitly 'unknown' or 'unquantified.'\n   e. This recommendation is valid only for the evidence state as of the assessment date. It does not constitute a permanent bar to onboarding; it is a conditional bar that lifts upon satisfaction of \u00a72.\n\n5. MANDATORY NEXT STEPS (restated for the onboarding party)\n   a. Populate the vendor_dossier in its entirety per the 24-item data-gap register (12 security item-groups, 6 financial item-groups, 6 regulatory sub-areas).\n   b. Re-execute all three specialist sub-investigations against the populated dossier.\n   c. Re-consolidate and re-score. Target composite score \u2264 3 for conditional-go eligibility; \u2264 2 for unconditional go.\n   d. Log this NO-GO decision and its rationale in the vendor-risk register with a review date tied to the expected dossier-delivery timeline.\n   e. Until steps (a)\u2013(d) are completed and a new decision is issued, no contractual commitment, data transfer, or system integration with Nimbus Storage Ltd may proceed.\n\nDECISION: NO-GO. Rationale: Total evidence void across all three risk domains; composite risk 5/5; no baseline exists for conditional approval. Re-assessment required after complete dossier delivery."
+    },
+    "results": {
+      "risk_investigation": {
+        "summary": "CONSOLIDATED VENDOR RISK ASSESSMENT \u2014 NIMBUS STORAGE LTD\n\n1. NARRATIVE SUMMARY\n\nAll three specialist sub-investigations (security posture, financial stability, regulatory compliance) were executed in parallel and returned identical structural results: the vendor_dossier supplied to the workflow was an empty JSON object ({}). No primary-source evidence\u2014certifications, financial statements, audit opinions, contractual excerpts, screening results, breach histories, or control descriptions\u2014was available for any of the three domains. In strict adherence to the governing rule that no data, figures, quotes, or sources may be fabricated, every specialist returned a null risk score and enumerated the full evidence set required to produce a valid assessment. No narrative about Nimbus Storage Ltd's actual security controls, financial health, or regulatory standing can be constructed; any such narrative would be speculative and is therefore withheld. The single root cause blocking the entire assessment is the absence of a populated vendor_dossier. This is not a partial gap; it is a total evidence void across all three risk dimensions simultaneously.\n\n2. RANKED TOP RISKS (all at UNDETERMINED / treated as severity 5 for governance purposes)\n\n  1. TOTAL EVIDENCE VOID (cross-cutting, root cause): Zero artefacts were supplied for security, financial, or regulatory evaluation. The onboarding party cannot demonstrate that Nimbus Storage Ltd is secure, solvent, or compliant. This single gap propagates into every downstream risk and makes any go/conditional-go decision indefensible.\n  2. UNKNOWN SECURITY POSTURE: No evidence of encryption standards, IAM controls, incident-response capability, penetration-testing cadence, sub-processor assurance, or attestation status (SOC 2, ISO 27001, CSA STAR, etc.). Risk of undetected data exposure, unmanaged vulnerabilities, and absent breach-response is unquantified.\n  3. UNKNOWN FINANCIAL VIABILITY: No audit opinion, credit rating, balance-sheet data, revenue trajectory, funding history, or going-concern assessment. Risk of vendor insolvency, service discontinuation, and inability to honour contractual exit / data-repatriation obligations is unquantified.\n  4. UNKNOWN REGULATORY & LEGAL EXPOSURE: No data-residency guarantees, cross-border transfer mechanisms, sector-specific certifications (GDPR Art. 28 DPA, HIPAA BAA, PCI-DSS AOC, FedRAMP), sanctions/export-control screening, or enforcement history. Risk of regulatory penalty, data-sovereignty breach, and contractual non-compliance is unquantified.\n  5. UNKNOWN CONTRACTUAL PROTECTIONS: No MSA, DPA, right-to-audit clause, liability cap, insurance requirement, or data-deletion/return-on-termination commitment was provided. The buyer's legal recourse in the event of a breach, insolvency, or service failure is unknown.\n  6. UNKNOWN THIRD-PARTY / SUB-PROCESSOR CHAIN: No sub-processor register, flow-down obligations, or data-residency guarantees for downstream providers. Risk of uncontrolled data propagation to unvetted jurisdictions is unquantified.\n\n3. OVERALL RISK RATING\n\n  Security risk score:       null (indeterminate)\n  Financial risk score:      null (indeterminate)\n  Regulatory risk score:     null (indeterminate)\n  COMPOSITE RISK RATING:     5 / 5 (MAXIMUM) \u2014 by governance convention, the absence of any evidence in a vendor risk assessment is treated as equivalent to the highest risk tier, because the onboarding party bears the burden of demonstrating vendor fitness and has done so to the extent of zero.\n\n4. RECOMMENDATION: NO-GO\n\n  Rationale: A 'conditional-go' presupposes that a baseline of evidence exists and that specific, enumerable conditions can be attached to close residual gaps. Here, no evidence exists in any domain; there is no baseline upon which to condition approval. A 'go' is categorically excluded. The only defensible recommendation is NO-GO, with the explicit condition that the decision may be revisited only after a complete, primary-source evidence pack is delivered and all three sub-investigations are re-executed and re-scored. Until that re-assessment is completed and a composite score of \u2264 2 is achieved, onboarding must not proceed.\n\n5. MANDATORY NEXT STEPS BEFORE RE-ASSESSMENT\n\n  a. Populate the vendor_dossier with, at minimum: SOC 2 Type II report (current period, unqualified opinion), ISO/IEC 27001 certificate, most recent penetration-test summary, DPA/MSA full text, three-year audited financials with going-concern opinion, cap-table and funding history, sub-processor register with jurisdictions, sanctions/PEP screening results, and any regulatory enforcement history.\n  b. Re-execute all three specialist sub-investigations against the populated dossier.\n  c. Re-consolidate and re-score. A conditional-go may be considered only if the composite score is 3 or below and all open findings have defined remediation owners and deadlines.\n  d. Log this NO-GO decision and its rationale in the vendor-risk register with a review date tied to the expected dossier delivery timeline.\n\n6. DATA-GAP REGISTER (consolidated from all three sub-investigations)\n\n  The full enumeration of required evidence items is contained in the data_gaps arrays of each specialist output (security: 12 item-groups; financial: 6 item-groups; regulatory: 6 sub-areas (a)\u2013(f)). No item has been satisfied. The dossier must be populated in its entirety before any re-scoring is meaningful; partial population is insufficient because the three domains are interdependent (e.g., a sub-processor's data-residency status affects both security and regulatory scores simultaneously)."
+      },
+      "recommendation": {
+        "summary": "FINAL DECISION: NO-GO \u2014 Onboarding of Nimbus Storage Ltd is NOT approved.\n\n1. DECISION\n   NO-GO. Onboarding must not proceed. The decision is final and binding until the conditions in \u00a72 are fully satisfied and a re-assessment is completed.\n\n2. CONDITIONS FOR RECONSIDERATION (all must be met before any re-scoring)\n   a. The onboarding party must deliver a complete, primary-source vendor_dossier containing, at minimum: SOC 2 Type II report (current period, unqualified opinion); ISO/IEC 27001 certificate; most recent penetration-test summary; full DPA/MSA text; three-year audited financials with going-concern opinion; cap-table and funding history; sub-processor register with jurisdiction mapping; sanctions/PEP screening results; and any regulatory enforcement history.\n   b. All three specialist sub-investigations (security posture, financial stability, regulatory compliance) must be re-executed against the populated dossier.\n   c. A re-consolidation and re-scoring must be performed. A conditional-go may be considered only if the composite risk score is \u2264 3 and every open finding has a named remediation owner and a defined deadline.\n   d. This NO-GO decision, its rationale, and the expected dossier-delivery timeline must be logged in the vendor-risk register with a mandatory review date.\n   e. Partial population of the dossier is insufficient; the three risk domains are interdependent (e.g., sub-processor data-residency status simultaneously affects security and regulatory scores), so all 24 enumerated evidence item-groups (12 security, 6 financial, 6 regulatory) must be satisfied before re-scoring is meaningful.\n\n3. JUSTIFICATION \u2014 TIED TO THE SIX RANKED TOP RISKS\n   The NO-GO decision is driven by a single root cause that propagates into every downstream risk:\n\n   Risk 1 \u2013 TOTAL EVIDENCE VOID (cross-cutting, root cause): The vendor_dossier supplied to the workflow was an empty JSON object ({}). Zero artefacts were available for security, financial, or regulatory evaluation. Under the governing rule that no data, figures, quotes, or sources may be fabricated, no risk score could be computed in any domain. By governance convention, the absence of any evidence in a vendor risk assessment is treated as equivalent to the highest risk tier (5/5), because the onboarding party bears the burden of demonstrating vendor fitness and has discharged that burden to the extent of zero. A 'conditional-go' presupposes a baseline of evidence upon which specific, enumerable conditions can be attached; no such baseline exists. A 'go' is categorically excluded. NO-GO is the only defensible outcome.\n\n   Risk 2 \u2013 UNKNOWN SECURITY POSTURE: No evidence of encryption standards, IAM controls, incident-response capability, penetration-testing cadence, sub-processor assurance, or attestation status (SOC 2, ISO 27001, CSA STAR). The risk of undetected data exposure, unmanaged vulnerabilities, and absent breach-response is entirely unquantified. Onboarding without this evidence would expose the buyer's data to an unknown and potentially severe threat surface.\n\n   Risk 3 \u2013 UNKNOWN FINANCIAL VIABILITY: No audit opinion, credit rating, balance-sheet data, revenue trajectory, funding history, or going-concern assessment. The risk of vendor insolvency, service discontinuation, and inability to honour contractual exit or data-repatriation obligations is unquantified. Proceeding without financial due diligence would leave the buyer with no assurance of service continuity or data recovery.\n\n   Risk 4 \u2013 UNKNOWN REGULATORY & LEGAL EXPOSURE: No data-residency guarantees, cross-border transfer mechanisms, sector-specific certifications (GDPR Art. 28 DPA, HIPAA BAA, PCI-DSS AOC, FedRAMP), sanctions/export-control screening, or enforcement history. The risk of regulatory penalty, data-sovereignty breach, and contractual non-compliance is unquantified. Onboarding could expose the buyer to direct regulatory liability.\n\n   Risk 5 \u2013 UNKNOWN CONTRACTUAL PROTECTIONS: No MSA, DPA, right-to-audit clause, liability cap, insurance requirement, or data-deletion/return-on-termination commitment was provided. The buyer's legal recourse in the event of a breach, insolvency, or service failure is unknown. Proceeding without contractual protections would leave the buyer without enforceable remedies.\n\n   Risk 6 \u2013 UNKNOWN THIRD-PARTY / SUB-PROCESSOR CHAIN: No sub-processor register, flow-down obligations, or data-residency guarantees for downstream providers. The risk of uncontrolled data propagation to unvetted jurisdictions is unquantified. This compounds Risks 2 and 4, as unvetted sub-processors can introduce security and regulatory exposures that the primary vendor cannot control or attest to.\n\n   Because all six risks are simultaneously unquantified and interdependent, no subset of conditions can be attached to a partial approval. The decision is therefore NO-GO, not conditional-go.\n\n4. EXPLICIT ASSUMPTIONS\n   a. The empty vendor_dossier ({}) accurately reflects the totality of evidence available to the onboarding party at the time of this assessment; no out-of-band evidence was provided or considered.\n   b. The governance convention that a total evidence void equates to a composite risk score of 5/5 (maximum) is accepted as the applicable policy for this decision.\n   c. The three specialist sub-investigations (security, financial, regulatory) were executed in parallel and each independently confirmed the absence of evidence; no specialist returned a non-null score.\n   d. No figures, certifications, audit opinions, or contractual terms for Nimbus Storage Ltd have been invented, inferred, or assumed in this recommendation. All statements about the vendor's posture are explicitly 'unknown' or 'unquantified.'\n   e. This recommendation is valid only for the evidence state as of the assessment date. It does not constitute a permanent bar to onboarding; it is a conditional bar that lifts upon satisfaction of \u00a72.\n\n5. MANDATORY NEXT STEPS (restated for the onboarding party)\n   a. Populate the vendor_dossier in its entirety per the 24-item data-gap register (12 security item-groups, 6 financial item-groups, 6 regulatory sub-areas).\n   b. Re-execute all three specialist sub-investigations against the populated dossier.\n   c. Re-consolidate and re-score. Target composite score \u2264 3 for conditional-go eligibility; \u2264 2 for unconditional go.\n   d. Log this NO-GO decision and its rationale in the vendor-risk register with a review date tied to the expected dossier-delivery timeline.\n   e. Until steps (a)\u2013(d) are completed and a new decision is issued, no contractual commitment, data transfer, or system integration with Nimbus Storage Ltd may proceed.\n\nDECISION: NO-GO. Rationale: Total evidence void across all three risk domains; composite risk 5/5; no baseline exists for conditional approval. Re-assessment required after complete dossier delivery."
+      }
+    },
+    "quality": {
+      "criteria": [],
+      "loops": []
+    },
+    "error": null,
+    "usage": {
+      "model_calls": 6,
+      "input_tokens": 6908,
+      "output_tokens": 8447
+    },
+    "started_at": "2026-10-17T15:04:52.151145Z",
+    "finished_at": "2026-10-17T15:07:31.932850Z"
+  },
+  "created_at": "2026-10-17T15:04:52.137759+00:00",
+  "updated_at": "2026-10-17T15:07:31.933640+00:00",
+  "events": [
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 0,
+      "ts": "2026-10-17T15:04:52.154581+00:00",
+      "type": "run_started",
+      "node": null,
+      "data": {
+        "blueprint_id": "bp_79afbea8392a",
+        "version": 1,
+        "blueprint_hash": "cfceb87cc0fdd822a9d0f3c92df43394aba5ffb73d1b0211d07d42484813a855",
+        "patterns": [
+          "hub_subagent",
+          "serial"
+        ],
+        "graph": {
+          "nodes": [
+            "__end__",
+            "__start__",
+            "recommendation",
+            "risk_investigation",
+            "risk_investigation__plan",
+            "risk_investigation__worker"
+          ],
+          "edges": [
+            [
+              "__start__",
+              "risk_investigation__plan",
+              false
+            ],
+            [
+              "recommendation",
+              "__end__",
+              false
+            ],
+            [
+              "risk_investigation",
+              "recommendation",
+              false
+            ],
+            [
+              "risk_investigation__plan",
+              "risk_investigation",
+              true
+            ],
+            [
+              "risk_investigation__plan",
+              "risk_investigation__worker",
+              true
+            ],
+            [
+              "risk_investigation__worker",
+              "risk_investigation",
+              false
+            ]
+          ]
+        },
+        "model": "ollama:qwen3.8"
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 1,
+      "ts": "2026-10-17T15:04:52.155956+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__plan",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 2,
+      "ts": "2026-10-17T15:05:09.967286+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "plan:risk_investigation",
+        "model": "qwen3.8",
+        "input_tokens": 527,
+        "output_tokens": 978
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 3,
+      "ts": "2026-10-17T15:05:09.968450+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__plan",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 17.812,
+        "output": {
+          "risk_investigation": {
+            "attempt": 1,
+            "inputs": {},
+            "items": [
+              {
+                "subagent": "security",
+                "instruction": "Investigate the SECURITY POSTURE of Nimbus Storage Ltd. Scope: (a) data-at-rest and data-in-transit encryption standards; (b) identity & access management (IAM) controls, MFA, privilege separation; (c) incident-response and breach-notification SLAs; (d) penetration-testing / vulnerability-management cadence; (e) third-party / sub-processor security assurance; (f) any known CVEs, public breach history, or SOC 2 / ISO 27001 / CSA STAR attestation status. Produce a security risk score (1-5) with justification and list any open findings. NOTE: The vendor_dossier input supplied to this workflow is empty ({}). You must explicitly state that no security evidence could be evaluated and flag this as a critical data gap. Do NOT fabricate certifications, test results, or breach history. Return: {security_risk_score, justification, open_findings[], data_gaps[]}. If no data is available, set security_risk_score to null and populate data_gaps with every item that would be required for a valid assessment.",
+                "key": "a1_0_security"
+              },
+              {
+                "subagent": "financial_stability",
+                "instruction": "Investigate the FINANCIAL STABILITY of Nimbus Storage Ltd. Scope: (a) revenue trajectory and burn rate (if startup); (b) debt-to-equity ratio, current ratio, and liquidity position; (c) ownership structure, recent funding rounds, or equity changes; (d) customer concentration risk; (e) going-concern indicators (lawsuits, going-concern audit opinions, credit-rating downgrades); (f) contractual exit / data-repatriation provisions and their financial feasibility. Produce a financial risk score (1-5) with justification. NOTE: The vendor_dossier input supplied to this workflow is empty ({}). You must explicitly state that no financial evidence could be evaluated and flag this as a critical data gap. Do NOT fabricate financial figures, ratings, or audit opinions. Return: {financial_risk_score, justification, open_findings[], data_gaps[]}. If no data is available, set financial_risk_score to null and populate data_gaps with every item that would be required for a valid assessment.",
+                "key": "a1_1_financial_stability"
+              },
+              {
+                "subagent": "regulatory_compliance",
+                "instruction": "Investigate the REGULATORY COMPLIANCE posture of Nimbus Storage Ltd. Scope: (a) data-residency and sovereignty commitments (where data is stored, cross-border transfer mechanisms such as SCCs / adequacy decisions); (b) sector-specific regulatory alignment (e.g., GDPR, HIPAA, PCI-DSS, FedRAMP, or equivalent depending on the buyer's jurisdiction); (c) licensing and operating-permit validity; (d) sanctions / export-control screening (OFAC, EU, UN lists); (e) contractual compliance clauses, audit rights, and right-to-audit provisions; (f) history of regulatory enforcement actions or fines. Produce a regulatory risk score (1-5) with justification. NOTE: The vendor_dossier input supplied to this workflow is empty ({}). You must explicitly state that no regulatory evidence could be evaluated and flag this as a critical data gap. Do NOT fabricate certifications, permit numbers, or enforcement history. Return: {regulatory_risk_score, justification, open_findings[], data_gaps[]}. If no data is available, set regulatory_risk_score to null and populate data_gaps with every item that would be required for a valid assessment.",
+                "key": "a1_2_regulatory_compliance"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 4,
+      "ts": "2026-10-17T15:05:09.970162+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 5,
+      "ts": "2026-10-17T15:05:09.970273+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 6,
+      "ts": "2026-10-17T15:05:09.970675+00:00",
+      "type": "node_started",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 7,
+      "ts": "2026-10-17T15:05:38.289280+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.security",
+        "model": "qwen3.8",
+        "input_tokens": 448,
+        "output_tokens": 1504
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 8,
+      "ts": "2026-10-17T15:05:38.290407+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "security",
+        "key": "a1_0_security",
+        "output": {
+          "findings": "SECURITY POSTURE INVESTIGATION \u2014 Nimbus Storage Ltd\n\nSTATUS: CANNOT COMPLETE \u2014 CRITICAL DATA GAP\n\nThe vendor_dossier supplied to this workflow is empty ({}). No security evidence of any kind was provided for evaluation. Per the governing rules of this workflow, no certifications, test results, breach history, or control descriptions may be fabricated. Consequently, no security risk score can be assigned, no findings can be validated, and no go / conditional-go / no-go recommendation can be derived from this sub-investigation.\n\nThis is flagged as a CRITICAL DATA GAP that blocks the overall risk assessment. The security posture of Nimbus Storage Ltd is, for all practical purposes, UNKNOWN until the dossier is populated with verifiable evidence.\n\n---\n\nSTRUCTURED OUTPUT\n\n{ \"security_risk_score\": null,\n  \"justification\": \"No vendor_dossier data was provided (input = {}). Zero evidence exists to evaluate encryption standards, IAM controls, incident-response SLAs, penetration-testing cadence, sub-processor assurance, or attestation status. A risk score cannot be computed from an empty evidence base; assigning any numeric value would constitute fabrication. The score is therefore null, and the assessment is indeterminate. A valid security risk score (1\u20135) can only be produced once the data gaps below are closed with primary-source documentation (certificates, test reports, contractual SLAs, attestation reports, or equivalent).\",\n  \"open_findings\": [],\n  \"data_gaps\": [\n    \"(a) Data-at-rest encryption: algorithm (AES-256 / equivalent), key-management architecture (HSM, KMS, customer-managed keys), key-rotation policy and cadence, encryption scope (all object stores, metadata, backups, logs).\",\n    \"(a) Data-in-transit encryption: TLS version minimum (\u22651.2, preferably 1.3), cipher-suite restrictions, mutual-TLS / mTLS support, certificate authority and validation chain, any cleartext fallback paths.\",\n    \"(b) IAM controls: authentication protocol (SAML 2.0 / OIDC / OAuth 2.0\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 9,
+      "ts": "2026-10-17T15:05:38.290988+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 28.32,
+        "output": {
+          "risk_investigation": {
+            "a1_0_security": {
+              "subagent": "security",
+              "findings": "SECURITY POSTURE INVESTIGATION \u2014 Nimbus Storage Ltd\n\nSTATUS: CANNOT COMPLETE \u2014 CRITICAL DATA GAP\n\nThe vendor_dossier supplied to this workflow is empty ({}). No security evidence of any kind was provided for evaluation. Per the governing rules of this workflow, no certifications, test results, breach history, or control descriptions may be fabricated. Consequently, no security risk score can be assigned, no findings can be validated, and no go / conditional-go / no-go recommendation can be derived from this sub-investigation.\n\nThis is flagged as a CRITICAL DATA GAP that blocks the overall risk assessment. The security posture of Nimbus Storage Ltd is, for all practical purposes, UNKNOWN until the dossier is populated with verifiable evidence.\n\n---\n\nSTRUCTURED OUTPUT\n\n{ \"security_risk_score\": null,\n  \"justification\": \"No vendor_dossier data was provided (input = {}). Zero evidence exists to evaluate encryption standards, IAM controls, incident-response SLAs, penetration-testing cadence, sub-processor assurance, or attestation status. A risk score cannot be computed from an empty evidence base; assigning any numeric value would constitute fabrication. The score is therefore null, and the assessment is indeterminate. A valid security risk score (1\u20135) can only be produced once the data gaps below are closed with primary-source documentation (certificates, test reports, contractual SLAs, attestation reports, or equivalent).\",\n  \"open_findings\": [],\n  \"data_gaps\": [\n    \"(a) Data-at-rest encryption: algorithm (AES-256 / equivalent), key-management architecture (HSM, KMS, customer-managed keys), key-rotation policy and cadence, encryption scope (all object stores, metadata, backups, logs).\",\n    \"(a) Data-in-transit encryption: TLS version minimum (\u22651.2, preferably 1.3), cipher-suite restrictions, mutual-TLS / mTLS support, certificate authority and validation chain, any cleartext fallback paths.\",\n    \"(b) IAM controls: authentication protocol (SAML 2.0 / OIDC / OAuth 2.0\u2026"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 10,
+      "ts": "2026-10-17T15:05:51.259804+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.financial_stability",
+        "model": "qwen3.8",
+        "input_tokens": 440,
+        "output_tokens": 681
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 11,
+      "ts": "2026-10-17T15:05:51.260997+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "financial_stability",
+        "key": "a1_1_financial_stability",
+        "output": {
+          "findings": "FINANCIAL STABILITY ASSESSMENT \u2014 NIMBUS STORAGE LTD\n\nCRITICAL DATA GAP: The vendor_dossier supplied to this workflow is empty ({}). No financial statements, audit reports, ownership records, funding history, customer-concentration data, litigation filings, credit-rating information, or contractual exit provisions were provided. Consequently, NO financial evidence could be evaluated. No financial figures, ratios, ratings, or audit opinions have been fabricated. This assessment is therefore a null-result: a valid financial risk score cannot be assigned without the underlying data.\n\nPer the governing rules of this workflow, financial_risk_score is set to null. The absence of data is itself the highest-priority finding: an onboarding decision made without financial due diligence carries unquantified and potentially catastrophic risk (vendor insolvency, data loss, service discontinuation, regulatory non-compliance). The recommendation to the consolidation node is that the overall go / conditional-go / no-go decision MUST NOT proceed to a 'go' or 'conditional-go' until the data gaps below are closed and a re-assessment is performed.\n\nNarrative summary: No narrative can be constructed. The vendor's revenue trajectory, burn rate, leverage, liquidity, ownership, funding history, customer concentration, going-concern status, and contractual exit feasibility are all unknown. Any statement about Nimbus Storage Ltd's financial health would be speculative and is therefore withheld.\n\nRanked top risks (all at 'unknown / unassessable' severity):\n  1. Unknown solvency / going-concern status \u2014 no audit opinion or credit rating available.\n  2. Unknown liquidity and debt position \u2014 no balance-sheet data.\n  3. Unknown revenue sustainability / burn rate \u2014 no income-statement or cash-flow data.\n  4. Unknown ownership and funding stability \u2014 no cap-table or round history.\n  5. Unknown customer concentration \u2014 no revenue-by-customer breakdown.\n  6. Unknown contractual exit / data-repatriatio\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 12,
+      "ts": "2026-10-17T15:05:51.261684+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 41.289,
+        "output": {
+          "risk_investigation": {
+            "a1_1_financial_stability": {
+              "subagent": "financial_stability",
+              "findings": "FINANCIAL STABILITY ASSESSMENT \u2014 NIMBUS STORAGE LTD\n\nCRITICAL DATA GAP: The vendor_dossier supplied to this workflow is empty ({}). No financial statements, audit reports, ownership records, funding history, customer-concentration data, litigation filings, credit-rating information, or contractual exit provisions were provided. Consequently, NO financial evidence could be evaluated. No financial figures, ratios, ratings, or audit opinions have been fabricated. This assessment is therefore a null-result: a valid financial risk score cannot be assigned without the underlying data.\n\nPer the governing rules of this workflow, financial_risk_score is set to null. The absence of data is itself the highest-priority finding: an onboarding decision made without financial due diligence carries unquantified and potentially catastrophic risk (vendor insolvency, data loss, service discontinuation, regulatory non-compliance). The recommendation to the consolidation node is that the overall go / conditional-go / no-go decision MUST NOT proceed to a 'go' or 'conditional-go' until the data gaps below are closed and a re-assessment is performed.\n\nNarrative summary: No narrative can be constructed. The vendor's revenue trajectory, burn rate, leverage, liquidity, ownership, funding history, customer concentration, going-concern status, and contractual exit feasibility are all unknown. Any statement about Nimbus Storage Ltd's financial health would be speculative and is therefore withheld.\n\nRanked top risks (all at 'unknown / unassessable' severity):\n  1. Unknown solvency / going-concern status \u2014 no audit opinion or credit rating available.\n  2. Unknown liquidity and debt position \u2014 no balance-sheet data.\n  3. Unknown revenue sustainability / burn rate \u2014 no income-statement or cash-flow data.\n  4. Unknown ownership and funding stability \u2014 no cap-table or round history.\n  5. Unknown customer concentration \u2014 no revenue-by-customer breakdown.\n  6. Unknown contractual exit / data-repatriatio\u2026"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 13,
+      "ts": "2026-10-17T15:06:25.562218+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "subagent:risk_investigation.regulatory_compliance",
+        "model": "qwen3.8",
+        "input_tokens": 471,
+        "output_tokens": 1813
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 14,
+      "ts": "2026-10-17T15:06:25.563422+00:00",
+      "type": "delegation_result",
+      "node": "risk_investigation__worker",
+      "data": {
+        "subagent": "regulatory_compliance",
+        "key": "a1_2_regulatory_compliance",
+        "output": {
+          "findings": "REGULATORY COMPLIANCE INVESTIGATION \u2014 Nimbus Storage Ltd\n\nSTATUS: ASSESSMENT CANNOT BE COMPLETED \u2014 CRITICAL DATA GAP\n\nThe vendor_dossier supplied to this workflow is empty ({}). No regulatory evidence, certification records, contractual excerpts, or screening results were provided for evaluation. In accordance with the governing rule that no data, figures, quotes, or sources may be fabricated, this node returns a null regulatory risk score and enumerates the full set of evidence required to produce a valid assessment. No go / conditional-go / no-go recommendation can be derived from this node until the data gaps below are closed.\n\n---\n\n(a) DATA-RESIDENCY & SOVEREIGNTY\nNo information was provided regarding:\n  \u2022 Physical data-centre locations (countries, cities, facility names).\n  \u2022 Whether data is replicated or backed up in jurisdictions outside the buyer's territory.\n  \u2022 Cross-border transfer mechanisms in place (EU Standard Contractual Clauses v.2021/914, EU adequacy decisions, Binding Corporate Rules, or equivalent).\n  \u2022 Sub-processor register and the jurisdictions in which sub-processors operate.\n  \u2022 Data-residency contractual commitments or guarantees.\n  \u2022 Data classification and mapping (PII, special-category data, controlled unclassified information, etc.).\n\n(b) SECTOR-SPECIFIC REGULATORY ALIGNMENT\nNo evidence was provided for any of the following frameworks:\n  \u2022 GDPR: Data Processing Agreement (Art. 28), Art. 27 EU representative designation, DPO appointment, DPIA availability, data-subject-rights support workflow.\n  \u2022 HIPAA / HITECH: Business Associate Agreement, Security Rule and Privacy Rule attestation (if buyer handles PHI).\n  \u2022 PCI-DSS: Attestation of Compliance (AOC), scope of cardholder-data environment, quarterly ASV scans, annual ROC.\n  \u2022 FedRAMP / NIST 800-171: Authorization package, PMO status, continuous-monitoring reports (if buyer is a US federal entity).\n  \u2022 ISO/IEC 27001, ISO 27701, SOC 1 / SOC 2 Type II, CSA STAR, or equivalent control-frame\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 15,
+      "ts": "2026-10-17T15:06:25.564137+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation__worker",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 75.59,
+        "output": {
+          "risk_investigation": {
+            "a1_2_regulatory_compliance": {
+              "subagent": "regulatory_compliance",
+              "findings": "REGULATORY COMPLIANCE INVESTIGATION \u2014 Nimbus Storage Ltd\n\nSTATUS: ASSESSMENT CANNOT BE COMPLETED \u2014 CRITICAL DATA GAP\n\nThe vendor_dossier supplied to this workflow is empty ({}). No regulatory evidence, certification records, contractual excerpts, or screening results were provided for evaluation. In accordance with the governing rule that no data, figures, quotes, or sources may be fabricated, this node returns a null regulatory risk score and enumerates the full set of evidence required to produce a valid assessment. No go / conditional-go / no-go recommendation can be derived from this node until the data gaps below are closed.\n\n---\n\n(a) DATA-RESIDENCY & SOVEREIGNTY\nNo information was provided regarding:\n  \u2022 Physical data-centre locations (countries, cities, facility names).\n  \u2022 Whether data is replicated or backed up in jurisdictions outside the buyer's territory.\n  \u2022 Cross-border transfer mechanisms in place (EU Standard Contractual Clauses v.2021/914, EU adequacy decisions, Binding Corporate Rules, or equivalent).\n  \u2022 Sub-processor register and the jurisdictions in which sub-processors operate.\n  \u2022 Data-residency contractual commitments or guarantees.\n  \u2022 Data classification and mapping (PII, special-category data, controlled unclassified information, etc.).\n\n(b) SECTOR-SPECIFIC REGULATORY ALIGNMENT\nNo evidence was provided for any of the following frameworks:\n  \u2022 GDPR: Data Processing Agreement (Art. 28), Art. 27 EU representative designation, DPO appointment, DPIA availability, data-subject-rights support workflow.\n  \u2022 HIPAA / HITECH: Business Associate Agreement, Security Rule and Privacy Rule attestation (if buyer handles PHI).\n  \u2022 PCI-DSS: Attestation of Compliance (AOC), scope of cardholder-data environment, quarterly ASV scans, annual ROC.\n  \u2022 FedRAMP / NIST 800-171: Authorization package, PMO status, continuous-monitoring reports (if buyer is a US federal entity).\n  \u2022 ISO/IEC 27001, ISO 27701, SOC 1 / SOC 2 Type II, CSA STAR, or equivalent control-frame\u2026"
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 16,
+      "ts": "2026-10-17T15:06:25.565302+00:00",
+      "type": "node_started",
+      "node": "risk_investigation",
+      "data": {
+        "task": "risk_investigation",
+        "kind": "hub",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 17,
+      "ts": "2026-10-17T15:06:58.900482+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:risk_investigation",
+        "model": "qwen3.8",
+        "input_tokens": 3516,
+        "output_tokens": 1589
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 18,
+      "ts": "2026-10-17T15:06:58.901626+00:00",
+      "type": "node_succeeded",
+      "node": "risk_investigation",
+      "data": {
+        "task": "risk_investigation",
+        "attempt": 1,
+        "seconds": 33.336,
+        "output": {
+          "summary": "CONSOLIDATED VENDOR RISK ASSESSMENT \u2014 NIMBUS STORAGE LTD\n\n1. NARRATIVE SUMMARY\n\nAll three specialist sub-investigations (security posture, financial stability, regulatory compliance) were executed in parallel and returned identical structural results: the vendor_dossier supplied to the workflow was an empty JSON object ({}). No primary-source evidence\u2014certifications, financial statements, audit opinions, contractual excerpts, screening results, breach histories, or control descriptions\u2014was available for any of the three domains. In strict adherence to the governing rule that no data, figures, quotes, or sources may be fabricated, every specialist returned a null risk score and enumerated the full evidence set required to produce a valid assessment. No narrative about Nimbus Storage Ltd's actual security controls, financial health, or regulatory standing can be constructed; any such narrative would be speculative and is therefore withheld. The single root cause blocking the entire assessment is the absence of a populated vendor_dossier. This is not a partial gap; it is a total evidence void across all three risk dimensions simultaneously.\n\n2. RANKED TOP RISKS (all at UNDETERMINED / treated as severity 5 for governance purposes)\n\n  1. TOTAL EVIDENCE VOID (cross-cutting, root cause): Zero artefacts were supplied for security, financial, or regulatory evaluation. The onboarding party cannot demonstrate that Nimbus Storage Ltd is secure, solvent, or compliant. This single gap propagates into every downstream risk and makes any go/conditional-go decision indefensible.\n  2. UNKNOWN SECURITY POSTURE: No evidence of encryption standards, IAM controls, incident-response capability, penetration-testing cadence, sub-processor assurance, or attestation status (SOC 2, ISO 27001, CSA STAR, etc.). Risk of undetected data exposure, unmanaged vulnerabilities, and absent breach-response is unquantified.\n  3. UNKNOWN FINANCIAL VIABILITY: No audit opinion, credit rating, balance-sheet d\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 19,
+      "ts": "2026-10-17T15:06:58.902836+00:00",
+      "type": "node_started",
+      "node": "recommendation",
+      "data": {
+        "task": "recommendation",
+        "kind": "agent",
+        "attempt": 1
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 20,
+      "ts": "2026-10-17T15:07:31.929899+00:00",
+      "type": "model_call",
+      "node": null,
+      "data": {
+        "purpose": "agent:recommendation",
+        "model": "qwen3.8",
+        "input_tokens": 1506,
+        "output_tokens": 1882
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 21,
+      "ts": "2026-10-17T15:07:31.931043+00:00",
+      "type": "node_succeeded",
+      "node": "recommendation",
+      "data": {
+        "task": "recommendation",
+        "attempt": 1,
+        "seconds": 33.028,
+        "output": {
+          "summary": "FINAL DECISION: NO-GO \u2014 Onboarding of Nimbus Storage Ltd is NOT approved.\n\n1. DECISION\n   NO-GO. Onboarding must not proceed. The decision is final and binding until the conditions in \u00a72 are fully satisfied and a re-assessment is completed.\n\n2. CONDITIONS FOR RECONSIDERATION (all must be met before any re-scoring)\n   a. The onboarding party must deliver a complete, primary-source vendor_dossier containing, at minimum: SOC 2 Type II report (current period, unqualified opinion); ISO/IEC 27001 certificate; most recent penetration-test summary; full DPA/MSA text; three-year audited financials with going-concern opinion; cap-table and funding history; sub-processor register with jurisdiction mapping; sanctions/PEP screening results; and any regulatory enforcement history.\n   b. All three specialist sub-investigations (security posture, financial stability, regulatory compliance) must be re-executed against the populated dossier.\n   c. A re-consolidation and re-scoring must be performed. A conditional-go may be considered only if the composite risk score is \u2264 3 and every open finding has a named remediation owner and a defined deadline.\n   d. This NO-GO decision, its rationale, and the expected dossier-delivery timeline must be logged in the vendor-risk register with a mandatory review date.\n   e. Partial population of the dossier is insufficient; the three risk domains are interdependent (e.g., sub-processor data-residency status simultaneously affects security and regulatory scores), so all 24 enumerated evidence item-groups (12 security, 6 financial, 6 regulatory) must be satisfied before re-scoring is meaningful.\n\n3. JUSTIFICATION \u2014 TIED TO THE SIX RANKED TOP RISKS\n   The NO-GO decision is driven by a single root cause that propagates into every downstream risk:\n\n   Risk 1 \u2013 TOTAL EVIDENCE VOID (cross-cutting, root cause): The vendor_dossier supplied to the workflow was an empty JSON object ({}). Zero artefacts were available for security, financial, or regulatory eva\u2026"
+        }
+      }
+    },
+    {
+      "run_id": "run_7931e192b399",
+      "seq": 22,
+      "ts": "2026-10-17T15:07:31.932873+00:00",
+      "type": "run_finished",
+      "node": null,
+      "data": {
+        "status": "succeeded",
+        "disposition": "unreviewed",
+        "error": null,
+        "usage": {
+          "model_calls": 6,
+          "input_tokens": 6908,
+          "output_tokens": 8447
+        }
+      }
+    }
+  ],
+  "graph": {
+    "nodes": [
+      "__end__",
+      "__start__",
+      "recommendation",
+      "risk_investigation",
+      "risk_investigation__plan",
+      "risk_investigation__worker"
+    ],
+    "edges": [
+      [
+        "__start__",
+        "risk_investigation__plan",
+        false
+      ],
+      [
+        "recommendation",
+        "__end__",
+        false
+      ],
+      [
+        "risk_investigation",
+        "recommendation",
+        false
+      ],
+      [
+        "risk_investigation__plan",
+        "risk_investigation",
+        true
+      ],
+      [
+        "risk_investigation__plan",
+        "risk_investigation__worker",
+        true
+      ],
+      [
+        "risk_investigation__worker",
+        "risk_investigation",
+        false
+      ]
+    ]
+  }
+}

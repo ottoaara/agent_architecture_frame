@@ -1,0 +1,13 @@
+Vendor: Sage (The Sage Group plc, UK-listed), payroll software for the UK and Ireland. Public information gathered October 2026; prices from review and pricing-guide sites are third-party and unverified.
+
+Company: Large UK-listed software company (FTSE 100) headquartered in Newcastle, with a long history in UK and Irish SME accounting and payroll.
+
+Product and UK/Ireland coverage: Two relevant product lines.
+- Sage Payroll (Sage Business Cloud Payroll): browser-based. Third-party sources state UK plans are capped at 150 employees, and Sage Ireland describes the Irish cloud product as suitable for businesses up to 100 employees, so it does not fit a 200-employee company.
+- Sage 50 Payroll: desktop software with a cloud-connected layer, which Sage markets for teams "from 3 to 300 employees". HMRC RTI in the UK; Sage states it works closely with Revenue on PAYE Modernisation in Ireland. UK and Irish editions are separate products.
+
+Integrations: Native links to Sage accounting products; Sage's add-on HR module (core HR about GBP 4.40 per user per month, timesheets about GBP 2.20 per user per month, third-party figures) runs on the cloud platform. Integration with a third-party HR system is not a headline feature.
+
+Pricing: Sage Payroll cloud uses a base fee covering five employees plus a per-employee monthly rate, with introductory discounts for the first months. Sage 50 Payroll published UK tiers (third-party figures): up to 50 employees about GBP 82 per month, up to 100 about GBP 87 per month, unlimited employees about GBP 121 per month, all plus VAT.
+
+Fit notes: Well-known, financially stable vendor with predictable, published pricing. For 200 employees the realistic option is the desktop-first Sage 50 Payroll, not the modern cloud product, which adds IT overhead and makes multi-country, low-admin operation harder.

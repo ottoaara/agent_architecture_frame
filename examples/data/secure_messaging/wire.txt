@@ -1,0 +1,9 @@
+Vendor: Wire (Wire Swiss GmbH), enterprise secure messaging and collaboration. Public information gathered October 2026; figures marked "third-party estimate" are unverified.
+
+Company and services: Founded 2012, headquartered in Zug, Switzerland. CEO Benjamin Schilz since January 2024. Offers end-to-end encrypted messaging, voice/video calls, file sharing and conferencing for enterprises and governments, as cloud SaaS or on-premises. In April 2024 Wire announced a strategic partnership in which Schwarz Group companies (owner of Lidl and the STACKIT sovereign cloud) would invest in Wire and jointly develop Wire on STACKIT.
+
+Security: Messages, calls and files are end-to-end encrypted by default. Wire describes itself as the first enterprise collaboration suite fully secured by Messaging Layer Security (MLS, IETF RFC 9420), which it co-developed; it says the design is crypto-agile and post-quantum ready. Client and MLS code is open source.
+
+Financial stability: About USD 24.8M total disclosed venture funding (last round Series C, August 2022; investors include Morpheus Ventures, Cipio Partners, UVC Partners, One Way Ventures). Annual revenue about USD 7.2M (third-party estimate). Profitability not disclosed. The Schwarz Group investment adds a large strategic backer, but its size is not public.
+
+Regulatory compliance: ISO 27001 and ISO 27701 certified; states NIS2 alignment and GDPR compliance. On-premises option supports data-residency requirements. History to note: in 2019 Wire moved its holding company to the US while taking US VC funding and announced a US federal reseller partnership; its privacy policy changed from sharing data "when required by law" to "when necessary" without notifying users, and Privacy Guides delisted it. Current corporate domicile is Switzerland.

@@ -1,0 +1,249 @@
+{
+  "id": "bp_79afbea8392a",
+  "version": 1,
+  "prd_id": "prd_c3a18de4544e",
+  "hash": "cfceb87cc0fdd822a9d0f3c92df43394aba5ffb73d1b0211d07d42484813a855",
+  "status": "proposed",
+  "blueprint": {
+    "schema_version": "1.0",
+    "blueprint_id": "bp_79afbea8392a",
+    "version": 1,
+    "objective": "Assess the risk of onboarding the fictional cloud vendor Nimbus Storage Ltd and produce a justified go / conditional-go / no-go recommendation.",
+    "source_prd_hash": "6826b6ef7488060b16a2261d9f16532adb71d84fd7baa2a49878fc8dabde5db4",
+    "created_at": "2026-10-17T15:04:52.135290Z",
+    "inputs": [
+      {
+        "name": "vendor_dossier",
+        "description": "Description of the vendor (Nimbus Storage Ltd), its services, and its controls.",
+        "required": true
+      }
+    ],
+    "tasks": [
+      {
+        "id": "risk_investigation",
+        "role": "Investigate vendor risk across security, financial stability, and regulatory compliance",
+        "responsibility": "Read the vendor_dossier and coordinate three specialist sub-investigations (security posture, financial stability, regulatory compliance). Consolidate their findings into a single risk view: a narrative summary, a ranked list of top risks, and an overall risk rating.",
+        "kind": "hub",
+        "required_inputs": [],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "summary",
+            "type": "string",
+            "description": "The task's result",
+            "required": true
+          }
+        ],
+        "dependencies": [],
+        "skill": "coordinator",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [
+          {
+            "id": "security",
+            "role": "security specialist",
+            "responsibility": "Investigate the 'security' aspect of: Read the vendor_dossier and coordinate three specialist sub-investigations (security posture, financial stability, regulatory compliance). Consolidate their findings into a single risk view: a narrative summary, a ranked list of top risks, and an overall risk rating.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          },
+          {
+            "id": "financial_stability",
+            "role": "financial_stability specialist",
+            "responsibility": "Investigate the 'financial_stability' aspect of: Read the vendor_dossier and coordinate three specialist sub-investigations (security posture, financial stability, regulatory compliance). Consolidate their findings into a single risk view: a narrative summary, a ranked list of top risks, and an overall risk rating.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          },
+          {
+            "id": "regulatory_compliance",
+            "role": "regulatory_compliance specialist",
+            "responsibility": "Investigate the 'regulatory_compliance' aspect of: Read the vendor_dossier and coordinate three specialist sub-investigations (security posture, financial stability, regulatory compliance). Consolidate their findings into a single risk view: a narrative summary, a ranked list of top risks, and an overall risk rating.",
+            "output_schema": [
+              {
+                "name": "findings",
+                "type": "string",
+                "description": "Delegated findings",
+                "required": true
+              }
+            ]
+          }
+        ],
+        "max_delegations": 3
+      },
+      {
+        "id": "recommendation",
+        "role": "Write the go / no-go recommendation",
+        "responsibility": "Using the consolidated risk view from risk_investigation, produce a final decision (go, conditional go, or no-go), any conditions that must be met, and a justification that explicitly ties the decision back to the identified top risks.",
+        "kind": "agent",
+        "required_inputs": [
+          {
+            "name": "risk_investigation",
+            "source": "task:risk_investigation",
+            "description": ""
+          }
+        ],
+        "optional_inputs": [],
+        "output_schema": [
+          {
+            "name": "summary",
+            "type": "string",
+            "description": "The task's result",
+            "required": true
+          }
+        ],
+        "dependencies": [
+          "risk_investigation"
+        ],
+        "skill": "researcher",
+        "tool": null,
+        "tool_args": {},
+        "subagents": [],
+        "max_delegations": 1
+      }
+    ],
+    "execution": {
+      "patterns": [
+        {
+          "pattern": "serial",
+          "tasks": [
+            "recommendation"
+          ],
+          "rationale": "these tasks consume predecessor outputs; run in dependency order"
+        },
+        {
+          "pattern": "hub_subagent",
+          "tasks": [
+            "risk_investigation"
+          ],
+          "rationale": "needs specialised delegation: security, financial_stability, regulatory_compliance"
+        }
+      ],
+      "edges": [
+        {
+          "source": "risk_investigation",
+          "target": "recommendation"
+        }
+      ],
+      "loops": [],
+      "concurrency_cap": 4
+    },
+    "capabilities": {
+      "tools": [],
+      "skills": [
+        "coordinator",
+        "researcher"
+      ],
+      "model": {
+        "provider": "ollama",
+        "model": "qwen3.8",
+        "effort": "medium",
+        "max_tokens": 16000
+      },
+      "allowed_operations": []
+    },
+    "policies": {
+      "require_human_approval": true,
+      "max_steps": 16,
+      "max_retries": 1,
+      "timeout_seconds": 900,
+      "max_model_calls": 12,
+      "max_total_tokens": 400000,
+      "on_failure": "stop"
+    },
+    "quality": {
+      "criteria": [],
+      "final_task": "recommendation",
+      "on_unmet": "label_and_return"
+    }
+  },
+  "report": {
+    "errors": [],
+    "warnings": [
+      {
+        "code": "no_quality_criteria",
+        "message": "no measurable quality criteria declared",
+        "task": null
+      }
+    ],
+    "approvals_required": []
+  },
+  "analysis": {
+    "objective": "Assess the risk of onboarding the fictional cloud vendor Nimbus Storage Ltd and produce a justified go / conditional-go / no-go recommendation.",
+    "tasks": [
+      {
+        "id": "risk_investigation",
+        "title": "Investigate vendor risk across security, financial stability, and regulatory compliance",
+        "description": "Read the vendor_dossier and coordinate three specialist sub-investigations (security posture, financial stability, regulatory compliance). Consolidate their findings into a single risk view: a narrative summary, a ranked list of top risks, and an overall risk rating.",
+        "depends_on": [],
+        "user_inputs": [],
+        "output_fields": [],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [
+          "security",
+          "financial_stability",
+          "regulatory_compliance"
+        ],
+        "tool": null
+      },
+      {
+        "id": "recommendation",
+        "title": "Write the go / no-go recommendation",
+        "description": "Using the consolidated risk view from risk_investigation, produce a final decision (go, conditional go, or no-go), any conditions that must be met, and a justification that explicitly ties the decision back to the identified top risks.",
+        "depends_on": [
+          "risk_investigation"
+        ],
+        "user_inputs": [],
+        "output_fields": [],
+        "needs_review": false,
+        "review_criteria": [],
+        "delegate_to": [],
+        "tool": null
+      }
+    ],
+    "run_inputs": [
+      {
+        "name": "vendor_dossier",
+        "description": "Description of the vendor (Nimbus Storage Ltd), its services, and its controls.",
+        "required": true
+      }
+    ],
+    "constraints": [],
+    "success_criteria": [],
+    "missing_information": [
+      "The actual content of vendor_dossier is not embedded in the PRD; it is expected as a run input. If the dossier is not supplied at run time, the investigation cannot proceed.",
+      "No explicit risk-rating scale (e.g., low / medium / high / critical) is defined in the PRD; the risk_investigation task must adopt or infer one.",
+      "No threshold or decision matrix is specified for mapping a risk_rating to a go / conditional-go / no-go decision; the recommendation task must apply its own judgment."
+    ]
+  },
+  "issues": [
+    {
+      "code": "missing_information",
+      "message": "The actual content of vendor_dossier is not embedded in the PRD; it is expected as a run input. If the dossier is not supplied at run time, the investigation cannot proceed.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "No explicit risk-rating scale (e.g., low / medium / high / critical) is defined in the PRD; the risk_investigation task must adopt or infer one.",
+      "task": null
+    },
+    {
+      "code": "missing_information",
+      "message": "No threshold or decision matrix is specified for mapping a risk_rating to a go / conditional-go / no-go decision; the recommendation task must apply its own judgment.",
+      "task": null
+    }
+  ],
+  "created_at": "2026-10-17T15:04:52.136053+00:00",
+  "approval": null
+}

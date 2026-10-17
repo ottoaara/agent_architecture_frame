@@ -1,0 +1,44 @@
+===== wire =====
+Vendor: Wire (Wire Swiss GmbH), enterprise secure messaging and collaboration. Public information gathered October 2026; figures marked "third-party estimate" are unverified.
+
+Company and services: Founded 2012, headquartered in Zug, Switzerland. CEO Benjamin Schilz since January 2024. Offers end-to-end encrypted messaging, voice/video calls, file sharing and conferencing for enterprises and governments, as cloud SaaS or on-premises. In April 2024 Wire announced a strategic partnership in which Schwarz Group companies (owner of Lidl and the STACKIT sovereign cloud) would invest in Wire and jointly develop Wire on STACKIT.
+
+Security: Messages, calls and files are end-to-end encrypted by default. Wire describes itself as the first enterprise collaboration suite fully secured by Messaging Layer Security (MLS, IETF RFC 9420), which it co-developed; it says the design is crypto-agile and post-quantum ready. Client and MLS code is open source.
+
+Financial stability: About USD 24.8M total disclosed venture funding (last round Series C, August 2022; investors include Morpheus Ventures, Cipio Partners, UVC Partners, One Way Ventures). Annual revenue about USD 7.2M (third-party estimate). Profitability not disclosed. The Schwarz Group investment adds a large strategic backer, but its size is not public.
+
+Regulatory compliance: ISO 27001 and ISO 27701 certified; states NIS2 alignment and GDPR compliance. On-premises option supports data-residency requirements. History to note: in 2019 Wire moved its holding company to the US while taking US VC funding and announced a US federal reseller partnership; its privacy policy changed from sharing data "when required by law" to "when necessary" without notifying users, and Privacy Guides delisted it. Current corporate domicile is Switzerland.
+
+===== element =====
+Vendor: Element (legal entity New Vector Ltd, UK), enterprise secure messaging built on the open Matrix protocol. Public information gathered October 2026; figures marked "third-party estimate" are unverified.
+
+Company and services: Founded 2017 as New Vector by Matthew Hodgson and Amandine Le Pape, creators of the Matrix open standard; rebranded Element in 2020. Offers end-to-end encrypted, federated messaging, calls and collaboration via Element Cloud or the self-hosted Element Server Suite. Pricing published around USD 3 per monthly active user (baseline, on-prem from 250 seats) and USD 4 per MAU (Enterprise on-prem, includes data retention policies, mobile security pack and 99.9% uptime SLA).
+
+Security: The platform and the Matrix standard are end-to-end encrypted by default (Olm/Megolm). The reference Rust implementation, vodozemac, was independently audited by Least Authority in 2022; the audit found implementation-level cryptographic issues that were addressed. Academic formal analysis of the Matrix cryptographic suite was published in 2024. Open source; federation means customers can run fully isolated, sovereign deployments.
+
+Financial stability: About USD 48M raised in total, including a USD 30M Series B in July 2021 (Protocol Labs, Metaplanet, Automattic, Notion Capital). Revenue about USD 16.4M for the year to June 2025 (third-party estimate from filings). Element laid off core staff in 2022-2023 because it could not keep funding Matrix development alone, and in November 2023 relicensed its Synapse server from Apache 2.0 to AGPLv3 to sell commercial licences, a move the Matrix Foundation did not support. Recent growth is driven by government "digital sovereignty" demand.
+
+Regulatory compliance: Element and all subsidiaries hold ISO/IEC 27001:2022 certification (issued by Prescient Security). Government customers include the French government (Tchap, 300,000+ users), NATO, the German Bundeswehr and US DoD units (Navy, Marines, Space Force); listed on the UK G-Cloud framework. Self-hosting supports GDPR and data-residency requirements.
+
+===== threema_work =====
+Vendor: Threema Work (Threema GmbH), Swiss enterprise secure messaging. Public information gathered October 2026.
+
+Company and services: Swiss company headquartered near Zurich, about 42 employees. Threema Work is the business edition of the Threema messenger: end-to-end encrypted chat, groups, calls, file sharing, polls and central user management, as SaaS or self-hosted (Threema OnPrem, typically for 500+ licences). Published SaaS pricing: Core CHF 3.00 per user per month (up to 200 licences) and Professional CHF 5.00 per user per month (unlimited). Users can register without a phone number or email.
+
+Security: End-to-end encryption by default with a zero-knowledge, metadata-minimising design; servers in an ISO 27001-certified data centre in Zurich. Independent audits: Cure53 audited the mobile apps (October 2020) and the new desktop app (January 2024). In January 2023 ETH Zurich researchers disclosed seven vulnerabilities in Threema's older protocol (including impersonation and key-extraction attacks); they were fixed, and Threema moved to its new "Ibex" forward-secrecy protocol, which had not been independently audited at the time of the disclosure.
+
+Financial stability: Privately held by private equity. Afinum Management owned Threema from 2020; at the start of 2026 ownership transferred to Comitis Capital GmbH, a German investment firm, after technical due diligence by Code & Co. Revenue and profitability are not disclosed. The second private-equity sale in about five years creates some uncertainty about long-term strategy and pricing.
+
+Regulatory compliance: Swiss data protection law plus GDPR compliance; hosting in Switzerland only (SaaS). About 2 million Threema Work users at more than 7,500 organisations, including the Swiss federal administration, the Swiss Army (the only chat app approved for army communication since January 2022), Mercedes-Benz Group, Allianz and the city of Frankfurt am Main. Note: the hosting data centre is ISO 27001 certified; a company-wide ISO 27001 certificate for Threema itself was not found in public sources.
+
+===== aws_wickr =====
+Vendor: AWS Wickr (Amazon Web Services), enterprise secure messaging. Public information gathered October 2026.
+
+Company and services: Wickr was founded in 2012 and acquired by Amazon Web Services in June 2021; it is now an AWS managed service. Provides end-to-end encrypted one-to-one and group messaging, voice and video calls, file and screen sharing, and location sharing, with administrator controls, message expiry and burn-on-read. Also offered as Wickr Enterprise (self-hosted) and in AWS GovCloud. Published pricing: Standard about USD 5 per user per month, Premium about USD 15 per user per month (custom data retention, unlimited admin controls, 5 GB attachments), guest add-on about USD 2 per user per month. The free consumer app Wickr Me was closed on December 31, 2023.
+
+Security: 256-bit end-to-end encryption; every message, call and file uses a unique key, and content is encrypted locally on the device. An optional data retention module lets organisations keep an encrypted copy of communications for compliance; when enabled, this deliberately creates an archive outside the end-to-end model that must be secured.
+
+Financial stability: Backed by Amazon (AWS), so vendor insolvency risk is very low. The main risk is product-strategy risk: AWS has retired the consumer product, and a niche service inside a very large provider can be repriced, folded into other services or deprecated with notice.
+
+Regulatory compliance: FedRAMP High authorisation in AWS GovCloud (US-West) (March 2024); DoD Cloud Computing SRG Impact Level 4 and 5; HIPAA eligible; ISO 27001; SOC 1, 2 and 3. Data retention and records features support regulated industries (e.g. finance record-keeping). Subject to US jurisdiction (including the CLOUD Act) as a US company, which matters to EU customers with data-sovereignty requirements. Check the regions on offer against data-residency needs.
+

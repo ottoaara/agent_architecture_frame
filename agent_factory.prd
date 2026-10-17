@@ -1,0 +1,391 @@
+Product Requirements Document
+
+Dynamic Agent Factory | Local macOS Proof of Concept
+
+Version 1.0  •  Status: Proposed  •  Date: October 17, 2026
+
+Primary user: POC owner / developer  |  Development tool: Claude Code
+
+1. Executive summary
+
+Build a local Agent Factory that converts a natural-language problem or product requirements document (PRD) into a validated executable blueprint, dynamically assembles a LangGraph agent/workflow pipeline, executes it, and returns results with a complete trace. The factory should avoid requiring an engineer to handcraft business-specific agent pipelines for each new use case. Claude Code is the development assistant; the delivered factory must operate independently of Claude Code.
+
+2. Problem and opportunity
+
+Today, new agentic business problems often require engineers to design named agents, implement handoffs, connect tools, and build execution pipelines repeatedly. This POC tests whether a business user can describe desired outcomes and allow a governed factory to configure and run a fit-for-purpose workflow. It is intended to inform future enterprise implementation, not to deploy production banking workflows.
+
+3. Goals, outcomes and non-goals
+
+3.1 Goals
+
+Accept natural-language prompts or uploaded text-based PRDs and identify tasks, dependencies, expected outputs and constraints.
+
+Automatically select and compose serial, parallel, hub/subagent and maker–checker patterns, including hybrid graphs.
+
+Generate a versioned, machine-readable executable architecture specification with required/optional context contracts, tool permissions, success criteria and stop conditions.
+
+Validate, compile, execute, observe and retain distinct graphs for distinct PRDs.
+
+Run the complete application locally on macOS; hosted model calls may be used with user authorization.
+
+3.2 Explicit non-goals for Phase 1
+
+Unrestricted self-modifying software or arbitrary model-generated Python execution.
+
+Production-scale multi-tenant authentication, bank systems integration, or distributed deployment.
+
+Autonomous external side effects without tool allowlisting and human approval.
+
+Guaranteeing that generated agent plans or outputs are correct without evaluation.
+
+4. Users and primary workflow
+
+Primary persona: the POC owner, who enters a PRD, reviews the architecture the system proposes, approves execution, and inspects the result. Future persona: a business product partner drafting outcomes without writing pipeline code.
+
+Core journey: Submit PRD → Analyze requirements → Decompose tasks → Select patterns and capabilities → Produce blueprint → Validate contracts and graph → Show graph and obtain approval → Compile and run → Validate/revise where needed → View results and trace → Persist artifacts.
+
+5. Product scope and feature requirements
+
+ID
+
+Requirement
+
+Priority
+
+Acceptance criteria
+
+FR-01
+
+Text PRD input and problem prompt; upload local .md/.txt (PDF optional later).
+
+Must
+
+A user can submit a PRD and receive a unique run ID; missing objective is surfaced.
+
+FR-02
+
+Work Director extracts objective, tasks, dependencies, inputs, outputs and constraints.
+
+Must
+
+Structured analysis conforms to a validated Pydantic schema.
+
+FR-03
+
+Pattern selector supports four patterns and hybrids.
+
+Must
+
+Fixture PRDs produce correct parallel, serial, supervisor and bounded review flows.
+
+FR-04
+
+Versioned blueprint generator.
+
+Must
+
+Stores machine-readable task/agent specs, DAG edges, tool IDs, state contracts, policies and exit criteria.
+
+FR-05
+
+Blueprint validation before execution.
+
+Must
+
+Rejects cycles outside declared bounded loops, unresolved dependencies, missing mandatory data and unapproved tools.
+
+FR-06
+
+Dynamic LangGraph compiler and executor.
+
+Must
+
+At least three materially different PRDs compile to different executable graphs without case-specific agent code.
+
+FR-07
+
+Tool registry and skill catalog.
+
+Must
+
+Nodes can use only explicitly registered and permitted tools/skills; unavailable capabilities fail safely.
+
+FR-08
+
+Human approval gate.
+
+Must
+
+User can review and approve/reject a proposed run; restricted side effects require additional approvals.
+
+FR-09
+
+Execution trace, results and persistence.
+
+Must
+
+View graph, steps, status, outputs and failure reasons by run ID; restart restores persisted history.
+
+FR-10
+
+Maker–checker evaluation loop.
+
+Must
+
+Evaluation uses explicit rubric and max revisions; loops stop and report if criteria not met.
+
+FR-11
+
+Local Streamlit interface + FastAPI.
+
+Must
+
+User can submit, inspect, approve, run and export an output through localhost.
+
+FR-12
+
+Optional Chroma/RAG, Deep Agents delegation, generated skills and code.
+
+Later
+
+Demonstrated only after Phase 1; generated code sandboxed and approved.
+
+6. Four required architecture patterns
+
+Pattern
+
+Rule for selection
+
+Execution semantics
+
+Parallel
+
+Independent tasks with no required upstream context.
+
+Fan-out; concurrent node execution; deterministic join and aggregation.
+
+Serial
+
+Downstream task depends on output from predecessor.
+
+Dependency-ordered edges; schema validation at each handoff.
+
+Hub + subagent
+
+Decomposition requires specialized delegated investigation.
+
+Supervisor delegates scoped sub-tasks; results are consolidated into shared state.
+
+Maker–checker
+
+Quality or factual verification requires revision.
+
+Maker → checker → conditional revision up to max attempts; stop on success or limit.
+
+7. System architecture
+
+Frontend: Streamlit localhost:8501 to accept PRDs, visualize proposed execution graphs, show approval controls, progress and outputs. Backend/API: FastAPI localhost:8000 for submissions, blueprints, approvals, runs and results. Factory engine: LangGraph Work Director, requirements analyzer, pattern selector, blueprint generator and validator, dynamic graph compiler and executor. AI/model layer: LangChain model integration with Anthropic Claude API; optional Ollama local models. Agent capabilities: Deep Agents where delegated planning/specialist capabilities are warranted rather than for every task. Context: Pydantic input/output contracts, local files and SQLite storage, optional Chroma for skill/knowledge retrieval. Operations: structured local logs, execution and cost budgets, optional LangSmith tracing.
+
+8. Logical interfaces and data contracts
+
+8.1 Blueprint required fields
+
+blueprint_id, version, objective, source_prd_hash, creation timestamp
+
+tasks[]: id, role, responsibility, required_inputs, optional_inputs, output_schema, dependencies
+
+execution plan: pattern and graph edge definitions; bounded loops; concurrency cap
+
+capabilities: registered tools, referenced skills, model configuration and allowed operations
+
+policies: approval requirements, step/retry/time limits and failure handling
+
+quality: measurable criteria, checker rubric, final output schema, disposition on unmet quality threshold
+
+8.2 Example API endpoints (design targets)
+
+Method
+
+Route
+
+Expected outcome
+
+POST
+
+/prds
+
+Create submission and analysis request
+
+GET
+
+/blueprints/{id}
+
+Retrieve validated blueprint
+
+POST
+
+/blueprints/{id}/approve
+
+Approve or reject a blueprint
+
+POST
+
+/runs
+
+Start approved execution
+
+GET
+
+/runs/{id}
+
+Get state, trace and results
+
+GET
+
+/health
+
+Local readiness check
+
+8.3 State and handoff behavior
+
+Each agent consumes an explicitly validated input object and emits a validated output object. Mandatory context absence must result in a user-input interrupt or a safe failure, not fabricated values. Optional fields may be null. Fan-out branches store results under distinct keys to avoid conflicting state writes; aggregators merge their outputs predictably. Persist run state and checkpoints.
+
+9. Security, governance and safety requirements
+
+Synthetic or publicly shareable data only; do not use confidential bank data or personal API accounts for regulated information.
+
+Bind the app to loopback interfaces by default; store secrets in environment variables and exclude them from source control.
+
+Use allowlisted tool names, explicit filesystem scopes and resource budgets.
+
+Do not execute model-generated Python on the host in Phase 1; later use isolation, static checks, automated tests and human approval.
+
+Record user approvals, blueprint hash/version, tool invocations, model usage, evaluation outcomes and errors.
+
+Escalate missing permissions or unavailable capabilities rather than silently substituting tools.
+
+10. Nonfunctional requirements and target measures
+
+Area
+
+POC target / measure
+
+Reliability
+
+100% of invalid test blueprints rejected before execution in the curated negative-test suite.
+
+Graph correctness
+
+3/3 distinct demonstration PRDs yield validated, executable and appropriately different graphs.
+
+Termination
+
+All tests involving bounded maker–checker loops stop at the configured limit.
+
+Observability
+
+100% of demonstration runs show run ID, blueprint version, node status and final disposition.
+
+Local usability
+
+Documented setup on one macOS machine; frontend/API accessible on localhost.
+
+Performance and cost
+
+Measure graph planning latency, execution latency, API calls and token cost per demonstration; initial thresholds set after baseline.
+
+Quality
+
+Use scenario-specific rubrics; display both checker outcome and unmet criteria, without implying model self-evaluation guarantees correctness.
+
+11. Delivery phases
+
+Phase
+
+Scope
+
+Exit criterion
+
+1 — Core proof
+
+Work Director, Pydantic contracts, 4 patterns, validated blueprint, graph compiler, trusted tool registry, checkpoints, FastAPI, Streamlit, tests.
+
+Three distinct PRDs executed end-to-end; demo produces reproducible traces and bounded failures.
+
+2 — Capability expansion
+
+Skill discovery, safe skill generation, Deep Agents specialization, controlled tool creation, context quality gating, optional Chroma.
+
+Factory identifies missing capability and adds approved/validated capability to a run.
+
+3 — Enterprise readiness
+
+Policy-as-code, audit controls, reusable blueprint catalog, stronger evaluation, multi-user control plane, sandboxing and deployment strategy.
+
+Architecture and controls are reviewable for enterprise adoption; not automatically production-certified.
+
+12. UAT scenarios and definition of done
+
+Scenario
+
+Expected result
+
+Parallel competitive analysis
+
+Three independent research branches fan out and are joined for comparison and report.
+
+Serial data transformation
+
+Input validation precedes transformation; dependent stages do not run with absent mandatory outputs.
+
+Hybrid analysis + maker–checker
+
+Parallel inputs converge, draft is reviewed, bounded revision occurs, final quality disposition appears.
+
+Missing mandatory context
+
+Validation raises actionable missing-field error or interrupt; no downstream run.
+
+Unapproved tool / code execution
+
+Execution blocked and approval/audit event recorded.
+
+Checker never approves
+
+Loop terminates at revision limit; best available artifact is labeled as not meeting threshold.
+
+App restart
+
+Past runs/blueprint metadata remain queryable from local persistence.
+
+Definition of done: All Must functional requirements demonstrated, test suite passes, three example PRDs execute without handwritten business-specific agents, generated graph view matches actual execution trace, setup instructions reproduce the POC locally, and known limitations are documented.
+
+13. Dependencies, assumptions and risks
+
+Assumption: Python 3.11+ is available on macOS, with local install rights and internet access for optional hosted models.
+
+Dependency: Compatible, pinned LangChain/LangGraph/Deep Agents versions must be verified at build time.
+
+Risk: Model-generated decomposition may miss dependencies; mitigate through structural graph validation, deterministic contracts and user approval.
+
+Risk: Tool and skill generation can introduce unsafe code; defer arbitrary execution and enforce allowlists and sandboxing.
+
+Risk: LLM output and checker assessments can be unreliable; measure against human-reviewed fixtures and retain transparent review status.
+
+Risk: Anthropic API usage creates external data transfer and variable cost; use synthetic data, allow configurable model providers and track usage.
+
+14. Open product decisions
+
+Should the first release accept only text/Markdown PRDs, or should PDF parsing be required? Recommendation: text/Markdown first.
+
+Is human approval mandatory for every proposed blueprint? Recommendation: yes for POC to evaluate factory decisions.
+
+Which three representative PRDs should become golden test cases? Recommendation: competitor comparison, financial analysis with synthetic data, document transformation.
+
+Should the factory generate new Python tools in Phase 1? Recommendation: no; trusted registry first, safe generation in Phase 2.
+
+15. Implementation directive for Claude Code
+
+Implement the core contracts, Work Director, blueprint validator, graph compiler and test harness before building the API or UI. Build the Phase 1 system as a local standalone Python application, not as a Claude Code session-dependent workflow. Use mocks for unit tests and at least one real model-backed end-to-end run. Supply README commands, requirements/lock file, .env.example, tests, example PRDs, architectural decisions and demo output artifacts.
+
+Dynamic Agent Factory  |  Local POC  |  Proposed PRD
